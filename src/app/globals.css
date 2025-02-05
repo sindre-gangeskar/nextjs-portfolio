@@ -17,7 +17,6 @@ body {
 }
 
 body {
-  color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +27,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
 }
 
 a {
@@ -35,8 +35,4 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+
