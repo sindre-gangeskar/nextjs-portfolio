@@ -6,13 +6,13 @@ export default function Header({
 	color = "primary",
 	level = "h1",
 }: {
-	preColorText: string;
+	preColorText?: string;
 	coloredText: string;
 	color: "primary" | "danger" | "success" | "neutral";
-	level: "h1" | "h2" | "h3" | "h4";
+	level: "h1" | "h2" | "h3" | "h4" | "body-sm" | "body-md" | "body-lg";
 }) {
 	return (
-		<Box component="span" sx={{ alignItems: "center", position: "relative", fontFamily: "Arial" }}>
+		<Box component="span" sx={{ alignItems: "center", position: "relative" }}>
 			<Typography level={level} component="span" sx={{ display: "inline" }}>
 				{preColorText}
 			</Typography>

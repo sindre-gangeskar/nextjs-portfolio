@@ -1,14 +1,15 @@
-import { Container, Stack } from "@mui/joy";
+import { Container, Stack, Avatar } from "@mui/joy";
 import Image from "next/image";
 
 interface ProfileProps {
 	src: string;
+	size: number
 }
-export default function ProfileAvatar({ src }: ProfileProps) {
+export default function ProfileAvatar({ src, size = 50 }: ProfileProps) {
 	return (
 		<Container>
 			<Stack>
-				<Image width={100} height={100} src={src} alt="profileImage"></Image>
+				<Avatar src={src} alt="profileImage" sx={{width: `${size}px`, height: `${size}px`, aspectRatio: 1/1}}></Avatar>
 			</Stack>
 		</Container>
 	);

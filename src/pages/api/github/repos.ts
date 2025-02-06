@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       description: string | null;
       ownerImgURL: string;
 		}
-		const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "database-authentication-jwt"];
+		const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "database-authentication-jwt", 'nextjs-portfolio'];
 
 		const repos: Repo[] = [];
 		const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
