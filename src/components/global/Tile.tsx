@@ -24,8 +24,9 @@ export default function Tile({
 			sx={{
 				position: "relative",
 				textAlign: "start",
-				width: 350,
-				height: 200,
+				width: { xs: "100%", md: 350 },
+				height: { xs: '100%', md: 200 },
+				minHeight: {xs: 'fit-content'},
 				transition: "250ms ease",
 				borderRadius: "0.25rem",
 				zIndex: 1,
@@ -53,13 +54,15 @@ export default function Tile({
 					borderColor: `${color}.solidBg`,
 				},
 			}}>
-			<Stack direction={"column"} sx={{ height: "100%", position: "relative" }}>
-				<Typography level="h4" sx={{ textTransform: "capitalize" }}>
-					{title}
-				</Typography>
-				<Typography>{description}</Typography>
+			<Stack direction={"column"} sx={{ height: "100%", position: "relative", display: 'flex', justifyContent: 'space-between' }}>
+				<Stack>
+					<Typography level="h4" sx={{ textTransform: "capitalize" }}>
+						{title}
+					</Typography>
+					<Typography>{description}</Typography>
+				</Stack>
 				{isRepo ? (
-					<Stack direction={"row"} position={"absolute"} bottom={0} sx={{ width: "100%" }}>
+					<Stack direction={"row"} position={"relative"} bottom={0} sx={{ width: "100%" }}>
 						<Typography display={"inline-flex"} sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
 							<Typography level="body-sm" py={1} sx={{ display: "inline-flex", flexDirection: "row" }}>
 								<StarOutline /> {stars}
