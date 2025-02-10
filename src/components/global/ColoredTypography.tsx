@@ -2,6 +2,8 @@ import { Typography, Link } from "@mui/joy";
 
 export default function ColoredTypography({
 	children,
+	id,
+	sx,
 	color = "primary",
 	level = "body-md",
 	bold = false,
@@ -14,21 +16,25 @@ export default function ColoredTypography({
 	href?: string;
 	bold?: boolean;
 	isLink?: boolean;
+	sx?: {};
+	id?: string;
 }) {
 	return (
 		<Typography
 			level={level}
 			component={"span"}
+			id={id}
 			sx={{
 				backgroundColor: `${color}.solidBg`,
 				WebkitBackgroundClip: "text",
 				WebkitTextFillColor: "transparent",
 				display: "inline",
 				fontWeight: `${bold ? "bold" : "normal"}`,
+				...sx,
 			}}>
 			{isLink ? (
 				<>
-					<Link color={color} variant="solid" sx={{ WebkitBackgroundClip: "text", textDecorationStyle:'dotted', textDecorationLine: 'underline', px:0}} href={href} target="_blank">
+					<Link color={color} variant="solid" sx={{ WebkitBackgroundClip: "text", textDecorationStyle: "dotted", textDecorationLine: "underline", px: 0 }} href={href} target="_blank">
 						{children}
 					</Link>
 				</>

@@ -11,11 +11,14 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@gsap/react": "^2.1.2",
     "@mui/icons-material": "^6.4.2",
     "@mui/joy": "^5.0.0-beta.51",
     "@mui/material": "^6.4.2",
+    "gsap": "^3.12.7",
     "next": "15.1.6",
     "nextjs-portfolio": "file:",
+    "nodemailer": "^6.10.0",
     "octokit": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -23,6 +26,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
