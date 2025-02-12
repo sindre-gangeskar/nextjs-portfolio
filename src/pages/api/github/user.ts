@@ -4,7 +4,8 @@ import { Octokit } from "octokit";
 export default async function get(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-    const { data } = await octokit.request("GET /users/{username}", { username: "sindre-gangeskar" });
+		const { data } = await octokit.request("GET /users/{username}", { username: "sindre-gangeskar" });
+		res.setHeader("Cache-Control", "public, max-age=10800, stale-while-revalidate=300");
     return res.status(200).json(data);
 	} catch (error) {
 		console.error(error);

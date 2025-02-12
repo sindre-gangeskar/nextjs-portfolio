@@ -1,7 +1,5 @@
 "use client";
 import { Stack, Container } from "@mui/joy";
-import Navbar from "@/components/global/Navbar";
-import About from "./About";
 import Summary from "./Summary";
 import FeaturedProjects from "./FeaturedProjects";
 import Hero from "./Hero";
@@ -14,13 +12,9 @@ interface HomePageProps {
 export default function HomePage({ repos, user }: HomePageProps) {
 	return (
 		<Container>
-			<Navbar />
-			<Hero></Hero>
-			<Stack component={"section"} sx={{ width: "100%", maxWidth: "100%", height: "100vh" }}>
-				<About user={user} />
-				<Summary />
-				<FeaturedProjects repos={repos} />
-			</Stack>
+			<Hero src={user.avatar_url}></Hero>
+			<Summary />
+			<FeaturedProjects repos={repos} />
 		</Container>
 	);
 }

@@ -18,7 +18,7 @@ const theme = extendTheme({
 	fontFamily: {
 		body: "Public Sans, sans-serif",
 		display: "Quicksand, sans-serif",
-	},
+	}
 });
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {

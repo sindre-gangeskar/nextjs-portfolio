@@ -1,7 +1,7 @@
 "use client"
 import { CssVarsProvider, extendTheme, useColorScheme } from "@mui/joy";
 import Button from "@mui/joy/Button";
-import { Brightness3, Brightness5, Padding } from "@mui/icons-material";
+import { Brightness3, Brightness5 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 
 import * as React from "react";
@@ -19,9 +19,7 @@ function ModeSwitcher() {
 			variant="plain"
 			color="neutral"
 			sx={{ aspectRatio: 1 / 1, padding: 1 }}
-			onClick={() => {
-				mode == "dark" ? setMode("light") : setMode("dark");
-			}}>
+			onClick={() => {mode == "dark" ? setMode("light") : setMode("dark")}}>
 			{icon}
 		</Button>
 	);

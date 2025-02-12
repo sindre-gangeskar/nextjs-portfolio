@@ -1,3 +1,4 @@
+"use client"
 import { Stack, Typography } from "@mui/joy";
 import ColoredTypography from "@/components/global/ColoredTypography";
 import Tile from "@/components/global/Tile";
@@ -26,7 +27,7 @@ export default function FeaturedProjects({ repos }: { repos: { repo: [] } }) {
 					gridTemplateColumns: { md: "repeat(3, 1fr)" },
 					flexDirection: { xs: "column" },
 				}}>
-				<GridBackground gridSize={50} height={900} width={2000} />
+				<GridBackground gridSize={40} height={900} width={900} style="circle" sx={{opacity: 0.4}} />
 				{repos.repo.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
 					return <Tile color="primary" title={x.name} description={x.description} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
 				})}

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { Stack, Typography, Link } from "@mui/joy";
 import ColoredTypography from "@/components/global/ColoredTypography";
 import ProfileAvatar from "@/components/global/ProfileAvatar";

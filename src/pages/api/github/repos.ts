@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ownerImgURL: data.owner.avatar_url
 			});
 		}
-
+		res.setHeader('Cache-Control', 'public, max-age=10800, stale-while-revalidate=300')
 		return res.status(200).json({ repo: repos });
 	} catch (error) {
 		console.error(error);
