@@ -1,9 +1,9 @@
 "use client";
-import { Stack, Container } from "@mui/joy";
+import { Container } from "@mui/joy";
 import Summary from "./Summary";
 import FeaturedProjects from "./FeaturedProjects";
 import Hero from "./Hero";
-
+import TechStack from "./TechStack";
 interface HomePageProps {
 	repos: { repo: [] };
 	user: { avatar_url: string };
@@ -11,10 +11,10 @@ interface HomePageProps {
 
 export default function HomePage({ repos, user }: HomePageProps) {
 	return (
-		<Container>
-			<Hero src={user.avatar_url}></Hero>
-			<Summary />
-			<FeaturedProjects repos={repos} />
-		</Container>
-	);
+	<Container>
+		<Hero src={user.avatar_url}></Hero>
+		<TechStack />
+		<FeaturedProjects repos={repos} />
+	</Container>
+);
 }

@@ -1,7 +1,7 @@
-import Navbar from "@/components/global/Navbar";
+import Navbar from "@/components/Navbar";
 import { Container, Typography, Stack } from "@mui/joy";
 import { Metadata } from "next";
-import Page from "@/components/pages/resume/Page";
+import Page from "@/pages/resume/Page";
 
 export const metadata: Metadata = {
 	title: "Resumé",

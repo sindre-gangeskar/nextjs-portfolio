@@ -1,8 +1,8 @@
 "use client"
 import { Stack, Typography } from "@mui/joy";
-import ColoredTypography from "@/components/global/ColoredTypography";
-import Tile from "@/components/global/Tile";
-import GridBackground from "@/components/global/GridBackground";
+import ColoredTypography from "@/components/ColoredTypography";
+import Tile from "@/components/Tile";
+import GridBackground from "@/components/GridBackground";
 export default function FeaturedProjects({ repos }: { repos: { repo: [] } }) {
 	return (
 		<Stack id="featured-projects" component={'section'} direction={"column"} sx={{ width: "100%", p: 0, position: "relative", mt: 15 }}>

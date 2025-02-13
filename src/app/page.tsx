@@ -1,4 +1,4 @@
-import Page from "@/components/pages/home/Page";
+import Page from "@/pages/home/Page";
 
 async function fetchRepoData() {
 	const res = await fetch("http://localhost:3000/api/github/repos", { cache: "force-cache" });

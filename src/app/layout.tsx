@@ -1,10 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Public_Sans, Quicksand, Fira_Code } from "next/font/google";
-import Navbar from "@/components/global/Navbar";
+import Navbar from "@/components/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
-import ThemeProvider from "@/components/global/ThemeProvider";
+import ThemeProvider from "@/components/ThemeProvider";
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],

@@ -1,6 +1,6 @@
 import { Stack, Box, Typography, ListItem, AccordionGroup, Chip, Card, List, StackProps } from "@mui/joy";
-import ColoredTypography from "@/components/global/ColoredTypography";
-import CustomAccordion from "@/components/global/CustomAccordion";
+import ColoredTypography from "@/components/ColoredTypography";
+import CustomAccordion from "@/components/CustomAccordion";
 export default function Education() {
 	const chipStackStyle: StackProps = {
 		sx: {

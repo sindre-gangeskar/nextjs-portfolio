@@ -1,11 +1,11 @@
-import GridBackground from "@/components/global/GridBackground";
+import GridBackground from "@/components/GridBackground";
 import { Stack, Typography, Card, Chip, Box, Button } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import TextPlugin from "gsap/TextPlugin";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
-import ProfileAvatar from "@/components/global/ProfileAvatar";
-import ColoredTypography from "@/components/global/ColoredTypography";
+import ProfileAvatar from "@/components/ProfileAvatar";
+import ColoredTypography from "@/components/ColoredTypography";
 import TechStack from "./TechStack";
 import { ScrollTrigger } from "gsap/all";
 
@@ -61,9 +61,9 @@ export default function Hero({ src = "" }: { src?: string }) {
 
 	return (
 		<>
-			<Stack component={"section"} direction={"column"} sx={{ position: "relative", height: "100vh", p: 3 }}>
+			<GridBackground id="profile-grid" width={2500} height={1500} gridSize={40} sx={{ opacity: 0, top: 50 }}></GridBackground>
+			<Stack component={"section"} direction={"column"} sx={{ position: "relative", p: 3 }}>
 				<Stack direction={"row"} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
-					<GridBackground id="profile-grid" width={2500} height={1500} gridSize={40} sx={{ opacity: 0, top: 0 }}></GridBackground>
 					<Stack id="profile" component={"div"} sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
 						<ProfileAvatar id="avatar" size={350} src={src} sx={{ display: { xs: "none", md: "block" } }} />
 						<Typography level="h1">
@@ -107,7 +107,6 @@ export default function Hero({ src = "" }: { src?: string }) {
 						</Box>
 					</Stack>
 				</Stack>
-				<TechStack />
 			</Stack>
 		</>
 	);

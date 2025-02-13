@@ -1,7 +1,7 @@
 "use client"
 import { Stack, Typography, Link } from "@mui/joy";
-import ColoredTypography from "@/components/global/ColoredTypography";
-import ProfileAvatar from "@/components/global/ProfileAvatar";
+import ColoredTypography from "@/components/ColoredTypography";
+import ProfileAvatar from "@/components/ProfileAvatar";
 import { GitHub } from "@mui/icons-material";
 
 interface SummaryProps {
