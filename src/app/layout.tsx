@@ -1,8 +1,9 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Public_Sans, Quicksand, Fira_Code } from "next/font/google";
 import Navbar from "@/components/global/Navbar";
-import { Container } from "@mui/joy";
-import "./globals.css";
+import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
+import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import ThemeProvider from "@/components/global/ThemeProvider";
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -39,16 +40,20 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ThemeProvider>
-			<html lang="en">
+			<html lang="en" suppressHydrationWarning={true}>
 				<head>
+					<noscript>Javascript must be enabled in order to visit this site</noscript>
 					<meta name="viewport" content="initial-scale=1, width=device-width" />
 				</head>
 				<body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable}${quicksand.variable} ${firaCode.variable}`}>
-					<Navbar />
-					{children}
+					<InitColorSchemeScript />
+					<CssVarsProvider>
+						<ThemeProvider>
+							<Navbar />
+							{children}
+						</ThemeProvider>
+					</CssVarsProvider>
 				</body>
 			</html>
-		</ThemeProvider>
 	);
 }
