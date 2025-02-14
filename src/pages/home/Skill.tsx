@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Tooltip, Box, Typography, Stack, ColorPaletteProp } from "@mui/joy";
+import { Card, Tooltip, Box, Typography, Stack, ColorPaletteProp, SvgIcon } from "@mui/joy";
 import { IconType } from "react-icons";
 
 type TooltipPlacementType = React.ComponentProps<typeof Tooltip>["placement"];
@@ -25,21 +25,21 @@ export default function Skill({
 	return (
 		<Tooltip
 			title={
-				<Box sx={{ p: 1, maxWidth: '200px' }}>
-					<Stack direction={"row"} p={1} gap={2}>
-						<Typography component={url ? "a" : "p"} href={url} target="_blank" level="body-md" fontWeight={'bold'} mr="auto" sx={{textDecorationLine: url ? 'underline' : 'none'}}>
+				<Stack component={"div"} direction={"column"} p={1} gap={2} sx={{ maxWidth: "200px", textAlign: 'center' }}>
+					<Stack component={"span"} >
+						<Typography color={color} level="body-md" fontWeight={"bold"} sx={{ display: "flex", justifyContent: "center", flexDirection: "row", width: "100%", px: 1, alignItems: "center"}}>
 							{title}
 						</Typography>
-						<Box component={icon} size={25}></Box>
+						<Box sx={{ width: "50%", height: "5rem", m: 'auto' }} component={icon}></Box>
 					</Stack>
 					<Stack>{description}</Stack>
-				</Box>
+				</Stack>
 			}
 			arrow={true}
 			placement={placement}
 			variant="outlined"
-			color={color}
-			sx={{ transition: "opacity 250ms ease" }}>
+			sx={{ pointerEvents: "none" }}
+			color={color}>
 			<Card
 				onMouseEnter={() => {
 					setIsHovered(true);
@@ -48,10 +48,14 @@ export default function Skill({
 					setIsHovered(false);
 				}}
 				id={id}
-				component={icon}
-				sx={{ p: 1.2, minHeight: { xs: "50px", md: "100px" }, width: "fit-content", aspectRatio: 1 / 1, transition: "color, background-color 250ms ease" }}
+				component={"a"}
+				href={url}
+				target="_blank"
+				sx={{ p: 1.2, minHeight: { xs: "50px", md: "100px" }, width: "fit-content", aspectRatio: 1 / 1, transition: "250ms ease" }}
 				color={color}
-				variant={hovered ? "solid" : "outlined"}></Card>
+				variant={hovered ? "solid" : "outlined"}>
+				<Box sx={{ fontSize: "100%", width: "100%", height: "100%" }} component={icon}></Box>
+			</Card>
 		</Tooltip>
 	);
 }
