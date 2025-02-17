@@ -1,17 +1,20 @@
+"use client";
 import GridBackground from "@/components/GridBackground";
 import { Stack, Typography, Card, Chip, Box, Button } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import TextPlugin from "gsap/TextPlugin";
-import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import ColoredTypography from "@/components/ColoredTypography";
 import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
-import { ScrollTrigger } from "gsap/all";
+
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import TextPlugin from "gsap/dist/TextPlugin";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 export default function Hero({ src = "" }: { src?: string }) {
 	useGSAP(() => {
-		gsap.registerPlugin(TextPlugin, ScrollToPlugin, ScrollTrigger);
+		if (typeof window !== "undefined") gsap.registerPlugin(TextPlugin, ScrollToPlugin, ScrollTrigger); 
+
 		const traitsTl = gsap.timeline();
 		const descriptionTl = gsap.timeline();
 		const profileTl = gsap.timeline();

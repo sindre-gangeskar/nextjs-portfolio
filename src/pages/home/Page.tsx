@@ -12,7 +12,7 @@ interface HomePageProps {
 export default function HomePage({ repos, user }: HomePageProps) {
 	return (
 	<Container>
-		<Hero src={user.avatar_url}></Hero>
+		<Hero src={user?.avatar_url}></Hero>
 		<TechStack />
 			<FeaturedProjects repos={repos} />
 			<ContactForm></ContactForm>

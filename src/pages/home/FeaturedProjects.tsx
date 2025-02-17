@@ -32,7 +32,7 @@ export default function FeaturedProjects({ repos }: { repos: [] }) {
 				flexDirection: { xs: "column" },
 				}}>
 				
-			{repos.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
+			{repos?.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
 				return <Tile color="primary" title={x.name} description={x.description} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
 			})}
 				

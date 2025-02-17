@@ -27,7 +27,7 @@ export default function Projects({ repos }: { repos: { data: [] } }) {
 				</Typography>
 			</Stack>
 			<Stack gap={2} mt={5}>
-				{repos.data.map((repo: RepoType) => {
+				{repos?.data?.map((repo: RepoType) => {
 					return <Project className={"project"} key={repo.name} repo={repo}></Project>;
 				})}
 			</Stack>
