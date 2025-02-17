@@ -7,12 +7,15 @@ export const metadata: Metadata = {
 };
 
 async function fetchProjects() {
-	const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:3000`;
-	const response = await fetch(`${baseUrl}/api/github/repos/all`, { cache: "force-cache", headers: {'Content-Type': 'application/json', accept: 'application/json'} });
-	if (response.ok) {
+	try {
+		const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:3000`;
+		const response = await fetch(`${baseUrl}/api/github/repos/all`, { cache: "force-cache", headers: { "Content-Type": "application/json", accept: "application/json" } });
+		console.log(response);
 		const data = await response.json();
 		return data;
-	} else return null;
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 export default async function Projects() {
