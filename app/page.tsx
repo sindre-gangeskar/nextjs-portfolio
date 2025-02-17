@@ -1,6 +1,6 @@
 import Page from "@/components/home/Page";
 
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : `http://localhost:3000`;
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `${process.env.NEXT_PUBLIC_VERCEL_URL}` : `http://localhost:3000`;
 
 async function fetchRepoData() {
 	const res = await fetch(`${baseUrl}/api/github/repos`, { cache: "force-cache" });
