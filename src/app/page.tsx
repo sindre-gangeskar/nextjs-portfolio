@@ -1,13 +1,13 @@
 import Page from "@/pages/home/Page";
 
 async function fetchRepoData() {
-	const res = await fetch("http://localhost:3000/api/github/repos", { cache: "force-cache" });
+	const res = await fetch(`${process.env.HOST}/api/github/repos`, { cache: "force-cache" });
 	const data = await res.json();
-	return data;
+	return data.repos;
 }
 
 async function getGithubUser() {
-	const res = await fetch("http://localhost:3000/api/github/user", { cache: "force-cache" });
+	const res = await fetch(`${process.env.HOST}/api/github/user`, { cache: "force-cache" });
 	const data = await res.json();
 	return data;
 }

@@ -26,12 +26,12 @@ async function GET(req: NextApiRequest, res: NextApiResponse) {
 	}
 }
 async function POST(req: NextApiRequest, res: NextApiResponse) {
-	const env = "production";
+	const env: string = "production";
 	try {
 		if (!validator.isEmail(req.body.from)) return res.status(401).json({ message: "Email provided is in an invalid format" });
 		if (!validator.isAlpha(req.body.name, "en-US", { ignore: " " })) return res.status(401).json({ message: "Only letters are accepted in the name field." });
 
-		if (env !== "production") await sendMail(req.body);
+		if (env === "production") await sendMail(req.body);
 		else await sendTestMail(req.body);
 		return res.status(200).json({ message: "Email successully sent" });
 	} catch (error) {
@@ -48,6 +48,7 @@ async function sendMail(body: formTypes) {
 			<p>Message: ${body.message}</p>
 			<p><strong>Contact info: ${body.from}</strong></p>
 			`,
+		text: body.message,
 	};
 	const transporter = nodemailer.createTransport({
 		service: "gmail",

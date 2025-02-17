@@ -5,7 +5,7 @@ import ContactForm from "./Contact";
 import Hero from "./Hero";
 import TechStack from "./TechStack";
 interface HomePageProps {
-	repos: { repo: [] };
+	repos: [];
 	user: { avatar_url: string };
 }
 

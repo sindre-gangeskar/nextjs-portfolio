@@ -5,7 +5,8 @@ import Tile from "@/components/Tile";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { useState } from "react";
-export default function FeaturedProjects({ repos }: { repos: { repo: [] } }) {
+
+export default function FeaturedProjects({ repos }: { repos: [] }) {
 	const [hovering, setHovering] = useState(false);
 	return (
 	<Stack id="featured-projects" component={"section"} direction={"column"} sx={{ width: "100%", p: 0, position: "relative", mt: 15 }}>
@@ -29,10 +30,12 @@ export default function FeaturedProjects({ repos }: { repos: { repo: [] } }) {
 				p: 0,
 				gridTemplateColumns: { md: "repeat(auto-fit, minmax(350px, 0fr))" },
 				flexDirection: { xs: "column" },
-			}}>
-			{repos.repo.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
+				}}>
+				
+			{repos.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
 				return <Tile color="primary" title={x.name} description={x.description} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
 			})}
+				
 			<Button
 				onMouseEnter={() => {
 					setHovering(true);

@@ -24,8 +24,8 @@ export default function Hero({ src = "" }: { src?: string }) {
 		profileTl.to("#profile > *", { opacity: 1, transform: "translateX(0)", duration: 1.2, stagger: 0.5, ease: "power3.out" });
 		profileTl.to("#profile", { y: 0, scrollTrigger: { trigger: "#profile", scrub: 1, start: "top bottom", end: "+=100%" } });
 
-		descriptionTl.set("#description *", { transform: "translateX(150px)", opacity: 0 });
-		descriptionTl.to("#description *", {
+		descriptionTl.set("#description > *", { transform: "translateX(150px)", opacity: 0 });
+		descriptionTl.to("#description > *", {
 			delay: 0,
 			transform: "translateX(0)",
 			duration: 0.6,
@@ -88,6 +88,9 @@ export default function Hero({ src = "" }: { src?: string }) {
 							</Chip>
 							<Chip variant="soft" className="trait" color="success" component={"span"} sx={{ height: "fit-content" }}>
 								Enthusiastic
+							</Chip>
+							<Chip variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
+								Passionate
 							</Chip>
 						</Card>
 						<Box id="description" component={"div"}>

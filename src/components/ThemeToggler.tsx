@@ -1,7 +1,7 @@
 "use client";
-import { CssVarsProvider, extendTheme, useColorScheme } from "@mui/joy";
-import Button from "@mui/joy/Button";
-import { Brightness3, Brightness5 } from "@mui/icons-material";
+import { CssVarsProvider, extendTheme, Typography, useColorScheme } from "@mui/joy";
+import { Button, Box } from "@mui/joy";
+import { Brightness3, Brightness7 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 
 import * as React from "react";
@@ -11,7 +11,7 @@ function ModeSwitcher() {
 
 	useEffect(() => {
 		if (mode === "dark") {
-			setIcon(<Brightness5 />);
+			setIcon(<Brightness7 />);
 		} else {
 			setIcon(<Brightness3 />);
 		}
@@ -21,12 +21,15 @@ function ModeSwitcher() {
 		<Button
 			variant="plain"
 			color="neutral"
-			sx={{ aspectRatio: 1 / 1, padding: 1 }}
+			sx={{ height: "fit-content", aspectRatio: {xs: 1 / 1, md: 'initial'}, padding: {xs: 1.5, md: 1}, px: {xs: 1.5, md: 2}, mr: { xs: 3, md: "initial" } }}
 			onClick={() => {
 				if (mode === "dark") setMode("light");
 				else setMode("dark");
 			}}>
-			{icon}
+			<Box component={"span"} sx={{ display: "flex", alignItems: "center", gap: 1, "& > .mode-name": {display: {xs: 'none', md: 'block'}} }}>
+				<Typography className={"mode-name"}>{mode == "dark" ? "Light" : "Dark"}</Typography>
+				{icon}
+			</Box>
 		</Button>
 	);
 }
