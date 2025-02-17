@@ -3,7 +3,7 @@ import ColoredTypography from "@/components/ColoredTypography";
 import CustomAccordion from "@/components/CustomAccordion";
 
 
-export default function Education({style}: {[key: string]: any}) {
+export default function Education({style}: {[key: string]: {}}) {
   return 	<Stack sx={{ mt: 5 }}>
 					<Typography level="h1">
 						Formal&nbsp;

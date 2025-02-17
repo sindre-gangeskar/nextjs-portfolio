@@ -2,7 +2,7 @@ import { Stack, Typography, List, ListItem, AccordionGroup, Chip } from "@mui/jo
 import ColoredTypography from "@/components/ColoredTypography";
 import CustomAccordion from "@/components/CustomAccordion";
 
-export default function Work({ style }: { [key: string]: any }) {
+export default function Work({ style }: { [key: string]: {} }) {
 	return (
 		<Stack sx={{mt: 5}}>
 			<Typography level="h1">

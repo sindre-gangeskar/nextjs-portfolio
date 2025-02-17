@@ -1,4 +1,3 @@
-import { DataUsageSharp } from "@mui/icons-material";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Octokit } from "octokit";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -20,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				data.name = data.name.replace(/\-/g, " ");
 				repos.push({ name: data.name, description: data.description, url: data.html_url });
 			} catch (error) {
+				console.error(error);
 				continue;
 			}
 		}

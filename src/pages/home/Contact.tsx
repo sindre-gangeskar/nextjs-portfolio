@@ -1,4 +1,4 @@
-import { Stack, Input, Typography, Button, Textarea, Card, SvgIcon, Box } from "@mui/joy";
+import { Stack, Input, Typography, Button, Textarea, Card, Box } from "@mui/joy";
 import { FormEvent, useRef, useState } from "react";
 
 import CheckIcon from "@mui/icons-material/Check";
@@ -54,7 +54,9 @@ export default function ContactForm() {
 						chat?
 					</ColoredTypography>
 				</Typography>
-				<Typography children={<MailRounded />} p={0} m={0} level="h3" variant="plain"></Typography>
+				<Typography p={0} m={0} level="h3" variant="plain">
+					<MailRounded />
+				</Typography>
 			</Stack>
 			<Stack>
 				<Stack
@@ -80,7 +82,9 @@ export default function ContactForm() {
 							type="submit"
 							disabled={mailSent && mailSuccess}
 							sx={{ width: "100%", padding: 2, color: loading ? "transparent" : "initial" }}>
-							<Typography sx={{color: 'white'}} endDecorator={!mailSent ? <Send /> : ""}>{mailSuccess ? mailFeedback : mailSent && !mailSuccess ? mailFeedback : "Submit"}</Typography>
+							<Typography sx={{ color: "white" }} endDecorator={!mailSent ? <Send /> : ""}>
+								{mailSuccess ? mailFeedback : mailSent && !mailSuccess ? mailFeedback : "Submit"}
+							</Typography>
 						</Button>
 						<Box component="div" className="form-icon" sx={{ fontSize: "1.3rem" }}>
 							{mailSuccess && mailSent ? <CheckIcon color="success" /> : <ErrorIcon color="error" />}

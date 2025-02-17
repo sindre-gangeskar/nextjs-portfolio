@@ -33,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 					ownerImgURL: data.owner.avatar_url,
 				});
 			} catch (error) {
+				console.error(error);
 				continue;
 			}
 		}
