@@ -1,4 +1,5 @@
 import { Typography, Link } from "@mui/joy";
+import { ColorPaletteProp } from "@mui/joy";
 
 export default function ColoredTypography({
 	children,
@@ -10,7 +11,7 @@ export default function ColoredTypography({
 	isLink = false,
 	href,
 }: {
-	color?: "primary" | "danger" | "success" | "neutral";
+		color?: ColorPaletteProp;
 	level?: "h1" | "h2" | "h3" | "h4" | "body-sm" | "body-md" | "body-lg";
 	children?: React.ReactNode;
 	href?: string;

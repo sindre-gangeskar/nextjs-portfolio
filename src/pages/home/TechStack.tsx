@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Typography, Card, Chip } from "@mui/joy";
+import { Stack, Typography, Chip } from "@mui/joy";
 import ColoredTypography from "@/components/ColoredTypography";
 import Skill from "./Skill";
 import {
@@ -37,7 +37,7 @@ export default function TechStack() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
 		tl.set("#skill", { opacity: 0, y: -25 });
-		tl.to("#skill", { opacity: 1, stagger: 0.25, y: 0, ease: "elastic.out", duration: 1.25 });
+		tl.to("#skill", { opacity: 1, stagger: 0.08, y: 0, ease: "elastic.out", duration: 1.25 });
 	}, []);
 
 	return (

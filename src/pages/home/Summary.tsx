@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, ListItem, AccordionGroup, Chip, Card, List, StackProps } from "@mui/joy";
+import { Stack, Typography, ListItem, AccordionGroup, Chip, Card, List, StackProps } from "@mui/joy";
 import ColoredTypography from "@/components/ColoredTypography";
 import CustomAccordion from "@/components/CustomAccordion";
 export default function Education() {
@@ -290,7 +290,7 @@ export default function Education() {
 											<ColoredTypography level="body-sm" bold={true}>
 												MongoDB
 											</ColoredTypography>{" "}
-											to store games to the current user's backlog.
+											{`to store games to the current user's backlog.`}
 										</Typography>
 									</Stack>
 								</CustomAccordion>

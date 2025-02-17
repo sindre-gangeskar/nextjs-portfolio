@@ -1,9 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import validator from "validator";
-export default async function (req: NextApiRequest, res: NextApiResponse) {
-	const body = req.body;
-
+interface formTypes {
+	from: string;
+	name: string;
+	message: string;
+}
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	switch (req.method) {
 		case "GET":
 			return await GET(req, res);
@@ -22,62 +25,64 @@ async function GET(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(500).json({ message: "An internal server error has occurred, please try again later" });
 	}
 }
-
 async function POST(req: NextApiRequest, res: NextApiResponse) {
+	const env = "production";
 	try {
-		/* 		const testAccount = nodemailer.createTestAccount((err, account) => {
-			if (err) {
-				return console.error(err);
-			}
-			const transporter = nodemailer.createTransport({
-				host: account.smtp.host,
-				port: account.smtp.port,
-				secure: account.smtp.secure,
-				auth: { user: account.user, pass: account.pass },
-			});
+		if (!validator.isEmail(req.body.from)) return res.status(401).json({ message: "Email provided is in an invalid format" });
+		if (!validator.isAlpha(req.body.name, "en-US", { ignore: " " })) return res.status(401).json({ message: "Only letters are accepted in the name field." });
 
-			const message = {
-				from: "Sender Name <sender@example.com",
-				to: "Recipient <recipient@example.com",
-				subject: "Test Subject",
-				text: "This is a test",
-				html: "<h1>Hii!</h1><br></br><p>This is a test</p>",
-			};
-
-			transporter.sendMail(message, (err, info) => {
-				if (err) {
-					return console.error(err);
-				}
-				console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-			});
-		});
- */
-		if (!validator.isEmail(req.body.from)) return res.status(401).json({ message: "Invalid email format" });
-		if (!validator.isAlphanumeric(req.body.firstname) || !validator.isAlphanumeric(req.body.lastname)) return res.status(401).json({ message: "Please check the name fields for invalid data" });
-
-		const message = {
-			from: `${req.body.firstname} ${req.body.lastname} <${process.env.GMAIL}>`,
-			to: `Sindre Gangeskar <${process.env.EMAIL}>`,
-			subject: `Contact Subject: ${req.body.subject}`,
-			html: `
-			<h3>${req.body.subject}</h3>
-			<p>Message: ${req.body.text}</p>
-			<p><strong>Contact info: ${req.body.from}</strong></p>
-			`,
-		};
-		const transporter = nodemailer.createTransport({
-			service: "gmail",
-			auth: {
-				user: process.env.GMAIL,
-				pass: process.env.EMAIL_APP_PASS,
-			},
-		});
-		const info = await transporter.sendMail(message);
-		console.log(info);
-
+		if (env !== "production") await sendMail(req.body);
+		else await sendTestMail(req.body);
 		return res.status(200).json({ message: "Email successully sent" });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ message: "An internal server error has occurred, please try again later" });
+		return res.status(500).json({ message: "Failed to send email, please try again later." });
 	}
+}
+async function sendMail(body: formTypes) {
+	const message = {
+		from: `${body.name} <${process.env.GMAIL}>`,
+		to: `Sindre Gangeskar <${process.env.EMAIL}>`,
+		subject: `Contact from portfolio`,
+		html: `
+			<p>Message: ${body.message}</p>
+			<p><strong>Contact info: ${body.from}</strong></p>
+			`,
+	};
+	const transporter = nodemailer.createTransport({
+		service: "gmail",
+		auth: {
+			user: process.env.GMAIL,
+			pass: process.env.EMAIL_APP_PASS,
+		},
+	});
+	const info = await transporter.sendMail(message);
+	console.log(info);
+}
+async function sendTestMail(body: formTypes) {
+	nodemailer.createTestAccount((err, account) => {
+		if (err) {
+			return console.error(err);
+		}
+		const transporter = nodemailer.createTransport({
+			host: account.smtp.host,
+			port: account.smtp.port,
+			secure: account.smtp.secure,
+			auth: { user: account.user, pass: account.pass },
+		});
+
+		const message = {
+			from: `${body.name} <${body.from}>`,
+			to: `<${process.env.EMAIL}>`,
+			subject: `Contact from portfolio`,
+			text: `${body.message}`,
+		};
+
+		transporter.sendMail(message, (err, info) => {
+			if (err) {
+				return console.error(err);
+			}
+			console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+		});
+	});
 }

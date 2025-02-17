@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { CssVarsProvider, extendTheme, useColorScheme } from "@mui/joy";
 import Button from "@mui/joy/Button";
 import { Brightness3, Brightness5 } from "@mui/icons-material";
@@ -9,17 +9,23 @@ function ModeSwitcher() {
 	const { mode, setMode } = useColorScheme();
 	const [icon, setIcon] = useState(<Brightness3></Brightness3>);
 
-  useEffect(() => {
-				mode == "dark" ? setIcon(<Brightness5 />) : setIcon(<Brightness3 />);
-  
-  }, [mode]);
+	useEffect(() => {
+		if (mode === "dark") {
+			setIcon(<Brightness5 />);
+		} else {
+			setIcon(<Brightness3 />);
+		}
+	}, [mode]);
 
 	return (
 		<Button
 			variant="plain"
 			color="neutral"
 			sx={{ aspectRatio: 1 / 1, padding: 1 }}
-			onClick={() => {mode == "dark" ? setMode("light") : setMode("dark")}}>
+			onClick={() => {
+				if (mode === "dark") setMode("light");
+				else setMode("dark");
+			}}>
 			{icon}
 		</Button>
 	);

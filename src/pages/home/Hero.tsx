@@ -6,7 +6,7 @@ import TextPlugin from "gsap/TextPlugin";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import ColoredTypography from "@/components/ColoredTypography";
-import TechStack from "./TechStack";
+import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import { ScrollTrigger } from "gsap/all";
 
 export default function Hero({ src = "" }: { src?: string }) {
@@ -24,13 +24,13 @@ export default function Hero({ src = "" }: { src?: string }) {
 		profileTl.to("#profile > *", { opacity: 1, transform: "translateX(0)", duration: 1.2, stagger: 0.5, ease: "power3.out" });
 		profileTl.to("#profile", { y: 0, scrollTrigger: { trigger: "#profile", scrub: 1, start: "top bottom", end: "+=100%" } });
 
-		descriptionTl.set("#description p", { transform: "translateX(150px)", opacity: 0 });
-		descriptionTl.to("#description p", {
+		descriptionTl.set("#description *", { transform: "translateX(150px)", opacity: 0 });
+		descriptionTl.to("#description *", {
 			delay: 0,
 			transform: "translateX(0)",
 			duration: 0.6,
 			opacity: 1,
-			stagger: 0.2,
+			stagger: 0.08,
 			ease: "power3.out",
 		});
 
@@ -50,15 +50,9 @@ export default function Hero({ src = "" }: { src?: string }) {
 			zIndex: 1,
 		});
 	}, []);
-
-	const scrollToElement = (id: string) => {
-		gsap.to(window, {
-			scrollTo: { y: id },
-			ease: "power2.inOut",
-			duration: 2,
-		});
+	const scrollToContactForm = () => {
+		gsap.to(window, { scrollTo: "#contact-form", duration: 1.5, ease: "power1.inOut" });
 	};
-
 	return (
 		<>
 			<GridBackground id="profile-grid" width={2500} height={1500} gridSize={40} sx={{ opacity: 0, top: 50 }}></GridBackground>
@@ -98,12 +92,25 @@ export default function Hero({ src = "" }: { src?: string }) {
 						</Card>
 						<Box id="description" component={"div"}>
 							<Typography component={"p"} pt={1} level="body-lg">
-								About Me
+								About me
 							</Typography>
 							<Typography component={"p"} level="body-sm">
+								{`
 								I'm a backend developer with full-stack capabilities skilled in building robust, and scalable RESTful applications with modern front-end frameworks. I specialize in developing efficient APIs, managing
 								databases and implementing robust authentication methods. I prioritize clean and maintainable code and thorough API documentation.
+								`}
 							</Typography>
+							<Stack component={"div"} direction={"row"} gap={3} sx={{ alignItems: "center" }}>
+								<Button component={"a"} target="_blank" href="https://github.com/sindre-gangeskar" startDecorator={<GitHub />} variant="soft" color="neutral" sx={{ my: 2 }}>
+									Github
+								</Button>
+								<Button component={"a"} target="_blank" href="https://linkedin.com/in/sindre-gangeskar" startDecorator={<LinkedIn />} variant="soft" color="primary" sx={{ my: 2 }}>
+									LinkedIn
+								</Button>
+								<Button variant="soft" color="danger" onClick={scrollToContactForm}>
+									<EmailRounded />
+								</Button>
+							</Stack>
 						</Box>
 					</Stack>
 				</Stack>

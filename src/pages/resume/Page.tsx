@@ -9,8 +9,8 @@ export default function Resume() {
 			width: "100%",
 			mx: "auto",
 			display: "flex",
-			flexDirection:'row',
-			flexWrap: 'wrap',
+			flexDirection: "row",
+			flexWrap: "wrap",
 			justifyContent: "center",
 			justifyItems: "center",
 			py: 1,
@@ -27,8 +27,10 @@ export default function Resume() {
 				</Stack>
 				<Stack sx={{ mt: 1 }}>
 					<Typography level="body-sm">
+						{`
 						I'm a backend developer with full-stack capabilities skilled in building robust, and scalable RESTful applications with modern front-end frameworks. I specialize in developing efficient APIs, managing
 						databases and implementing robust authentication methods. I prioritize clean and maintainable code and thorough API documentation.
+						`}
 					</Typography>
 				</Stack>
 				<Stack sx={{ mt: 5 }}>

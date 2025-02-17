@@ -1,9 +1,8 @@
-import { Card, Typography, Stack, Button, Link } from "@mui/joy";
-import { StarOutline, Code } from "@mui/icons-material";
+import { Card, Typography, Stack, Link } from "@mui/joy";
+import { StarOutline, Code, GitHub } from "@mui/icons-material";
 export default function Tile({
 	title = "Placeholder title",
 	description = "Placeholder description",
-	footer = "Placeholder footer",
 	stars,
 	url,
 	color = "neutral",
@@ -25,7 +24,7 @@ export default function Tile({
 				position: "relative",
 				textAlign: "start",
 				width: { xs: "100%", md: 350 },
-				height: { xs: '100%', md: 200 },
+				height: { xs: '100%', md: 175 },
 				minHeight: {xs: 'fit-content'},
 				transition: "250ms ease",
 				borderRadius: "0.25rem",
@@ -56,10 +55,10 @@ export default function Tile({
 			}}>
 			<Stack direction={"column"} sx={{ height: "100%", position: "relative", display: 'flex', justifyContent: 'space-between' }}>
 				<Stack>
-					<Typography level="h4" sx={{ textTransform: "capitalize" }}>
+					<Typography startDecorator={<GitHub/>} level="body-md" sx={{ textTransform: "capitalize" }}>
 						{title}
 					</Typography>
-					<Typography>{description}</Typography>
+					<Typography level="body-sm">{description}</Typography>
 				</Stack>
 				{isRepo ? (
 					<Stack direction={"row"} position={"relative"} bottom={0} sx={{ width: "100%" }}>

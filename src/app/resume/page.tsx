@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import { Container, Typography, Stack } from "@mui/joy";
 import { Metadata } from "next";
 import Page from "@/pages/resume/Page";
 

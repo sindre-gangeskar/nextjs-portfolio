@@ -1,5 +1,5 @@
 "use client";
-import { Stack, List, Button, Box } from "@mui/joy";
+import { Stack, List, Button } from "@mui/joy";
 import { usePathname } from "next/navigation";
 import { HouseRounded, Person2Rounded, BookOnlineRounded } from "@mui/icons-material";
 import NextLink from "next/link";
