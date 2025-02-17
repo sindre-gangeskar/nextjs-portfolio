@@ -8,26 +8,31 @@ import ThemeProvider from "@/components/ThemeProvider";
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],
+	display: 'swap'
 });
 
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
 	subsets: ["latin"],
+	display: 'swap'
 });
 
 const publicSans = Public_Sans({
 	variable: "--font-public-sans",
 	subsets: ["latin"],
+	display: 'swap'
 });
 
 const quicksand = Quicksand({
 	variable: "--font-quicksand",
 	subsets: ["latin"],
+	display: 'swap'
 });
 
 const firaCode = Fira_Code({
 	variable: "--font-fira-code",
 	subsets: ["latin"],
+	display: 'swap'
 });
 export const metadata: Metadata = {
 	title: "Sindre Gangeskar",
