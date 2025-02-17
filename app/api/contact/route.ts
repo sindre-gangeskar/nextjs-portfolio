@@ -1,4 +1,4 @@
-import { NextResponse as res, NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import validator from "validator";
 interface formTypes {
@@ -9,25 +9,25 @@ interface formTypes {
 
 export async function GET() {
 	try {
-		return res.json({ message: "Hi! This is the contact api request" }, { status: 200 });
+		return NextResponse.json({ message: "Hi! This is the contact api request" }, { status: 200 });
 	} catch (error) {
 		console.error(error);
-		return res.json({ message: "An internal server error has occurred" }, { status: 200 });
+		return NextResponse.json({ message: "An internal server error has occurred" }, { status: 200 });
 	}
 }
 export async function POST(req: NextRequest) {
 	const env: string = "production";
 	try {
 		const { from, name, message }: formTypes = await req.json();
-		if (!validator.isEmail(from)) return res.json({ message: "Email provided is in an invalid format" }, { status: 401 });
-		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return res.json({message: 'Name field cannot contain any numbers or special characters'}, {status: 401});
+		if (!validator.isEmail(from)) return NextResponse.json({ message: "Email provided is in an invalid format" }, { status: 401 });
+		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return NextResponse.json({message: 'Name field cannot contain any numbers or special characters'}, {status: 401});
 
 		if (env === "production") await sendMail({ name, from, message });
 		else await sendTestMail({name, from, message});
-		return res.json({ message: "Email successully sent" }, { status: 200 });
+		return NextResponse.json({ message: "Email successully sent" }, { status: 200 });
 	} catch (error) {
 		console.error(error);
-		return res.json({ message: "Failed to send email, please try again later." }, {status: 500});
+		return NextResponse.json({ message: "Failed to send email, please try again later." }, {status: 500});
 	}
 }
 async function sendMail(body: formTypes) {
