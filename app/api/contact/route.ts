@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse as res, NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import validator from "validator";
 interface formTypes {
@@ -6,37 +6,28 @@ interface formTypes {
 	name: string;
 	message: string;
 }
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	switch (req.method) {
-		case "GET":
-			return await GET(req, res);
-		case "POST":
-			return await POST(req, res);
-		default:
-			return res.status(405).json({ message: "Method not allowed" });
-	}
-}
 
-async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 	try {
-		return res.status(200).json({ message: "Hi! This is the contact api request" });
+		return res.json({ message: "Hi! This is the contact api request" }, { status: 200 });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ message: "An internal server error has occurred, please try again later" });
+		return res.json({ message: "An internal server error has occurred" }, { status: 200 });
 	}
 }
-async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
 	const env: string = "production";
 	try {
-		if (!validator.isEmail(req.body.from)) return res.status(401).json({ message: "Email provided is in an invalid format" });
-		if (!validator.isAlpha(req.body.name, "en-US", { ignore: " " })) return res.status(401).json({ message: "Only letters are accepted in the name field." });
+		const { from, name, message }: formTypes = await req.json();
+		if (!validator.isEmail(from)) return res.json({ message: "Email provided is in an invalid format" }, { status: 401 });
+		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return res.json({message: 'Name field cannot contain any numbers or special characters'}, {status: 401});
 
-		if (env === "production") await sendMail(req.body);
-		else await sendTestMail(req.body);
-		return res.status(200).json({ message: "Email successully sent" });
+		if (env === "production") await sendMail({ name, from, message });
+		else await sendTestMail({name, from, message});
+		return res.json({ message: "Email successully sent" }, { status: 200 });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ message: "Failed to send email, please try again later." });
+		return res.json({ message: "Failed to send email, please try again later." }, {status: 500});
 	}
 }
 async function sendMail(body: formTypes) {

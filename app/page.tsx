@@ -1,4 +1,4 @@
-import Page from "@/pages/home/Page";
+import Page from "@/components/home/Page";
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:3000`;
 

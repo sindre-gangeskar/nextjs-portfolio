@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { Octokit } from "octokit";
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 	try {
 		interface Repo {
 			name: string;
@@ -37,10 +37,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				continue;
 			}
 		}
-		res.setHeader("Cache-Control", "public, max-age=10800, stale-while-revalidate=300");
-		return res.status(200).json({ repos: repos });
+		return NextResponse.json({ repos: repos }, { status: 200, headers: { "Cache-Control": "public, max-age=10800, stale-while-revalidate=300" } });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ error: "An internal server error has occurred while trying to fetch repo data" });
+		return NextResponse.json({ error: "An internal server error has occurred while trying to fetch repo data" }, { status: 500 });
 	}
 }

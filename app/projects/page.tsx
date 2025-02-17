@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Page from "@/pages/projects/Page";
+import Page from "@/components/projects/Page";
 
 export const metadata: Metadata = {
 	title: "Projects",

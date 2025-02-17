@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { Octokit } from "octokit";
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 	const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "exam-project", "srv-ca"];
 	const repos: RepoType[] = [];
@@ -11,7 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		url: string;
 	}
 	try {
-		if (req.method !== "GET") return res.status(405).json({ message: "Method not allowed" });
 		for (const repo of repoNames) {
 			try {
 				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
@@ -24,10 +23,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			}
 		}
 
-		res.setHeader("Cache-Control", "public, max-age=10800, stale-while-revalidate=300");
-		return res.status(200).json({ data: repos });
+		return NextResponse.json({ data: repos }, { status: 200, headers: { "Cache-Control": "public, max-age=10800, stale-while-revalidate=300" } });
 	} catch (error) {
 		console.error(error);
-		return res.status(500).json({ messagE: "Failed to fetch repos" });
+		return NextResponse.json({ message: 'Failed to fetch repos' }, { status: 200 });
 	}
 }
