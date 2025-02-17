@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 async function fetchProjects() {
 	try {
-		const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:3000`;
+		const baseUrl = process.env.VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : `http://localhost:3000`;
 		const response = await fetch(`${baseUrl}/api/github/repos/all`, { cache: "force-cache", headers: { "Content-Type": "application/json", accept: "application/json" } });
 		console.log(response.status, response.statusText);
 		const data = await response.json();
