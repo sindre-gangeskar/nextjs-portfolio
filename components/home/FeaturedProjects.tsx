@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { useState } from "react";
 
-export default function FeaturedProjects({ repos }: { repos: any[] }) {
+export default function FeaturedProjects({ repos }: { repos: [] }) {
 	const [hovering, setHovering] = useState(false);
 	return (
 	<Stack id="featured-projects" component={"section"} direction={"column"} sx={{ width: "100%", p: 0, position: "relative", mt: 15 }}>
