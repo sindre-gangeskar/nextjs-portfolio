@@ -19,8 +19,8 @@ export default function HomePage() {
 		setLoading(true);
 		async function fetchRepoData() {
 			const res = await fetch(`/api/github/repos`, { cache: "force-cache" });
-			const data = await res.json();
-			setRepos(data.data);
+			const { repositories } = await res.json();
+			setRepos(repositories);
 		}
 
 		async function getGithubUser() {
@@ -29,15 +29,18 @@ export default function HomePage() {
 			setUser(data);
 		}
 
-		getGithubUser();
-		fetchRepoData();
-		setLoading(false);
+		async function fetchData() {
+			await getGithubUser();
+			await fetchRepoData();
+			setLoading(false);
+		}
+		fetchData();
 	}, []);
 
 	return (
 		<Container>
-			{loading ? (
-				<Loader/>
+			{loading && repos.length == 0 ? (
+				<Loader />
 			) : (
 				<>
 					<Hero src={user?.avatar_url}></Hero>

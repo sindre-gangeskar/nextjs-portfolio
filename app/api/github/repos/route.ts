@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Octokit } from "octokit";
 export async function GET() {
 	try {
-		interface Repo {
+		interface RepoType {
 			name: string;
 			fullname: string;
 			stargazers_count: number;
@@ -14,12 +14,12 @@ export async function GET() {
 		}
 		const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "nextjs-portfolio", "exam-project"];
 
-		const repos: Repo[] = [];
+		const repos: RepoType[] = [];
 		const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-		for (const repo of repoNames) {
+		for (const repooo of repoNames) {
 			try {
-				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
+				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repooo });
 				data.name = data.name.replace(/\-/g, " ");
 
 				repos.push({
@@ -37,7 +37,7 @@ export async function GET() {
 				continue;
 			}
 		}
-		return NextResponse.json({ repos: repos }, { status: 200, headers: { "Cache-Control": "public, max-age=10800, stale-while-revalidate=300" } });
+		return NextResponse.json({ repositories: repos }, { status: 200, headers: { "Cache-Control": "public, max-age=10800, stale-while-revalidate=300" } });
 	} catch (error) {
 		console.error(error);
 		return NextResponse.json({ error: "An internal server error has occurred while trying to fetch repo data" }, { status: 500 });
