@@ -49,8 +49,8 @@ export default function Resume() {
 				<Stack mt={2}>
 					<Typography>Contact Info</Typography>
 					<List sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: 'space-between' }}>
-						<Stack direction={'row'}>
-							<ListItem>
+						<ListItem>
+							<Stack gap={1} direction={{xs: 'column', md: 'row'}}>
 								<Typography
 									sx={{ textDecoration: "underline", textUnderlineOffset: "5px" }}
 									target="_blank"
@@ -60,8 +60,6 @@ export default function Resume() {
 									href="mailto:Sindre Gangeskar<contact@sindregangeskar.dev>">
 									contact@sindregangeskar.dev
 								</Typography>
-							</ListItem>
-							<ListItem>
 								<Typography
 									sx={{ textDecoration: "underline", textUnderlineOffset: "5px" }}
 									target="_blank"
@@ -72,8 +70,8 @@ export default function Resume() {
 									level={"body-sm"}>
 									LinkedIn: sindre-gangeskar
 								</Typography>
+							</Stack>
 							</ListItem>
-						</Stack>
 						<ListItem>
 							<Typography color="neutral" component={"p"} startDecorator={<LocationCityIcon />} level={"body-sm"}>
 								Nannestad, Norway
