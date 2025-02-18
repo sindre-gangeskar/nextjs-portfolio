@@ -36,7 +36,7 @@ const firaCode = Fira_Code({
 });
 export const metadata: Metadata = {
 	title: "Sindre Gangeskar",
-	description: "Portfolio for Sindre Gangeskar",
+	description: "Sindre Gangeskar | Developer Portfolio",
 };
 
 export default function RootLayout({
