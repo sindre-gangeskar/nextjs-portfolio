@@ -11,17 +11,15 @@ const theme = extendTheme({
 });
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-	const [ hydrated, setHydrated ] = useState(false);
-	
+	const [hydrated, setHydrated] = useState(false);
+
 	useEffect(() => {
-		const storedMode = localStorage.getItem('joy-mode');
-		if (!storedMode) localStorage.setItem('joy-mode', 'dark');
 		setHydrated(true);
 	}, []);
 
 	if (!hydrated) return null;
 	return (
-		<CssVarsProvider defaultMode="dark" theme={theme} modeStorageKey="joy-mode">
+		<CssVarsProvider theme={theme} modeStorageKey="joy-mode">
 			{children}
 		</CssVarsProvider>
 	);

@@ -52,7 +52,7 @@ export default function RootLayout({
 				</head>
 				<body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable}${quicksand.variable} ${firaCode.variable}`}>
 					<InitColorSchemeScript />
-					<CssVarsProvider>
+					<CssVarsProvider defaultMode="dark">
 						<ThemeProvider>
 							<Navbar />
 							{children}
