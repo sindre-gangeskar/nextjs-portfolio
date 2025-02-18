@@ -18,7 +18,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
 	if (!hydrated) return null;
 	return (
-		<CssVarsProvider defaultMode="system" theme={theme} defaultColorScheme={'dark'} modeStorageKey="joy-mode">
+		<CssVarsProvider defaultMode="dark" theme={theme} modeStorageKey="joy-mode">
 			{children}
 		</CssVarsProvider>
 	);
