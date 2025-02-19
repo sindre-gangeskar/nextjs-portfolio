@@ -5,7 +5,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/Error";
 
 import ColoredTypography from "@/components/ColoredTypography";
-import { EmailRounded, MailRounded, Person2Outlined, Send } from "@mui/icons-material";
+import { EmailRounded, MailRounded, Person2Rounded, Send } from "@mui/icons-material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -17,7 +17,7 @@ export default function ContactForm() {
 	useGSAP(() => {
 		gsap.set(".form-icon", { transform: "translateX(-100%)", opacity: "0", fontSize: "1.2rem" });
 		if (mailStatus) gsap.to(".form-icon", { transform: "translateX(0)", opacity: 1, duration: 1.2, ease: "elastic.out" });
-	}, [mailStatus, mailSent]);
+	}, [mailStatus]);
 
 	const formRef = useRef<HTMLFormElement>(null);
 	const sendMail = async (e: FormEvent) => {
@@ -71,7 +71,7 @@ export default function ContactForm() {
 					}}
 					gap={2}
 					sx={{ display: "flex", flex: 1, flexDirection: "column", "input, textarea": { padding: 1.5 } }}>
-					<Input variant="soft" startDecorator={<Person2Outlined />} sx={{}} className="form-input" name="name" placeholder="Your name" required autoComplete="name"></Input>
+					<Input variant="soft" startDecorator={<Person2Rounded />} sx={{}} className="form-input" name="name" placeholder="Your name" required autoComplete="name"></Input>
 					<Input variant="soft" startDecorator={<EmailRounded />} sx={{}} type="email" className="form-input" name="from" placeholder="Your email address" required autoComplete="email"></Input>
 					<Textarea variant="soft" minRows={4} maxRows={4} sx={{ maxHeight: "96px" }} className="form-input" name="message" placeholder="Your message..." required></Textarea>
 					<Stack direction={"row"} id="form-input" sx={{ position: "relative", width: "fit-content", mx: "auto", alignItems: "center" }}>
@@ -83,8 +83,8 @@ export default function ContactForm() {
 							disabled={mailSent}
 							sx={{ width: "fit-content", mx: "auto", minWidth: "75px", padding: 1.5, px: 2 }}>
 							{loading ? null : (
-								<Typography level="body-sm" sx={{ color: "white", opacity: loading ? 0 : 1 }} endDecorator={!mailSent ? <Send sx={{ fontSize: "inherit" }} /> : ""}>
-									{mailSuccess && mailSent ? <Typography>{mailStatus}</Typography> : !mailSuccess && mailSent ? <Typography>{mailStatus}</Typography> : "Send"}
+								<Typography color="primary" level="body-sm" sx={{ opacity: loading ? 0 : 1 }} endDecorator={!mailSent ? <Send sx={{ fontSize: "inherit" }} /> : ""}>
+									{mailSuccess && mailSent ? <Typography sx={{transition: 'none'}} color="success">{mailStatus}</Typography> : !mailSuccess && mailSent ? <Typography sx={{transition: 'none'}} color="danger">{mailStatus}</Typography> : "Send"}
 								</Typography>
 							)}
 						</Button>
