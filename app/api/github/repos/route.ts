@@ -17,9 +17,9 @@ export async function GET() {
 		const repos: RepoType[] = [];
 		const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-		for (const repooo of repoNames) {
+		for (const repo of repoNames) {
 			try {
-				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repooo });
+				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
 				data.name = data.name.replace(/\-/g, " ");
 
 				repos.push({

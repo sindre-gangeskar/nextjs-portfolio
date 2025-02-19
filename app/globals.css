@@ -1,8 +1,3 @@
-html,
-body {
-  max-width: 100vw;
-}
-
 html[data-joy-color-scheme="dark"] {
   background-color: var(--joy-palette-neutral-900)
 }
@@ -12,12 +7,13 @@ html[data-joy-color-scheme="light"] {
   visibility: visible;
 }
 
+
+
 html {
   overflow-x: hidden;
 }
 
 body {
-  width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -39,14 +39,14 @@ export default function HomePage() {
 
 	return (
 		<Container>
-			{loading && repos.length == 0 ? (
+			{loading ? (
 				<Loader />
 			) : (
 				<>
-					<Hero src={user?.avatar_url}></Hero>
+					<Hero src={user?.avatar_url} />
 					<TechStack />
 					<FeaturedProjects repos={repos} />
-					<ContactForm></ContactForm>
+					<ContactForm />
 				</>
 			)}
 		</Container>

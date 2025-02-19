@@ -16,13 +16,12 @@ export async function GET() {
 	}
 }
 export async function POST(req: NextRequest) {
-	const env: string = "production";
 	try {
 		const { from, name, message }: formTypes = await req.json();
 		if (!validator.isEmail(from)) return NextResponse.json({ message: "Email provided is in an invalid format" }, { status: 401 });
 		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return NextResponse.json({message: 'Name field cannot contain any numbers or special characters'}, {status: 401});
 
-		if (env === "production") await sendMail({ name, from, message });
+		if (process.env.NODE_ENV === "production") await sendMail({ name, from, message });
 		else await sendTestMail({name, from, message});
 		return NextResponse.json({ message: "Email successully sent" }, { status: 200 });
 	} catch (error) {
