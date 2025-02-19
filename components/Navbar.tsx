@@ -41,7 +41,8 @@ export default function Navbar() {
 					</Box>
 				</Button>
 			</Stack>
-			<ThemeToggler></ThemeToggler>
+			<ThemeToggler />
+
 		</List>
 	</Stack>
 );
