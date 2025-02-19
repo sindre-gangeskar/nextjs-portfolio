@@ -15,7 +15,7 @@ export default function ContactForm() {
 	const [mailSent, setMailSent] = useState(false);
 	const [mailStatus, setMailStatus] = useState(null);
 	useGSAP(() => {
-		gsap.set(".form-icon", { transform: "translateX(-100%)", opacity: "0", fontSize: '1.2rem' });
+		gsap.set(".form-icon", { transform: "translateX(-100%)", opacity: "0", fontSize: "1.2rem" });
 		if (mailStatus) gsap.to(".form-icon", { transform: "translateX(0)", opacity: 1, duration: 1.2, ease: "elastic.out" });
 	}, [mailStatus, mailSent]);
 
@@ -55,7 +55,9 @@ export default function ContactForm() {
 						email
 					</ColoredTypography>
 				</Typography>
-				<Typography level="body-lg" variant="plain" alignItems={"center"} display={"flex"} children={<MailRounded />}></Typography>
+				<Typography level="body-lg" variant="plain" alignItems={"center"} display={"flex"}>
+					<MailRounded />
+				</Typography>
 			</Stack>
 			<Stack>
 				<Stack
