@@ -1,11 +1,11 @@
 import { NextResponse, NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import validator from "validator";
-interface formTypes {
+type formType = {
 	from: string;
 	name: string;
 	message: string;
-}
+};
 
 export async function GET() {
 	try {
@@ -17,19 +17,19 @@ export async function GET() {
 }
 export async function POST(req: NextRequest) {
 	try {
-		const { from, name, message }: formTypes = await req.json();
+		const { from, name, message }: formType = await req.json();
 		if (!validator.isEmail(from)) return NextResponse.json({ message: "Email provided is in an invalid format" }, { status: 401 });
-		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return NextResponse.json({message: 'Name field cannot contain any numbers or special characters'}, {status: 401});
+		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return NextResponse.json({ message: "Name field cannot contain any numbers or special characters" }, { status: 401 });
 
 		if (process.env.NODE_ENV === "production") await sendMail({ name, from, message });
-		else await sendTestMail({name, from, message});
+		else await sendTestMail({ name, from, message });
 		return NextResponse.json({ message: "Email successully sent" }, { status: 200 });
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: "Failed to send email, please try again later." }, {status: 500});
+		return NextResponse.json({ message: "Failed to send email, please try again later." }, { status: 500 });
 	}
 }
-async function sendMail(body: formTypes) {
+async function sendMail(body: formType) {
 	const message = {
 		from: `${body.name} <${process.env.GMAIL}>`,
 		to: `Sindre Gangeskar <${process.env.EMAIL}>`,
@@ -48,9 +48,8 @@ async function sendMail(body: formTypes) {
 		},
 	});
 	const info = await transporter.sendMail(message);
-	console.log(info);
 }
-async function sendTestMail(body: formTypes) {
+async function sendTestMail(body: formType) {
 	nodemailer.createTestAccount((err, account) => {
 		if (err) {
 			return console.error(err);

@@ -23,13 +23,12 @@ export default function ContactForm() {
 	const sendMail = async (e: FormEvent) => {
 		if (formRef.current) {
 			setIsLoading(true);
-			const formData = new FormData(formRef.current);
-			const body = Object.fromEntries(formData.entries());
 			e.preventDefault();
+
 			const response = await fetch("/api/contact", {
 				method: "POST",
 				headers: { "Content-Type": "application/json", accept: "application/json" },
-				body: JSON.stringify(body, null, 2),
+				body: JSON.stringify(Object.fromEntries(new FormData(formRef.current)), null, 2),
 			});
 			setIsLoading(false);
 			setMailSent(true);
@@ -84,7 +83,17 @@ export default function ContactForm() {
 							sx={{ width: "fit-content", mx: "auto", minWidth: "75px", padding: 1.5, px: 2 }}>
 							{loading ? null : (
 								<Typography color="primary" level="body-sm" sx={{ opacity: loading ? 0 : 1 }} endDecorator={!mailSent ? <Send sx={{ fontSize: "inherit" }} /> : ""}>
-									{mailSuccess && mailSent ? <Typography sx={{transition: 'none'}} color="success">{mailStatus}</Typography> : !mailSuccess && mailSent ? <Typography sx={{transition: 'none'}} color="danger">{mailStatus}</Typography> : "Send"}
+									{mailSuccess && mailSent ? (
+										<Typography sx={{ transition: "none" }} color="success">
+											{mailStatus}
+										</Typography>
+									) : !mailSuccess && mailSent ? (
+										<Typography sx={{ transition: "none" }} color="danger">
+											{mailStatus}
+										</Typography>
+									) : (
+										"Send"
+									)}
 								</Typography>
 							)}
 						</Button>
