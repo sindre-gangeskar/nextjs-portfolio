@@ -1,6 +1,6 @@
 # Portfolio Website
 
-This is my personal portfolio website built with Next.js 14, showcasing my projects, skills, and experience. The site features:
+This is my personal portfolio website built with Next.js 15, showcasing my projects, skills, and experience. The site features:
 
 - A modern, responsive design using Material UI (Joy UI)
 - Dynamic GitHub integration to display my latest projects
