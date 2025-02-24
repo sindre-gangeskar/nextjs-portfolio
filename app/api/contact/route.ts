@@ -47,7 +47,7 @@ async function sendMail(body: formType) {
 			pass: process.env.EMAIL_APP_PASS,
 		},
 	});
-	const info = await transporter.sendMail(message);
+	await transporter.sendMail(message);
 }
 async function sendTestMail(body: formType) {
 	nodemailer.createTestAccount((err, account) => {
