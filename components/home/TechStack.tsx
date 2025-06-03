@@ -29,6 +29,7 @@ import {
 	SiVercel,
 	SiNetlify,
 	SiNpm,
+	SiBun,
 } from "react-icons/si";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -61,6 +62,7 @@ export default function TechStack() {
 			<Skill id="skill" title="Javascript" url="https://www.javascript.com/" description="Multi-paradigm programming language with object-oriented capabilities." icon={SiJavascript} color="neutral"></Skill>
 			<Skill id="skill" title="Typescript" url="https://www.typescriptlang.org/" description="Statically typed superset that compiles into Javascript." icon={SiTypescript} color="neutral"></Skill>
 			<Skill id="skill" title="Node.js" url="https://nodejs.org/en" description="Runtime environment Node.js" icon={SiNodedotjs} color="success"></Skill>
+			<Skill id="skill" title="Bun" url="https://bun.sh/" description="Runtime environment which also natively supports TypeScript files. A more modern and efficient all-in-one toolkit replacement for Node.js" icon={SiBun} color="success"></Skill>
 			<Skill id="skill" title="Express.js" url="https://expressjs.com/" description="Backend web framework for Node.js" icon={SiExpress} color="success"></Skill>
 			<Skill
 				id="skill"
@@ -155,7 +157,13 @@ export default function TechStack() {
 				description="A cloud platform for deploying scalable web applications with support for serverless functions, and optimized for Next.js"
 				icon={SiVercel}
 				color="danger"></Skill>
-			<Skill id="skill" title="Netlify" url="https://www.netlify.com/" description="A cloud platform for deploying scalable web applications with support for serverless functions." icon={SiNetlify} color="danger"></Skill>
+			<Skill
+				id="skill"
+				title="Netlify"
+				url="https://www.netlify.com/"
+				description="A cloud platform for deploying scalable web applications with support for serverless functions."
+				icon={SiNetlify}
+				color="danger"></Skill>
 		</Stack>
 	</Stack>
 );
