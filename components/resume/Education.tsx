@@ -18,7 +18,8 @@ export default function Education({style}: {[key: string]: {}}) {
 									color="danger"
 									headerTitle="Noroff - "
 									title="School of Technology & Digital Media"
-									subtitle="Back-end Development 1 [2023-2025]"
+						subtitle="Back-end Development 1 [2023-2025]"
+						grade="A"
 									avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E">
 									<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
 										<Stack {...style}>
