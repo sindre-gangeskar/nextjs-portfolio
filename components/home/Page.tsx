@@ -18,7 +18,7 @@ export default function HomePage() {
 	useEffect(() => {
 		setLoading(true);
 		async function fetchRepoData() {
-			const res = await fetch(`/api/github/repos`, { cache: "force-cache" });
+			const res = await fetch(`/api/github/repos`, { cache: "default" });
 			const { repositories } = await res.json();
 			setRepos(repositories);
 		}

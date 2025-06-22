@@ -12,7 +12,7 @@ export async function GET() {
 			description: string | null;
 			ownerImgURL: string;
 		}
-		const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "nextjs-portfolio", "exam-project"];
+		const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project"];
 
 		const repos: RepoType[] = [];
 		const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });

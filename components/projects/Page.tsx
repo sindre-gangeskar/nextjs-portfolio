@@ -29,7 +29,7 @@ export default function Projects() {
 		async function fetchProjects() {
 			try {
 				setLoading(true);
-				const response = await fetch(`/api/github/repos/all`, { cache: "force-cache", headers: { "Content-Type": "application/json", accept: "application/json" } });
+				const response = await fetch(`/api/github/repos/all`, { cache: "default", headers: { "Content-Type": "application/json", accept: "application/json" } });
 				const { data } = await response.json();
 				setRepos(data);
 				setLoading(false);
