@@ -67,7 +67,7 @@ export default function Resume() {
 								level={"body-sm"}>
 								LinkedIn: sindre-gangeskar
 							</Typography>
-							<Button size="sm" variant="soft" color="danger" href="/assets/cv.pdf" download={"Sindre Gangeskar - Resumé"} component={"a"} startDecorator={<DownloadRounded />}>
+							<Button size="sm" variant="soft" color="danger" href="/assets/Sindre Gangeskar - Resumé.pdf" download={"Sindre Gangeskar - Resumé"} component={"a"} startDecorator={<DownloadRounded />}>
 								<Typography>Download Resumé</Typography>
 							</Button>
 						</Stack>
