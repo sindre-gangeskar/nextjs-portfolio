@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Octokit } from "octokit";
 export async function GET() {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-	const repoNames: string[] = ["shadps4-alchemist", "steam-backlogify", "candy-log", "exam-project", "nuxtjs-database"];
+	const repoNames: string[] = ["nextjs-portfolio", "ludonium", "shadps4-alchemist", "steam-backlogify", "candy-log", "exam-project", "nuxtjs-database"];
 	const repos: RepoType[] = [];
 
 	interface RepoType {
@@ -22,10 +22,9 @@ export async function GET() {
 				continue;
 			}
 		}
-
 		return NextResponse.json({ data: repos }, { status: 200, headers: { "Cache-Control": "public, max-age=10800, stale-while-revalidate=300" } });
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: 'Failed to fetch repos' }, { status: 200 });
+		return NextResponse.json({ message: "Failed to fetch repos" }, { status: 200 });
 	}
 }

@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import Page from "@/components/projects/Page";
+import Projects from "@/components/projects/Projects";
 
 export const metadata: Metadata = {
 	title: "Projects",
 	description: "Explore my projects",
 };
 
-export default async function Projects() {
-	return <Page></Page>;
+export default async function Page() {
+	return <Projects />;
 }
