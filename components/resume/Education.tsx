@@ -1,6 +1,6 @@
 import { Stack, Typography, List, ListItem, AccordionGroup, Chip } from "@mui/joy";
-import ColoredTypography from "@/components/ColoredTypography";
-import CustomAccordion from "@/components/CustomAccordion";
+import ColoredTypography from "@/components/ui/ColoredTypography";
+import CustomAccordion from "@/components/ui/CustomAccordion";
 
 
 export default function Education({style}: {[key: string]: {}}) {

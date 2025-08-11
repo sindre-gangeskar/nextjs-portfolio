@@ -1,7 +1,7 @@
 "use client";
 import { Container, Stack, Typography } from "@mui/joy";
-import Project from "@/components/Project";
-import ColoredTypography from "@/components/ColoredTypography";
+import Project from "@/components/projects/Project";
+import ColoredTypography from "@/components/ui/ColoredTypography";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useState } from "react";

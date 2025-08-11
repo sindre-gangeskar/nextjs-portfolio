@@ -1,5 +1,5 @@
 import { Stack, Typography, Box } from "@mui/joy";
-import ColoredTypography from "./ColoredTypography";
+import ColoredTypography from "./ui/ColoredTypography";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 export default function Loader() {

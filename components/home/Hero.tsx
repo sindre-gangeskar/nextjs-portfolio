@@ -1,10 +1,10 @@
 "use client";
-import GridBackground from "@/components/GridBackground";
+import GridBackground from "@/components/ui/GridBackground";
 import { Stack, Typography, Card, Chip, Box, Button } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ProfileAvatar from "@/components/ProfileAvatar";
-import ColoredTypography from "@/components/ColoredTypography";
+import ProfileAvatar from "@/components/home/ProfileAvatar";
+import ColoredTypography from "@/components/ui/ColoredTypography";
 import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
 
 import ScrollTrigger from "gsap/dist/ScrollTrigger";

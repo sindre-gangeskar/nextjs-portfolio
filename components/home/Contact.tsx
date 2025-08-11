@@ -4,7 +4,7 @@ import { FormEvent, useRef, useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/Error";
 
-import ColoredTypography from "@/components/ColoredTypography";
+import ColoredTypography from "@/components/ui/ColoredTypography";
 import { EmailRounded, MailRounded, Person2Rounded, Send } from "@mui/icons-material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";

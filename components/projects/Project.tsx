@@ -1,3 +1,4 @@
+import { capitalizeString } from "@/lib/utils";
 import { GitHub } from "@mui/icons-material";
 import { Stack, Typography, Card, Button } from "@mui/joy";
 import { useState } from "react";
@@ -26,11 +27,11 @@ export default function Project({ repo, id, className }: { repo: RepoType; id?: 
 				height: { xs: "150px", md: "125px" },
 				transition: "color backgroundColor 250ms ease",
 				"&:hover": {
-					transform: 'translateY(-150px)',
+					transform: "translateY(-150px)",
 				},
 			}}>
 			<Stack sx={{ height: "100%", display: "flex", justifyContent: "space-between", flexDirection: "column" }}>
-				<Typography level="body-lg">{repo.name}</Typography>
+				<Typography level="body-lg">{capitalizeString(repo.name)}</Typography>
 				<Stack sx={{ display: "flex", height: "100%", flexDirection: { xs: "column", md: "row" }, textAlign: "start", p: 0, m: 0, justifyContent: "space-between", alignItems: "center" }}>
 					<Typography level="body-sm">{repo.description}</Typography>
 					{repo.url ? (

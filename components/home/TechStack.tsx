@@ -1,6 +1,6 @@
 "use client";
 import { Stack, Typography, Chip } from "@mui/joy";
-import ColoredTypography from "@/components/ColoredTypography";
+import ColoredTypography from "@/components/ui/ColoredTypography";
 import Skill from "./Skill";
 import {
 	SiJavascript,

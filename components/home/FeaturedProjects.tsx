@@ -1,7 +1,7 @@
 "use client";
 import { Stack, Typography, Button } from "@mui/joy";
-import ColoredTypography from "@/components/ColoredTypography";
-import Tile from "@/components/Tile";
+import ColoredTypography from "@/components/ui/ColoredTypography";
+import Tile from "@/components/home/Tile";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { useState } from "react";

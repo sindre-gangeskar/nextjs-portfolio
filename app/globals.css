@@ -7,10 +7,9 @@ html[data-joy-color-scheme="light"] {
   visibility: visible;
 }
 
-
-
 html {
   overflow-x: hidden;
+  transition: background-color 250ms ease;
 }
 
 body {
@@ -22,7 +21,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
 }
 
 a {
