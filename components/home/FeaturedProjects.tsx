@@ -1,40 +1,24 @@
 "use client";
-import { Stack, Typography, Button } from "@mui/joy";
-import ColoredTypography from "@/components/ui/ColoredTypography";
+import { Button, Box } from "@mui/joy";
 import Tile from "@/components/home/Tile";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { useState } from "react";
+import useFeaturedProjects from "@/hooks/useFeaturedProjects";
+import FeaturedProjectsSkeleton from "./skeletons/FeaturedProjectsSkeleton";
 
-export default function FeaturedProjects({ repos }: { repos: [] }) {
+export default function FeaturedProjects() {
 	const [hovering, setHovering] = useState(false);
+	const { data, isLoading } = useFeaturedProjects();
 	return (
-		<Stack id="featured-projects" component={"section"} direction={"column"} sx={{ width: "100%", p: 0, position: "relative", mt: 15 }}>
-			<Typography level="h1" mb={{ xs: 3, md: 3 }} mx={5} textAlign={{ xs: "center", md: "end" }}>
-				Featured
-				<ColoredTypography color="primary" level="h1">
-					{" "}
-					Projects
-				</ColoredTypography>
-			</Typography>
-			<Stack
-				component={"section"}
-				sx={{
-					width: "100%",
-					height: "100%",
-					display: { xs: "flex", md: "grid" },
-					gap: { xs: 2, md: 2 },
-					rowGap: 0,
-					justifyContent: "center",
-					alignItems: "center",
-					p: 0,
-					gridTemplateColumns: { md: "repeat(auto-fit, minmax(350px, 0fr))" },
-					flexDirection: { xs: "column" },
-				}}>
-				{repos?.map((x: { name: string; fullname: string; description: string; stargazers_count: number; url: string }) => {
-					return <Tile color="primary" title={x.name} description={x.description} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
+		<Box id={"featured-projects"} sx={{ display: "grid", gap: 2, gridTemplateColumns: "repeat(auto-fit, minmax(350px, 0fr))", justifyContent: "center", width: "100%" }}>
+			{isLoading && <FeaturedProjectsSkeleton />}
+			{!isLoading &&
+				data?.map(x => {
+					return <Tile color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
 				})}
 
+			{!isLoading && (
 				<Button
 					onMouseEnter={() => {
 						setHovering(true);
@@ -48,6 +32,8 @@ export default function FeaturedProjects({ repos }: { repos: [] }) {
 						overflow: "hidden",
 						position: "relative",
 						width: { xs: "90%", md: "initial" },
+						height: "75%",
+						my: "auto",
 						zIndex: 0,
 						"&:hover": {
 							color: hovering && theme.palette.mode == "dark" ? "black" : "white",
@@ -75,7 +61,7 @@ export default function FeaturedProjects({ repos }: { repos: [] }) {
 					color={"neutral"}>
 					Explore more projects
 				</Button>
-			</Stack>
-		</Stack>
+			)}
+		</Box>
 	);
 }

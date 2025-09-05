@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	serverExternalPackages: ['octokit']
 };
 
 export default nextConfig;

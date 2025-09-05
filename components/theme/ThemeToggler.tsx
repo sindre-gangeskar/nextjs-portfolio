@@ -1,5 +1,5 @@
 "use client";
-import { Typography, useColorScheme } from "@mui/joy";
+import { useColorScheme } from "@mui/joy";
 import { Button } from "@mui/joy";
 import { Brightness3, Brightness7 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
@@ -21,14 +21,11 @@ export default function ThemeToggler() {
 			size="sm"
 			color="neutral"
 			variant="soft"
-			sx={{ gap: 2, aspectRatio: { xs: 1 / 1, md: "initial" }, padding: { xs: 1.5, md: 1 }, px: { xs: 1.5, md: 2 }, mr: { xs: 3, md: "initial" } }}
+			sx={{ gap: 2, borderRadius: "50%", aspectRatio: { xs: 1 }, p: 1.5, mr: { xs: 3, md: "initial" } }}
 			onClick={() => {
 				if (mode === "dark") setMode("light");
 				else setMode("dark");
 			}}>
-			<Typography sx={{ display: { xs: "none", md: "inherit" } }} className={"mode-name"}>
-				{mode == "dark" ? "Light" : "Dark"}
-			</Typography>
 			{icon}
 		</Button>
 	);

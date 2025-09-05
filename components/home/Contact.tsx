@@ -1,3 +1,4 @@
+"use client"
 import { Stack, Input, Typography, Button, Textarea, Card, Box } from "@mui/joy";
 import { FormEvent, useRef, useState } from "react";
 

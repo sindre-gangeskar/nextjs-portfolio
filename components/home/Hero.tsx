@@ -6,14 +6,17 @@ import { useGSAP } from "@gsap/react";
 import ProfileAvatar from "@/components/home/ProfileAvatar";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
-
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import TextPlugin from "gsap/dist/TextPlugin";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+import ProfileAvatarSkeleton from "./skeletons/ProfileAvatarSkeleton";
+import useUserProfile from "@/hooks/useUserProfile";
 
-export default function Hero({ src = "" }: { src?: string }) {
+export default function Hero() {
+	const { data, isLoading } = useUserProfile();
+
 	useGSAP(() => {
-		if (typeof window !== "undefined") gsap.registerPlugin(TextPlugin, ScrollToPlugin, ScrollTrigger); 
+		if (typeof window !== "undefined") gsap.registerPlugin(TextPlugin, ScrollToPlugin, ScrollTrigger);
 
 		const traitsTl = gsap.timeline();
 		const descriptionTl = gsap.timeline();
@@ -53,22 +56,24 @@ export default function Hero({ src = "" }: { src?: string }) {
 			zIndex: 1,
 		});
 	}, []);
+
 	const scrollToContactForm = () => {
 		gsap.to(window, { scrollTo: "#contact-form", duration: 1.5, ease: "power1.inOut" });
 	};
+
 	return (
 		<>
 			<GridBackground id="profile-grid" width={2500} height={1500} gridSize={40} sx={{ opacity: 0, top: 50 }}></GridBackground>
 			<Stack component={"section"} direction={"column"} sx={{ position: "relative", p: 3 }}>
 				<Stack direction={"row"} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
-					<Stack id="profile" component={"div"} sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
-						<ProfileAvatar id="avatar" size={350} src={src} sx={{ display: { xs: "none", md: "block" } }} />
+					<Stack id="profile" sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
+						<Box id="avatar">{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar size={350} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
 						<Typography level="h1">
 							I am <ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
 						</Typography>
 						<Typography>A passionate back-end and full-stack developer from Norway</Typography>
 					</Stack>
-					<Stack component={"div"} sx={{ justifyContent: "center", display: "flex", flexDirection: "column", height: "100%" }}>
+					<Stack sx={{ justifyContent: "center", display: "flex", flexDirection: "column", height: "100%" }}>
 						<Card
 							id="traits"
 							variant="plain"

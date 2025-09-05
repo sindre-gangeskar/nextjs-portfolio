@@ -1,17 +1,8 @@
 import { NextResponse } from "next/server";
 import { Octokit } from "octokit";
+import { RepoType } from "@/lib/definitions";
 export async function GET() {
 	try {
-		interface RepoType {
-			name: string;
-			fullname: string;
-			stargazers_count: number;
-			watchers_count: number;
-			forks_count: number;
-			url: string;
-			description: string | null;
-			ownerImgURL: string;
-		}
 		const repoNames: string[] = ["shadps4-alchemist", "ludonium", "nuxtjs-database", "steam-backlogify", "exam-project"];
 
 		const repos: RepoType[] = [];
