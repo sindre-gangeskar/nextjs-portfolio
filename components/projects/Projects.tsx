@@ -4,41 +4,24 @@ import Project from "@/components/projects/Project";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useState } from "react";
-import Loader from "../Loader";
-interface RepoType {
-	name: string;
-	description: string | null;
-	url: string;
-}
+import { useAllProjects } from "@/hooks/useAllProjects";
+import { SxProps } from "@mui/material";
+import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 
 export default function Projects() {
-	const [repos, setRepos] = useState([] as RepoType[]);
-	const [loading, setLoading] = useState(true);
+	const { data, isLoading } = useAllProjects();
+	const baseSx: SxProps = {
+		height: { xs: "150px", md: "125px" },
+	};
 
 	useGSAP(() => {
-		if (repos.length > 0) {
+		if ((data && data.length > 0) || isLoading) {
 			const tl = gsap.timeline();
 			gsap.set(".project", { transform: "translateX(15px)", opacity: 0 });
 
 			tl.to(".project", { transform: "translateX(0)", duration: 1.25, stagger: 0.08, opacity: 1, ease: "elastic.out" });
 		}
-	}, [repos]);
-
-	useEffect(() => {
-		async function fetchProjects() {
-			try {
-				setLoading(true);
-				const response = await fetch(`/api/github/repos/all`, { cache: "default", headers: { "Content-Type": "application/json", accept: "application/json" } });
-				const { data } = await response.json();
-				setRepos(data);
-				setLoading(false);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		fetchProjects();
-	}, []);
+	}, [data]);
 
 	return (
 		<Container component={"main"}>
@@ -48,13 +31,14 @@ export default function Projects() {
 				</Typography>
 			</Stack>
 			<Stack gap={2} mt={5}>
-				{!loading && repos.length > 0 ? (
-					repos.map((repo: RepoType) => {
-						return <Project className="project" key={repo.name} repo={repo}></Project>;
-					})
-				) : (
-					<Loader></Loader>
-				)}
+				{isLoading && Array.from({ length: 4 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
+				
+				{!isLoading &&
+					data &&
+					data.length > 0 &&
+					data.map(repo => {
+						return <Project className="project" key={repo.name} repo={repo} sx={baseSx}></Project>;
+					})}
 			</Stack>
 		</Container>
 	);

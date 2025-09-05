@@ -2,13 +2,10 @@ import { capitalizeString } from "@/lib/utils";
 import { GitHub } from "@mui/icons-material";
 import { Stack, Typography, Card, Button } from "@mui/joy";
 import { useState } from "react";
-interface RepoType {
-	name: string;
-	description?: string | null;
-	url: string;
-}
+import { RepoType } from "@/lib/definitions";
+import { SxProps } from "@mui/material";
 
-export default function Project({ repo, id, className }: { repo: RepoType; id?: string; className?: string }) {
+export default function Project({ repo, id, className, sx }: { repo: RepoType; id?: string; className?: string; sx: SxProps }) {
 	const [hovering, setHovering] = useState(false);
 
 	return (
@@ -23,13 +20,7 @@ export default function Project({ repo, id, className }: { repo: RepoType; id?: 
 			}}
 			variant={hovering ? "soft" : "plain"}
 			color="neutral"
-			sx={{
-				height: { xs: "150px", md: "125px" },
-				transition: "color backgroundColor 250ms ease",
-				"&:hover": {
-					transform: "translateY(-150px)",
-				},
-			}}>
+			sx={{ ...sx }}>
 			<Stack sx={{ height: "100%", display: "flex", justifyContent: "space-between", flexDirection: "column" }}>
 				<Typography level="body-lg">{capitalizeString(repo.name)}</Typography>
 				<Stack sx={{ display: "flex", height: "100%", flexDirection: { xs: "column", md: "row" }, textAlign: "start", p: 0, m: 0, justifyContent: "space-between", alignItems: "center" }}>

@@ -12,7 +12,7 @@ export default class GithubService {
 				accumulatedRepos.push(data);
 			}
 			const formattedRepos = accumulatedRepos.map(x => ({
-				name: x.name.replace("-", " "),
+				name: x.name.replace(/\-/g, " "),
 				description: x.description ?? "",
 				url: x.html_url,
 				stargazers_count: x.stargazers_count,
@@ -22,6 +22,26 @@ export default class GithubService {
 				watchers_count: x.watchers_count,
 			}));
 
+			return formattedRepos;
+		} catch (error) {
+			console.error(error);
+			throw error;
+		}
+	}
+
+	static async getAllRepos() {
+		try {
+			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+			const repoNames: string[] = ["ludonium", "shadps4-alchemist", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "candy-log"];
+			const accumulatedRepos = [];
+
+			for (const repo of repoNames) {
+				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
+				if (!data) continue;
+				accumulatedRepos.push(data);
+			}
+
+			const formattedRepos = accumulatedRepos.map(x => ({ name: x.name.replace(/\-/g, " "), description: x.description, url: x.html_url }));
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);

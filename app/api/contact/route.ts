@@ -1,12 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import validator from "validator";
-type formType = {
-	from: string;
-	name: string;
-	message: string;
-};
-
+import { FormType } from "@/lib/definitions";
 export async function GET() {
 	try {
 		return NextResponse.json({ message: "Hi! This is the contact api request" }, { status: 200 });
@@ -17,7 +12,7 @@ export async function GET() {
 }
 export async function POST(req: NextRequest) {
 	try {
-		const { from, name, message }: formType = await req.json();
+		const { from, name, message }: FormType = await req.json();
 		if (!validator.isEmail(from)) return NextResponse.json({ message: "Email provided is in an invalid format" }, { status: 401 });
 		if (!validator.isAlpha(name, "en-US", { ignore: " " })) return NextResponse.json({ message: "Name field cannot contain any numbers or special characters" }, { status: 401 });
 
@@ -29,7 +24,7 @@ export async function POST(req: NextRequest) {
 		return NextResponse.json({ message: "Failed to send email, please try again later." }, { status: 500 });
 	}
 }
-async function sendMail(body: formType) {
+async function sendMail(body: FormType) {
 	const message = {
 		from: `${body.name} <${process.env.GMAIL}>`,
 		to: `Sindre Gangeskar <${process.env.EMAIL}>`,
@@ -49,7 +44,7 @@ async function sendMail(body: formType) {
 	});
 	await transporter.sendMail(message);
 }
-async function sendTestMail(body: formType) {
+async function sendTestMail(body: FormType) {
 	nodemailer.createTestAccount((err, account) => {
 		if (err) {
 			return console.error(err);
