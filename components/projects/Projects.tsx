@@ -15,7 +15,7 @@ export default function Projects() {
 	};
 
 	useGSAP(() => {
-		if ((data && data.length > 0) || isLoading) {
+		if ((data && data.length > 0)) {
 			const tl = gsap.timeline();
 			gsap.set(".project", { transform: "translateX(15px)", opacity: 0 });
 
