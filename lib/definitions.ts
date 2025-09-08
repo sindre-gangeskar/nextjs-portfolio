@@ -14,6 +14,13 @@ export interface ProfileProps {
 	id?: string;
 	sx?: {};
 }
+
+export interface ResponseProps {
+	statusCode: StatusCodeType
+	status: "success" | "fail"
+	message?: string
+	data?: {}
+}
 export interface UserType {
 	avatar_url: string;
 }
@@ -23,3 +30,5 @@ export type FormType = {
 	name: string;
 	message: string;
 };
+
+export type StatusCodeType = 200 | 201 | 204 | 400 | 401 | 404 | 409 | 500

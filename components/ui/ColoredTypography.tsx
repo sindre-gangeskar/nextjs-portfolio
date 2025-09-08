@@ -10,6 +10,7 @@ export default function ColoredTypography({
 	bold = false,
 	isLink = false,
 	href,
+	endDecorator
 }: {
 		color?: ColorPaletteProp;
 	level?: "h1" | "h2" | "h3" | "h4" | "body-sm" | "body-md" | "body-lg";
@@ -18,12 +19,14 @@ export default function ColoredTypography({
 	bold?: boolean;
 	isLink?: boolean;
 	sx?: {};
-	id?: string;
+		id?: string;
+	endDecorator?: React.ReactNode
 }) {
 	return (
 		<Typography
 			level={level}
 			component={"span"}
+			endDecorator={endDecorator ?? null}
 			id={id}
 			sx={{
 				backgroundColor: `${color}.solidBg`,
@@ -31,6 +34,7 @@ export default function ColoredTypography({
 				WebkitTextFillColor: "transparent",
 				display: "inline",
 				fontWeight: `${bold ? "bold" : "normal"}`,
+				alignItems: 'center',
 				...sx,
 			}}>
 			{isLink ? (

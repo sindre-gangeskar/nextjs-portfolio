@@ -1,4 +1,5 @@
 "use server";
+import EmailService from "@/lib/services/EmailService";
 import GithubService from "@/lib/services/GithubService";
 
 export async function getFeaturedProjects() {
@@ -10,7 +11,6 @@ export async function getFeaturedProjects() {
 		return [];
 	}
 }
-
 export async function getUserProfile() {
 	try {
 		return await GithubService.getUserProfile();
@@ -18,4 +18,7 @@ export async function getUserProfile() {
 		console.error(error);
 		return null;
 	}
+}
+export async function sendEmail(_: unknown, formdata: FormData) {
+	return await EmailService.send(formdata);
 }
