@@ -1,10 +1,11 @@
 import { Octokit } from "octokit";
-
+import { unstable_cache } from 'next/cache';
 export default class GithubService {
-	static async getFeaturedRepos() {
+	static getFeaturedRepos = unstable_cache(async () => {
 		try {
+			console.log("🔄 FETCHING FROM GITHUB API - This should only appear once per hour!");
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = ["ludonium", "exam-project", "nuxtjs-database", "steam-backlogify", "shadps4-alchemist"];
+			const repoNames: string[] = [ "ludonium", "exam-project", "nuxtjs-database", "steam-backlogify", "shadps4-alchemist" ];
 			const accumulatedRepos = [];
 
 			for (const repo of repoNames) {
@@ -27,12 +28,12 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}
+	}, [ 'featured-repos' ], { revalidate: 3600, tags: [ 'github-repos' ] });
 
-	static async getAllRepos() {
+	static getAllRepos = unstable_cache(async () => {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = ["ludonium", "shadps4-alchemist", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "candy-log"];
+			const repoNames: string[] = [ "ludonium", "shadps4-alchemist", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "candy-log" ];
 			const accumulatedRepos = [];
 
 			for (const repo of repoNames) {
@@ -47,9 +48,9 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}
+	}, [ 'all-projects' ], { revalidate: 3600, tags: [ 'github-repos' ] })
 
-	static async getUserProfile() {
+	static getUserProfile = unstable_cache(async () => {
 		try {
 			const octoKit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 			const { data } = await octoKit.request("GET /users/{username}", { username: "sindre-gangeskar" });
@@ -58,5 +59,5 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}
+	}, [ 'user-profile' ], { revalidate: 3600, tags: [ 'user-profile' ] })
 }
