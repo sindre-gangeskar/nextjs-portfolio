@@ -1,20 +1,21 @@
 export interface RepoType {
 	name: string;
-	fullname?: string;
+	full_name?: string;
 	stargazers_count?: number;
 	watchers_count?: number;
 	forks_count?: number;
-	url?: string;
+	html_url?: string;
 	description?: string | null;
-	ownerImgURL?: string;
+	owner?: { avatar_url?: string };
+	homepage?: string | null;
 }
 export interface ProfileProps {
 	src: string;
 	size: number;
 	id?: string;
 	sx?: {};
+	ref?: string
 }
-
 export interface ResponseProps {
 	statusCode: StatusCodeType
 	status: "success" | "fail"

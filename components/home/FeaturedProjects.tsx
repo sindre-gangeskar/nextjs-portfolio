@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
 			{isLoading && <FeaturedProjectsSkeleton />}
 			{!isLoading &&
 				data?.map(x => {
-					return <Tile color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.url} stars={x.stargazers_count} key={x.name}></Tile>;
+					return <Tile homepage={x.homepage ?? ""} color="neutral" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></Tile>;
 				})}
 
 			{!isLoading && (

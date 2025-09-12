@@ -1,5 +1,5 @@
-import { Card, Typography, Stack, Link } from "@mui/joy";
-import { StarOutline, Code, GitHub } from "@mui/icons-material";
+import { Card, Typography, Stack, Button, Box } from "@mui/joy";
+import { StarOutline, GitHub, HouseRounded } from "@mui/icons-material";
 export default function Tile({
 	title = "Placeholder title",
 	description = "Placeholder description",
@@ -7,6 +7,7 @@ export default function Tile({
 	url,
 	color = "neutral",
 	isRepo = false,
+	homepage,
 }: {
 	title?: string;
 	description?: string;
@@ -14,6 +15,7 @@ export default function Tile({
 	url?: string;
 	isRepo?: boolean;
 	stars?: number;
+	homepage?: string;
 	color: "primary" | "danger" | "warning" | "neutral";
 }) {
 	return (
@@ -24,8 +26,8 @@ export default function Tile({
 				position: "relative",
 				textAlign: "start",
 				width: { xs: "100%", md: 350 },
-				height: { xs: '100%', md: 175 },
-				minHeight: {xs: 'fit-content'},
+				height: { xs: "100%", md: 175 },
+				minHeight: { xs: "fit-content" },
 				transition: "250ms ease",
 				borderRadius: "0.25rem",
 				zIndex: 1,
@@ -53,30 +55,28 @@ export default function Tile({
 					borderColor: `${color}.solidBg`,
 				},
 			}}>
-			<Stack direction={"column"} sx={{ height: "100%", position: "relative", display: 'flex', justifyContent: 'space-between' }}>
-				<Stack>
-					<Typography startDecorator={<GitHub/>} level="body-md" sx={{ textTransform: "capitalize" }}>
+			<Stack direction={"column"} sx={{ height: "100%", position: "relative", display: "flex", justifyContent: "space-between" }}>
+				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
+					<Typography startDecorator={<GitHub />} level="body-md" sx={{ textTransform: "capitalize" }}>
 						{title}
 					</Typography>
-					<Typography level="body-sm">{description}</Typography>
+					<Typography level="body-sm" py={1} sx={{ display: "inline-flex", flexDirection: "row" }}>
+						<StarOutline /> {stars}
+					</Typography>
+				</Box>
+				<Typography level="body-sm">{description}</Typography>
+				<Stack direction={"row"}>
+					{homepage && (
+						<Button variant="soft" color="primary" component="a" href={homepage} target="_blank" endDecorator={<HouseRounded/>}>
+							Visit Homepage
+						</Button>
+					)}
+					{isRepo && (
+						<Button variant="soft" color="neutral" component={"a"} href={url} target={"_blank"} sx={{ maxWidth: "max-content", ml: "auto" }} endDecorator={<GitHub />}>
+							Repository
+						</Button>
+					)}
 				</Stack>
-				{isRepo ? (
-					<Stack direction={"row"} position={"relative"} bottom={0} sx={{ width: "100%" }}>
-						<Typography display={"inline-flex"} sx={{ justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-							<Typography level="body-sm" py={1} sx={{ display: "inline-flex", flexDirection: "row" }}>
-								<StarOutline /> {stars}
-							</Typography>
-							<Typography level="body-sm" px={1} gap={1} sx={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
-								Visit Repository
-								<Link p={1} px={2} variant="soft" borderRadius={"0.5rem"} href={url} target="_blank">
-									<Code />
-								</Link>
-							</Typography>
-						</Typography>
-					</Stack>
-				) : (
-					""
-				)}
 			</Stack>
 		</Card>
 	);

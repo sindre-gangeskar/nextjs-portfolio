@@ -1,9 +1,11 @@
 import { Octokit } from "octokit";
 import { unstable_cache } from 'next/cache';
+import { RepoType } from "../definitions";
+const revalidationTimeInHours = 60 * 60 * 3;
+
 export default class GithubService {
 	static getFeaturedRepos = unstable_cache(async () => {
 		try {
-			console.log("🔄 FETCHING FROM GITHUB API - This should only appear once per hour!");
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 			const repoNames: string[] = [ "ludonium", "exam-project", "nuxtjs-database", "steam-backlogify", "shadps4-alchemist" ];
 			const accumulatedRepos = [];
@@ -12,23 +14,14 @@ export default class GithubService {
 				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
 				accumulatedRepos.push(data);
 			}
-			const formattedRepos = accumulatedRepos.map(x => ({
-				name: x.name.replace(/\-/g, " "),
-				description: x.description ?? "",
-				url: x.html_url,
-				stargazers_count: x.stargazers_count,
-				fullname: x.full_name,
-				forks_count: x.forks_count,
-				ownerImgURL: x.owner.avatar_url,
-				watchers_count: x.watchers_count,
-			}));
+			const formattedRepos = formatRepos(accumulatedRepos);
 
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'featured-repos' ], { revalidate: 3600, tags: [ 'github-repos' ] });
+	}, [ 'featured-repos' ], { revalidate: revalidationTimeInHours, tags: [ 'github-repos' ] });
 
 	static getAllRepos = unstable_cache(async () => {
 		try {
@@ -42,13 +35,13 @@ export default class GithubService {
 				accumulatedRepos.push(data);
 			}
 
-			const formattedRepos = accumulatedRepos.map(x => ({ name: x.name.replace(/\-/g, " "), description: x.description, url: x.html_url }));
+			const formattedRepos = formatRepos(accumulatedRepos);
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'all-projects' ], { revalidate: 3600, tags: [ 'github-repos' ] })
+	}, [ 'all-projects' ], { revalidate: revalidationTimeInHours, tags: [ 'github-all-repos' ] })
 
 	static getUserProfile = unstable_cache(async () => {
 		try {
@@ -59,5 +52,24 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'user-profile' ], { revalidate: 3600, tags: [ 'user-profile' ] })
+	}, [ 'user-profile' ], { revalidate: revalidationTimeInHours, tags: [ 'user-profile' ] })
+}
+
+function formatRepos(arr: RepoType[]) {
+	if (Array.isArray(arr)) {
+		const formattedRepos = arr.map(x => ({
+			name: x.name.replace(/\-/g, " "),
+			description: x.description,
+			html_url: x.html_url,
+			stargazers_count: x.stargazers_count,
+			fullname: x.full_name,
+			forks_count: x.forks_count,
+			ownerImgURL: x.owner?.avatar_url,
+			watchers_count: x.watchers_count,
+			...(x?.homepage ? { homepage: x.homepage } : null)
+		}))
+
+		return formattedRepos;
+	}
+	return null;
 }

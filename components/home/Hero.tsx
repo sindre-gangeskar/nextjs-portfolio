@@ -57,6 +57,15 @@ export default function Hero() {
 		});
 	}, []);
 
+	useGSAP(() => {
+		const profileImageTl = gsap.timeline();
+
+		if (data && !isLoading) {
+			profileImageTl.set("#profile-image", { opacity: 0 });
+			profileImageTl.to("#profile-image", { opacity: 1, duration: 1.2, ease: 'power1.out' });
+		}
+	}, [isLoading]);
+
 	const scrollToContactForm = () => {
 		gsap.to(window, { scrollTo: "#contact-form", duration: 1.5, ease: "power1.inOut" });
 	};
@@ -67,7 +76,7 @@ export default function Hero() {
 			<Stack component={"section"} direction={"column"} sx={{ position: "relative", p: 3 }}>
 				<Stack direction={"row"} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
 					<Stack id="profile" sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
-						<Box id="avatar">{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar size={350} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
+						<Box id="avatar">{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={350} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
 						<Typography level="h1">
 							I am <ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
 						</Typography>
