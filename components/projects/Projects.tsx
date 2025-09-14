@@ -29,7 +29,7 @@ export default function Projects() {
 					Explore <ColoredTypography level="h1">Projects</ColoredTypography>
 				</Typography>
 			</Stack>
-			<Stack gap={2} mt={5}>
+			<Stack gap={2} my={5}>
 				{isLoading && Array.from({ length: 4 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
 				{!isLoading &&
 					data &&

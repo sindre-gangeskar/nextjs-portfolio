@@ -7,11 +7,18 @@ export default class GithubService {
 	static getFeaturedRepos = unstable_cache(async () => {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = [ "ludonium", "exam-project", "nuxtjs-database", "steam-backlogify", "shadps4-alchemist" ];
+			const repoNames: string[] = [ "ludonium",
+				"nextjs-portfolio",
+				"nuxtjs-database",
+				"shadps4-alchemist",
+				"exam-project",
+				"semester-ca",
+			];
 			const accumulatedRepos = [];
 
 			for (const repo of repoNames) {
 				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
+				if (!data) continue;
 				accumulatedRepos.push(data);
 			}
 			const formattedRepos = formatRepos(accumulatedRepos);
@@ -26,7 +33,7 @@ export default class GithubService {
 	static getAllRepos = unstable_cache(async () => {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = [ "ludonium", "shadps4-alchemist", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "candy-log" ];
+			const repoNames: string[] = [ "ludonium", "shadps4-alchemist", "docker-simple-app", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
 			const accumulatedRepos = [];
 
 			for (const repo of repoNames) {
