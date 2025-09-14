@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
 			{isLoading && <FeaturedProjectsSkeleton />}
 			{!isLoading &&
 				data?.map(x => {
-					return <Tile homepage={x.homepage ?? ""} color="neutral" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></Tile>;
+					return <Tile homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></Tile>;
 				})}
 
 			{!isLoading && (
@@ -28,12 +28,10 @@ export default function FeaturedProjects() {
 					}}
 					sx={theme => ({
 						py: 5,
-						fontSize: { sm: "1rem", md: "1.2rem" },
 						overflow: "hidden",
-						position: "relative",
-						width: { xs: "90%", md: "initial" },
-						height: "75%",
+						width: "100%",
 						my: "auto",
+						mx: "auto",
 						zIndex: 0,
 						"&:hover": {
 							color: hovering && theme.palette.mode == "dark" ? "black" : "white",

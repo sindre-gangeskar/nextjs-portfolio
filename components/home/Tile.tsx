@@ -1,5 +1,6 @@
 import { Card, Typography, Stack, Button, Box } from "@mui/joy";
-import { StarOutline, GitHub, HouseRounded } from "@mui/icons-material";
+import { GitHub, StarRounded } from "@mui/icons-material";
+import { FaGlobe } from "react-icons/fa6";
 export default function Tile({
 	title = "Placeholder title",
 	description = "Placeholder description",
@@ -21,7 +22,7 @@ export default function Tile({
 	return (
 		<Card
 			variant="outlined"
-			color="neutral"
+			color={color}
 			sx={{
 				position: "relative",
 				textAlign: "start",
@@ -29,7 +30,7 @@ export default function Tile({
 				height: { xs: "100%", md: 175 },
 				minHeight: { xs: "fit-content" },
 				transition: "250ms ease",
-				borderRadius: "0.25rem",
+				borderRadius: "1.25rem",
 				zIndex: 1,
 				"&:hover": {
 					backgroundColor: `${color}.softBg`,
@@ -57,17 +58,17 @@ export default function Tile({
 			}}>
 			<Stack direction={"column"} sx={{ height: "100%", position: "relative", display: "flex", justifyContent: "space-between" }}>
 				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
-					<Typography startDecorator={<GitHub />} level="body-md" sx={{ textTransform: "capitalize" }}>
+					<Typography startDecorator={<GitHub />} level="title-lg" sx={{ textTransform: "capitalize" }}>
 						{title}
 					</Typography>
-					<Typography level="body-sm" py={1} sx={{ display: "inline-flex", flexDirection: "row" }}>
-						<StarOutline /> {stars}
+					<Typography color={stars && stars > 0 ? 'warning' : 'neutral'} level="title-sm" py={1} sx={{ display: "inline-flex", flexDirection: "row", gap: 0, p: 0 }} startDecorator={<StarRounded />}>
+						{stars}
 					</Typography>
 				</Box>
 				<Typography level="body-sm">{description}</Typography>
 				<Stack direction={"row"}>
 					{homepage && (
-						<Button variant="soft" color="primary" component="a" href={homepage} target="_blank" endDecorator={<HouseRounded/>}>
+						<Button variant="solid" color="primary" component="a" href={homepage} target="_blank" endDecorator={<FaGlobe />}>
 							Visit Homepage
 						</Button>
 					)}

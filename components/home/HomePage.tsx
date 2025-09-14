@@ -1,7 +1,7 @@
 import { Container, Stack, Typography } from "@mui/joy";
 import ColoredTypography from "../ui/ColoredTypography";
 import TechStack from "./TechStack";
-import ContactForm from "./Contact";
+import ContactForm from "./ContactForm";
 import Hero from "./Hero";
 import FeaturedProjects from "./FeaturedProjects";
 export default function HomePage() {

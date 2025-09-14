@@ -1,12 +1,10 @@
 "use client";
-import { Stack, Button, useColorScheme } from "@mui/joy";
+import { Stack, Button } from "@mui/joy";
 import { usePathname } from "next/navigation";
 import { HouseRounded, Person2Rounded, Folder } from "@mui/icons-material";
-
 import NextLink from "next/link";
 import ThemeToggler from "../theme/ThemeToggler";
 export default function Navbar() {
-	const { mode } = useColorScheme();
 	const locations: { href: string; name: string; icon?: React.ReactNode }[] = [
 		{ href: "/", name: "Home", icon: <HouseRounded /> },
 		{ href: "/resume", name: "Resumé", icon: <Person2Rounded /> },
@@ -17,13 +15,34 @@ export default function Navbar() {
 		<Stack
 			component={"nav"}
 			direction={"row"}
-			sx={{ width: "100%", maxWidth: "lg", mx: "auto", position: "sticky", top: 0, py: 2, backdropFilter: "blur(4px)", zIndex: 1500, justifyContent: "space-between", px: 3 }}>
-			<Stack
-				component={"span"}
-				direction={"row"}
-				sx={theme => ({ backgroundColor: mode === "dark" ? theme.palette.neutral[800] : theme.palette.neutral[100], borderRadius: "1.5rem", overflow: "hidden", display: "flex", justifyContent: "center" })}>
+			sx={theme => ({
+				width: "90%",
+				p: 0,
+				mx: "auto",
+				maxWidth: "lg",
+				position: "sticky",
+				top: 0,
+				backdropFilter: "blur(6px)",
+				zIndex: 1500,
+				justifyContent: "space-between",
+				borderRadius: "1.5rem",
+				overflow: "hidden",
+				mt: 2,
+				"&::after": {
+					content: '""',
+					display: "block",
+					position: "absolute",
+					minWidth: "100%",
+					width: "100%",
+					inset: 0,
+					zIndex: -1,
+					backgroundColor: theme.palette.neutral.softBg,
+					opacity: 0.4,
+				},
+			})}>
+			<Stack direction={"row"}>
 				{locations.map(item => (
-					<Button sx={{ borderRadius: 0 }} color={currentPath === item.href ? "primary" : "neutral"} variant="soft" key={item.name} startDecorator={item.icon} component={NextLink} href={item.href}>
+					<Button color={currentPath === item.href ? "primary" : "neutral"} variant="plain" key={item.name} startDecorator={item.icon} component={NextLink} href={item.href}>
 						{item.name}
 					</Button>
 				))}

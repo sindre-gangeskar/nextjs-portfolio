@@ -5,12 +5,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProfileAvatar from "@/components/home/ProfileAvatar";
 import ColoredTypography from "@/components/ui/ColoredTypography";
-import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
+import { EmailRounded, GitHub } from "@mui/icons-material";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import TextPlugin from "gsap/dist/TextPlugin";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import ProfileAvatarSkeleton from "./skeletons/ProfileAvatarSkeleton";
 import useUserProfile from "@/hooks/useUserProfile";
+import LinkedInButton from "../ui/LinkedInButton";
 
 export default function Hero() {
 	const { data, isLoading } = useUserProfile();
@@ -30,14 +31,15 @@ export default function Hero() {
 		profileTl.to("#profile > *", { opacity: 1, transform: "translateX(0)", duration: 1.2, stagger: 0.5, ease: "power3.out" });
 		profileTl.to("#profile", { y: 0, scrollTrigger: { trigger: "#profile", scrub: 1, start: "top bottom", end: "+=100%" } });
 
-		descriptionTl.set("#description > *", { transform: "translateX(150px)", opacity: 0 });
-		descriptionTl.to("#description > *", {
+		descriptionTl.set("#description-stack > *", { transform: "translateX(150px)", opacity: 0, filter: "blur(16px)" });
+		descriptionTl.to("#description-stack > *", {
 			delay: 0,
 			transform: "translateX(0)",
-			duration: 0.6,
+			duration: 0.8,
 			opacity: 1,
-			stagger: 0.08,
-			ease: "power3.out",
+			stagger: 0.12,
+			filter: "blur(0px)",
+			ease: "power2.out",
 		});
 
 		traitsTl.set("#traits .trait", { opacity: 0, transform: "translateY(-50px)", zIndex: -1 });
@@ -62,7 +64,7 @@ export default function Hero() {
 
 		if (data && !isLoading) {
 			profileImageTl.set("#profile-image", { opacity: 0 });
-			profileImageTl.to("#profile-image", { opacity: 1, duration: 1.2, ease: 'power1.out' });
+			profileImageTl.to("#profile-image", { opacity: 1, duration: 1.2, ease: "power1.out" });
 		}
 	}, [isLoading]);
 
@@ -72,7 +74,7 @@ export default function Hero() {
 
 	return (
 		<>
-			<GridBackground id="profile-grid" width={2500} height={1500} gridSize={40} sx={{ opacity: 0, top: 50 }}></GridBackground>
+			<GridBackground id="profile-grid" width={2500} height={1500} gridSize={30} sx={{ opacity: 0, top: 200 }}></GridBackground>
 			<Stack component={"section"} direction={"column"} sx={{ position: "relative", p: 3 }}>
 				<Stack direction={"row"} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
 					<Stack id="profile" sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
@@ -111,22 +113,20 @@ export default function Hero() {
 							</Chip>
 						</Card>
 						<Box id="description" component={"div"}>
-							<Typography component={"p"} pt={1} level="body-lg">
-								About me
-							</Typography>
-							<Typography component={"p"} level="body-sm">
-								{`
-								I'm a backend developer with full-stack capabilities skilled in building robust, and scalable RESTful applications with modern front-end frameworks. I specialize in developing efficient APIs, managing
-								databases and implementing robust authentication methods. I prioritize clean and maintainable code and thorough API documentation.
-								`}
-							</Typography>
+							<Stack id="description-stack" gap={2}>
+								<Typography level="title-sm">
+									I am a back-end developer with full-stack capabilities skilled in building robust and scalable RESTful applications with modern front-end frameworks. <br />
+								</Typography>
+								<Typography level="title-sm">
+									I specialize in developing efficient APIs, managing databases and implementing robust authentication methods. I prioritize clean and maintainable code and thorough API documentation.
+								</Typography>
+								<Typography level="title-sm">I am curious and eager to learn technologies for both front-end and back-end to apply in a professional setting.</Typography>
+							</Stack>
 							<Stack component={"div"} direction={"row"} gap={3} sx={{ alignItems: "center" }}>
 								<Button component={"a"} target="_blank" href="https://github.com/sindre-gangeskar" startDecorator={<GitHub />} variant="soft" color="neutral" sx={{ my: 2 }}>
 									Github
 								</Button>
-								<Button component={"a"} target="_blank" href="https://linkedin.com/in/sindre-gangeskar" startDecorator={<LinkedIn />} variant="soft" color="primary" sx={{ my: 2 }}>
-									LinkedIn
-								</Button>
+								<LinkedInButton />
 								<Button variant="soft" color="danger" onClick={scrollToContactForm}>
 									<EmailRounded />
 								</Button>

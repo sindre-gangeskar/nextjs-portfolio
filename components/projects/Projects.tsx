@@ -15,11 +15,10 @@ export default function Projects() {
 	};
 
 	useGSAP(() => {
-		if ((data && data.length > 0)) {
+		if (data && data.length > 0) {
 			const tl = gsap.timeline();
-			gsap.set(".project", { transform: "translateX(15px)", opacity: 0 });
-
-			tl.to(".project", { transform: "translateX(0)", duration: 1.25, stagger: 0.08, opacity: 1, ease: "elastic.out" });
+			gsap.set(".project", { transform: "translateX(150px)", opacity: 0, filter: "blur(16px)" });
+			tl.to(".project", { transform: "translateX(0)", duration: 0.8, stagger: 0.08, opacity: 1, ease: "power3.out", filter: "blur(0px)" });
 		}
 	}, [data]);
 
@@ -32,12 +31,11 @@ export default function Projects() {
 			</Stack>
 			<Stack gap={2} mt={5}>
 				{isLoading && Array.from({ length: 4 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
-				
 				{!isLoading &&
 					data &&
 					data.length > 0 &&
 					data.map(repo => {
-						return <Project className="project" key={repo.name} repo={repo} sx={baseSx}></Project>;
+						return <Project className="project" key={repo.name} repo={repo} sx={baseSx} color="neutral" variant={"outlined"}></Project>;
 					})}
 			</Stack>
 		</Container>

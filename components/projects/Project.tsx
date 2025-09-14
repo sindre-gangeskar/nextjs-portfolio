@@ -1,33 +1,20 @@
 import { capitalizeString } from "@/lib/utils";
-import { GitHub, HouseRounded } from "@mui/icons-material";
+import { GitHub } from "@mui/icons-material";
 import { Stack, Typography, Card, Button, Box } from "@mui/joy";
-import { useState } from "react";
 import { RepoType } from "@/lib/definitions";
 import { SxProps } from "@mui/material";
-
-export default function Project({ repo, id, className, sx }: { repo: RepoType; id?: string; className?: string; sx: SxProps }) {
-	const [hovering, setHovering] = useState(false);
-
+import { VariantProp, ColorPaletteProp } from "@mui/joy";
+import { FaGlobe } from "react-icons/fa6";
+export default function Project({ repo, id, className, sx, variant, color }: { repo: RepoType; id?: string; className?: string; sx: SxProps; variant?: VariantProp; color?: ColorPaletteProp }) {
 	return (
-		<Card
-			id={id}
-			className={className}
-			onMouseEnter={() => {
-				setHovering(true);
-			}}
-			onMouseLeave={() => {
-				setHovering(false);
-			}}
-			variant={hovering ? "soft" : "plain"}
-			color="neutral"
-			sx={{ ...sx }}>
+		<Card id={id} className={className} variant={variant} color={color} sx={{ ...sx }}>
 			<Stack sx={{ height: "100%", display: "flex", justifyContent: "space-between", flexDirection: "column" }}>
-				<Typography level="body-lg">{capitalizeString(repo.name)}</Typography>
+				<Typography level="title-lg">{capitalizeString(repo.name)}</Typography>
 				<Stack sx={{ display: "flex", height: "100%", flexDirection: { xs: "column", md: "row" }, textAlign: "start", p: 0, m: 0, justifyContent: "space-between", alignItems: "center" }}>
 					<Typography level="body-sm">{repo.description}</Typography>
-					<Box component={'span'} sx={{display: 'flex', justifyContent: 'space-evenly', gap: 2}}>
+					<Box component={"span"} sx={{ display: "flex", justifyContent: "space-evenly", gap: 2 }}>
 						{repo.homepage && (
-							<Button variant="soft" color="primary" endDecorator={<HouseRounded />} component={"a"} target="_blank" href={repo.homepage}>
+							<Button variant="soft" color="primary" endDecorator={<FaGlobe />} component={"a"} target="_blank" href={repo.homepage}>
 								Visit Homepage
 							</Button>
 						)}
