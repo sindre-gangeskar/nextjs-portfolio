@@ -1,3 +1,5 @@
+import { ColorPaletteProp } from "@mui/joy";
+
 export interface RepoType {
 	name: string;
 	full_name?: string;
@@ -22,10 +24,22 @@ export interface ResponseProps {
 	message?: string
 	data?: {}
 }
+export interface ProjectCardProps {
+	title?: string;
+	description?: string;
+	footer?: string;
+	url?: string;
+	isRepo?: boolean;
+	stars?: number;
+	homepage?: string;
+	color: ColorPaletteProp
+}
+export interface NavigationProps {
+	href: string; name: string; icon?: React.ReactNode
+}
 export interface UserType {
 	avatar_url: string;
 }
-
 export type FormType = {
 	from: string;
 	name: string;

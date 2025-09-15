@@ -4,7 +4,7 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
-import { CssVarsProvider } from "@mui/joy";
+import { Container, CssVarsProvider } from "@mui/joy";
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],
@@ -44,7 +44,7 @@ export default function RootLayout({
 				<CssVarsProvider defaultMode="dark" colorSchemeStorageKey="joy-mode">
 					<ThemeProvider>
 						<Navbar />
-						{children}
+						<Container maxWidth={'lg'}>{children}</Container>
 					</ThemeProvider>
 				</CssVarsProvider>
 			</body>

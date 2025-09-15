@@ -1,6 +1,6 @@
 "use client";
 import { Button, Box } from "@mui/joy";
-import Tile from "@/components/home/Tile";
+import ProjectCard from "@/components/home/ProjectCard";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
 			{isLoading && <FeaturedProjectsSkeleton />}
 			{!isLoading &&
 				data?.map(x => {
-					return <Tile homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></Tile>;
+					return <ProjectCard homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></ProjectCard>;
 				})}
 
 			{!isLoading && (

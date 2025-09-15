@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import ColoredTypography from "../ui/ColoredTypography";
 import TechStack from "./TechStack";
 import ContactForm from "./ContactForm";
@@ -6,7 +6,7 @@ import Hero from "./Hero";
 import FeaturedProjects from "./FeaturedProjects";
 export default function HomePage() {
 	return (
-		<Container>
+		<>
 			<Hero />
 			<TechStack />
 			<Stack mt={15}>
@@ -20,6 +20,6 @@ export default function HomePage() {
 				<FeaturedProjects />
 			</Stack>
 			<ContactForm />
-		</Container>
+		</>
 	);
 }

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Projects from "@/components/projects/Projects";
+import ProjectsPage from "@/components/projects/ProjectsPage";
 
 export const metadata: Metadata = {
 	title: "Projects",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	return <Projects />;
+	return <ProjectsPage />;
 }
