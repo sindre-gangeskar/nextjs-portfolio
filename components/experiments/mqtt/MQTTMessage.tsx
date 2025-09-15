@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export default function MQTTMessage({ id }: { id?: string }) {
 	const [message, setMessage] = useState("Waiting for updates");
 	useEffect(() => {
-		const client = mqtt.connect("ws://test.mosquitto.org:8080");
+		const client = mqtt.connect("wss://test.mosquitto.org:8081");
 		client.on("connect", () => {
 			setMessage("Connected to broker");
 			client.subscribe("mqtt_test_data/a6c072abf6ef07cc");
