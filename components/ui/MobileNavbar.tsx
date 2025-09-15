@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Button, Drawer, ModalClose, Box, DialogTitle } from "@mui/joy";
+import { Stack, Button, Drawer, ModalClose, DialogTitle } from "@mui/joy";
 import { IconButton } from "@mui/joy";
 import { Menu } from "@mui/icons-material";
 import ThemeToggler from "../theme/ThemeToggler";
@@ -8,14 +8,20 @@ import { NavigationProps } from "@/lib/definitions";
 import { DialogContent, SxProps } from "@mui/material";
 export default function MobileNavbar({ locations, currentPath }: { locations: NavigationProps[]; currentPath: string }) {
 	const [open, setOpen] = useState(false);
+	const sx: SxProps = { display: { xs: "initial", md: "none" } };
 	const toggleOpen = () => {
 		setOpen(prev => !prev);
 	};
 
-	const sx: SxProps = { display: { xs: "initial", md: "none" } };
-
 	return (
-		<Box component={"nav"} sx={{ ...sx, backdropFilter: "blur(6px)", position: 'sticky', top: 0, zIndex: 1000 }}>
+		<Stack
+			direction={"row"}
+			component={"nav"}
+			sx={{ ...sx, backdropFilter: "blur(6px)", width: "100%", justifyContent: "space-between", p: 1.5, zIndex: 1200, position: "sticky", top: 0, display: { xs: "flex", md: "none" } }}>
+			<IconButton onClick={toggleOpen}>
+				<Menu />
+			</IconButton>
+			<ThemeToggler />
 			<Drawer onClose={toggleOpen} open={open} anchor="left" size="lg" sx={sx}>
 				<DialogContent>
 					<DialogTitle>Navigation</DialogTitle>
@@ -36,12 +42,6 @@ export default function MobileNavbar({ locations, currentPath }: { locations: Na
 				</DialogContent>
 				<ModalClose />
 			</Drawer>
-			<Stack direction={"row"} sx={{ width: "100%", justifyContent: "space-between", p: 1, position: 'relative', display: { xs: "flex", md: "none" } }}>
-				<IconButton onClick={toggleOpen}>
-					<Menu />
-				</IconButton>
-				<ThemeToggler />
-			</Stack>
-		</Box>
+		</Stack>
 	);
 }
