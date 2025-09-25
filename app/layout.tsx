@@ -1,21 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { Container, CssVarsProvider } from "@mui/joy";
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-	display: "swap",
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-	display: "swap",
-});
 
 const roboto = Roboto({
 	variable: "--font-roboto",
@@ -38,13 +27,13 @@ export default function RootLayout({
 			<head>
 				<noscript>Javascript must be enabled in order to visit this site</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<InitColorSchemeScript defaultMode="dark" />
+				<InitColorSchemeScript defaultMode="dark"/>
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
+			<body className={`${roboto.className}`}>
 				<CssVarsProvider defaultMode="dark" colorSchemeStorageKey="joy-mode">
 					<ThemeProvider>
 						<Navbar />
-						<Container maxWidth={'lg'}>{children}</Container>
+						<Container maxWidth={"lg"}>{children}</Container>
 					</ThemeProvider>
 				</CssVarsProvider>
 			</body>

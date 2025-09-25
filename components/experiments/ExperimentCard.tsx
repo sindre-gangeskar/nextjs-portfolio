@@ -3,6 +3,7 @@ import { Card, CardContent, CardCover, Typography } from "@mui/joy";
 import { ColorPaletteProp, SxProps } from "@mui/joy/styles/types";
 import Link from "next/link";
 import { AiFillExperiment } from "react-icons/ai";
+
 export default function ExperimentCard({ title, description, href, color = "neutral" }: { title: string; description?: string; href: string; color?: ColorPaletteProp }) {
 	const sx: SxProps = theme => ({
 		position: "relative",

@@ -23,6 +23,8 @@ export default function GridBackground({
 			sx={theme => ({
 				width: `${width}px`,
 				height: `${height}px`,
+				p: 0, 
+				m: 0,
 				maxWidth: '100%',
 				maxHeight: '100%',
 				margin: "auto",

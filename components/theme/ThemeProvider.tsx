@@ -10,7 +10,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 			JoyAccordion: { styleOverrides: { root: { transition: "color 250ms ease, background-color 250ms ease" } } },
 			JoyCard: { styleOverrides: { root: { transition: "background-color 250ms ease" } } },
 			JoyTypography: { styleOverrides: { root: { fontFamily: "var(--font-roboto)" } } },
-		}
+		},
 	});
 	const [hydrated, setHydrated] = useState(false);
 
