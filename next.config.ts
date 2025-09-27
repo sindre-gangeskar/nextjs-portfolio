@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "avatars.githubusercontent.com",
-			},
+			}
 		],
 	},
-	serverExternalPackages: ['octokit']
+	serverExternalPackages: [ 'octokit' ]
 };
 
 export default nextConfig;

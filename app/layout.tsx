@@ -9,7 +9,6 @@ import { Container, CssVarsProvider } from "@mui/joy";
 const roboto = Roboto({
 	variable: "--font-roboto",
 	subsets: ["latin"],
-	display: "swap",
 });
 
 export const metadata: Metadata = {

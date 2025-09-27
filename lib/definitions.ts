@@ -37,6 +37,13 @@ export interface ProjectCardProps {
 export interface NavigationProps {
 	href: string; name: string; icon?: React.ReactNode
 }
+export interface TimelineProps {
+	title?: string
+	description?: string[]
+	imgUrl?: string
+	timeline?: { from: string, to: string }
+	direction?: "right" | "left"
+}
 export interface UserType {
 	avatar_url: string;
 }

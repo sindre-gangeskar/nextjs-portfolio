@@ -1,7 +1,7 @@
 "use client";
 import { Stack, Button } from "@mui/joy";
 import { usePathname } from "next/navigation";
-import { HouseRounded, Person2Rounded, Folder } from "@mui/icons-material";
+import { HouseRounded, Person2Rounded, Folder, ArticleRounded,  } from "@mui/icons-material";
 import NextLink from "next/link";
 import ThemeToggler from "../theme/ThemeToggler";
 import { AiFillExperiment } from "react-icons/ai";
@@ -12,7 +12,8 @@ import MobileNavbar from "./MobileNavbar";
 export default function Navbar() {
 	const locations: NavigationProps[] = [
 		{ href: "/", name: "Home", icon: <HouseRounded /> },
-		{ href: "/resume", name: "Resumé", icon: <Person2Rounded /> },
+		{ href: "/resume", name: "Resumé", icon: <ArticleRounded/>},
+		{ href: "/my-story", name: "My Story", icon: <Person2Rounded /> },
 		{ href: "/projects", name: "Projects", icon: <Folder /> },
 		{ href: "/experiments", name: "Experiments", icon: <AiFillExperiment /> },
 	];
