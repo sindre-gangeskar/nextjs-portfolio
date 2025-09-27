@@ -7,7 +7,7 @@ export default function TimelineSummary() {
 				title="Early Years"
 				description={[
 					"Influenced by animated movies early on, I wanted to work with computers and learn how to create 3D graphics the way they did. ",
-					"I found a few 3D modeling tutorials, and I reached out to one of the creators to see if they could teach me. I was lucky enough to be personally taught by a very well known modder at the time called Millenia. ", "From this point I learned how to model high-poly models, reduce it to a low-poly, unwrap, texture and rig them ready for animations.", "I learned how to create models and animations and mod them into games."
+					"I found a few 3D modeling tutorials, and I asked one of the creators to teach me. I was lucky enough to be personally taught by a very well known modder at the time called Millenia. ", "From this point I learned how to model high-poly models, reduce it to a low-poly, unwrap, texture and rig them ready for animations.", "I learned how to create models and animations and mod them into games."
 				]}
 				timeline={{ from: "2007", to: "2013" }}
 			/>
