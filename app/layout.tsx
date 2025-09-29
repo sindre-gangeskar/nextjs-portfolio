@@ -12,8 +12,29 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-	title: "Sindre Gangeskar",
-	description: "Sindre Gangeskar | Developer Portfolio",
+	metadataBase: new URL("https://sindregangeskar.dev"),
+	title: { default: "Sindre Gangeskar", template: "Sindre Gangeskar | %s" },
+	description: "Sindre Gangeskar's personal developer portfolio",
+	openGraph: {
+		type: "website",
+		url: "/",
+		title: "Sindre Gangeskar",
+		description: "Sindre Gangeskar's developer portfolio",
+		images: [
+			{
+				url: "/images/og-default.jpg",
+				width: 1200,
+				height: 630,
+				alt: "Social Preview",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Sindre Gangeskar",
+		description: "Visit Sindre Gangeskar's personal developer portfolio",
+		images: ["/images/og-default.jpg"],
+	},
 };
 
 export default function RootLayout({
@@ -26,7 +47,7 @@ export default function RootLayout({
 			<head>
 				<noscript>Javascript must be enabled in order to visit this site</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<InitColorSchemeScript defaultMode="dark"/>
+				<InitColorSchemeScript defaultMode="dark" />
 			</head>
 			<body className={`${roboto.className}`}>
 				<CssVarsProvider defaultMode="dark" colorSchemeStorageKey="joy-mode">
