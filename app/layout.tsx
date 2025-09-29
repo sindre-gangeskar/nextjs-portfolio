@@ -14,12 +14,12 @@ const roboto = Roboto({
 export const metadata: Metadata = {
 	metadataBase: new URL("https://sindregangeskar.dev"),
 	title: { default: "Sindre Gangeskar", template: "Sindre Gangeskar | %s" },
-	description: "Sindre Gangeskar's personal developer portfolio",
+	description: "I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!",
 	openGraph: {
 		type: "website",
 		url: "/",
 		title: "Sindre Gangeskar",
-		description: "Sindre Gangeskar's developer portfolio",
+		description: `I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!`,
 		images: [
 			{
 				url: "/images/og-default.jpg",
@@ -28,12 +28,6 @@ export const metadata: Metadata = {
 				alt: "Social Preview",
 			},
 		],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Sindre Gangeskar",
-		description: "Visit Sindre Gangeskar's personal developer portfolio",
-		images: ["/images/og-default.jpg"],
 	},
 };
 
