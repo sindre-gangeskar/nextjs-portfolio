@@ -5,11 +5,24 @@ import MQTTMessage from "./MQTTMessage";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import GoBackButton from "@/components/ui/GoBackButton";
+
 export default function MQTTPage() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
-		tl.set("#description, #message-container, #go-back-btn, #mqtt-message", { opacity: 0, x: 250, filter: "blur(16px)" });
-		tl.to("#description, #message-container, #go-back-btn, #mqtt-message", { opacity: 1, x: 0, delay: 0.1, stagger: 0.125, filter: "blur(0px)", duration: 1.1, ease: "power4.out" });
+		tl.set("#description, #message-container, #go-back-btn, #mqtt-message", {
+			opacity: 0,
+			x: 250,
+			filter: "blur(16px)",
+		});
+		tl.to("#description, #message-container, #go-back-btn, #mqtt-message", {
+			opacity: 1,
+			x: 0,
+			delay: 0.1,
+			stagger: 0.125,
+			filter: "blur(0px)",
+			duration: 1.1,
+			ease: "power4.out",
+		});
 	}, []);
 
 	return (

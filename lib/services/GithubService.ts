@@ -12,7 +12,7 @@ export default class GithubService {
 				"nuxtjs-database",
 				"shadps4-alchemist",
 				"exam-project",
-				"semester-ca",
+				"express-ts-generate",
 			];
 			const accumulatedRepos = [];
 
@@ -33,7 +33,7 @@ export default class GithubService {
 	static getAllRepos = unstable_cache(async () => {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = [ "ludonium", "shadps4-alchemist", "docker-simple-app", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
+			const repoNames: string[] = [ "ludonium", "express-ts-generate", "shadps4-alchemist", "docker-simple-app", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
 			const accumulatedRepos = [];
 
 			for (const repo of repoNames) {

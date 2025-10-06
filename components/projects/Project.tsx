@@ -12,7 +12,7 @@ export default function Project({ repo, id, className, sx, variant, color }: { r
 				<Typography level="title-lg">{capitalizeString(repo.name)}</Typography>
 				<Stack sx={{ display: "flex", height: "100%", flexDirection: { xs: "column", md: "row" }, textAlign: "start", p: 0, m: 0, justifyContent: "space-between", alignItems: "center" }}>
 					<Typography level="body-sm">{repo.description}</Typography>
-					<Box component={"span"} sx={{ display: "flex", justifyContent: "space-evenly", gap: 2 }}>
+					<Box component={"span"} sx={{ display: "flex", justifyContent: "space-evenly", gap: 2, textWrap: "nowrap" }}>
 						{repo.homepage && (
 							<Button variant="soft" color="primary" endDecorator={<FaGlobe />} component={"a"} target="_blank" href={repo.homepage}>
 								Visit Homepage
