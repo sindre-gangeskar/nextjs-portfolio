@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import { unstable_cache } from 'next/cache';
 import { RepoType } from "../definitions";
-const revalidationTimeInHours = 60 * 60 * 3;
+const revalidateAfter = Number(process.env.REVALIDATE_AFTER) ?? 60 * 60 * 3
 
 export default class GithubService {
 	static getFeaturedRepos = unstable_cache(async () => {
@@ -28,7 +28,7 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'featured-repos' ], { revalidate: revalidationTimeInHours, tags: [ 'github-repos' ] });
+	}, [ 'featured-repos' ], { revalidate: revalidateAfter, tags: [ 'github-repos' ] });
 
 	static getAllRepos = unstable_cache(async () => {
 		try {
@@ -48,7 +48,7 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'all-projects' ], { revalidate: revalidationTimeInHours, tags: [ 'github-all-repos' ] })
+	}, [ 'all-projects' ], { revalidate: revalidateAfter, tags: [ 'github-all-repos' ] })
 
 	static getUserProfile = unstable_cache(async () => {
 		try {
@@ -59,7 +59,7 @@ export default class GithubService {
 			console.error(error);
 			throw error;
 		}
-	}, [ 'user-profile' ], { revalidate: revalidationTimeInHours, tags: [ 'user-profile' ] })
+	}, [ 'user-profile' ], { revalidate: revalidateAfter, tags: [ 'user-profile' ] })
 }
 
 function formatRepos(arr: RepoType[]) {
