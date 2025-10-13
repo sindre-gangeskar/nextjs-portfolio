@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import { unstable_cache } from 'next/cache';
 import { RepoType } from "../definitions";
-const revalidateAfter = Number(process.env.REVALIDATE_AFTER) ?? 60 * 60 * 3
+const revalidateAfter = process.env.REVALIDATE_AFTER ? +process.env.REVALIDATE_AFTER : 60 * 60 * 3;
 
 export default class GithubService {
 	static getFeaturedRepos = unstable_cache(async () => {
