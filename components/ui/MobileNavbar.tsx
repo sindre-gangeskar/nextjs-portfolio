@@ -34,6 +34,7 @@ export default function MobileNavbar({ locations, currentPath }: { locations: Na
 								startDecorator={item.icon}
 								component={Link}
 								href={item.href}
+								onClick={toggleOpen}
 								sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
 								{item.name}
 							</Button>
