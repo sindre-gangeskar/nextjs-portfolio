@@ -7,8 +7,8 @@ import { AiFillExperiment } from "react-icons/ai";
 export default function ExperimentCard({ title, description, href, color = "neutral" }: { title: string; description?: string; href: string; color?: ColorPaletteProp }) {
 	const sx: SxProps = theme => ({
 		position: "relative",
-		height: { xs: "100px", md: "175px" },
-		width: { xs: "100%", md: "350px" },
+		height: { xs: "150px", sm: "175px" },
+		width: { xs: "100%", sm: "350px" },
 		borderRadius: "1.25rem",
 		transition: "250ms ease",
 		zIndex: 1,
@@ -38,8 +38,8 @@ export default function ExperimentCard({ title, description, href, color = "neut
 				<AiFillExperiment />
 			</CardCover>
 			<CardContent>
-				<Typography level="title-lg">{title}</Typography>
-				<Typography level="title-sm">{description}</Typography>
+				<Typography level="title-lg" sx={{textOverflow: 'ellipsis', maxWidth: '100%', overflow: 'hidden'}}>{title}</Typography>
+				<Typography level="title-sm" sx={{textOverflow: 'ellipsis', maxWidth: '100%', overflow: 'hidden'}}>{description}</Typography>
 			</CardContent>
 		</Card>
 	);
