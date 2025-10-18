@@ -11,7 +11,7 @@ export default function MQTTMessage({ id }: { id?: string }) {
 		clientRef.current = client;
 		client.on("connect", () => {
 			attemptsRef.current = 0;
-			setMessage("Connected to Hive broker");
+			setMessage("Connected to HiveMQ's broker");
 			client.subscribe("mqtt_test_data/a6c072abf6ef07cc");
 		});
 
