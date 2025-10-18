@@ -62,7 +62,7 @@ export default function MQTTPage() {
 						<ListItem>
 							<ListItemDecorator>-</ListItemDecorator>
 							<ListItemContent>
-								<Typography level="title-sm">Port: 1883</Typography>
+								<Typography level="title-sm">Port: 443</Typography>
 							</ListItemContent>
 						</ListItem>
 						<ListItem>

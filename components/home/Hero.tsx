@@ -21,7 +21,6 @@ export default function Hero() {
 
 		profileTl.set("#profile > *", { opacity: 0, transform: "translateX(-200px)" });
 		profileTl.to("#profile > *", { opacity: 1, transform: "translateX(0)", duration: 1.2, stagger: 0.5, ease: "power3.out" });
-		profileTl.to("#profile", { y: 0, scrollTrigger: { trigger: "#profile", scrub: 1, start: "top bottom", end: "+=100%" } });
 
 		descriptionTl.set("#description-stack > *", { y: 80, opacity: 0, filter: "blur(16px)" });
 		descriptionTl.to("#description-stack > *", {
