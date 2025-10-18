@@ -54,21 +54,8 @@ export default function MQTTPage() {
 						</ListItem>
 						<ListItem>
 							<ListItemContent>
-								<Typography level="title-sm">Ports:</Typography>
-								<List>
-									<ListItem>
-										<Typography level="title-sm">TCP: 1883</Typography>
-									</ListItem>
-									<ListItem>
-										<Typography level="title-sm">Websocket Port: 8000</Typography>
-									</ListItem>
-									<ListItem>
-										<Typography level="title-sm">TLS TCP Port: 8883</Typography>
-									</ListItem>
-									<ListItem>
-										<Typography level="title-sm">TLS Websocket Port: 8884</Typography>
-									</ListItem>
-								</List>
+								<Typography level="title-sm">Websocket: 8884</Typography>
+								<Typography level="title-sm">TLS TCP: 8883</Typography>
 							</ListItemContent>
 						</ListItem>
 						<ListItem>
