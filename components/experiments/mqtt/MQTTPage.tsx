@@ -1,6 +1,6 @@
 "use client";
 import ColoredTypography from "@/components/ui/ColoredTypography";
-import { List, ListItem, ListItemDecorator, ListItemContent, Stack, Typography, Card, CardContent } from "@mui/joy";
+import { List, ListItem, ListItemContent, Stack, Typography, Card, CardContent } from "@mui/joy";
 import MQTTMessage from "./MQTTMessage";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -48,25 +48,30 @@ export default function MQTTPage() {
 					</Typography>
 					<List>
 						<ListItem>
-							<ListItemDecorator>-</ListItemDecorator>
 							<ListItemContent>
-								<Typography level="title-sm">Protocol: mqtt</Typography>
+								<Typography level="title-sm">Host: broker.hivemq.com</Typography>
 							</ListItemContent>
 						</ListItem>
 						<ListItem>
-							<ListItemDecorator>-</ListItemDecorator>
 							<ListItemContent>
-								<Typography level="title-sm">Host: test.mosquitto.org</Typography>
+								<Typography level="title-sm">Ports:</Typography>
+								<List>
+									<ListItem>
+										<Typography level="title-sm">TCP: 1883</Typography>
+									</ListItem>
+									<ListItem>
+										<Typography level="title-sm">Websocket Port: 8000</Typography>
+									</ListItem>
+									<ListItem>
+										<Typography level="title-sm">TLS TCP Port: 8883</Typography>
+									</ListItem>
+									<ListItem>
+										<Typography level="title-sm">TLS Websocket Port: 8884</Typography>
+									</ListItem>
+								</List>
 							</ListItemContent>
 						</ListItem>
 						<ListItem>
-							<ListItemDecorator>-</ListItemDecorator>
-							<ListItemContent>
-								<Typography level="title-sm">Port: 443</Typography>
-							</ListItemContent>
-						</ListItem>
-						<ListItem>
-							<ListItemDecorator>-</ListItemDecorator>
 							<ListItemContent>
 								<Typography level="title-sm">Topic: mqtt_test_data/a6c072abf6ef07cc</Typography>
 							</ListItemContent>

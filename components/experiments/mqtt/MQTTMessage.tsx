@@ -3,13 +3,19 @@ import { Typography } from "@mui/joy";
 import mqtt from "mqtt";
 import { useState, useEffect } from "react";
 export default function MQTTMessage({ id }: { id?: string }) {
-	const [ message, setMessage ] = useState("Waiting for updates");
-	
+	const [message, setMessage] = useState("Connecting...");
+
 	useEffect(() => {
-		const client = mqtt.connect("wss://test.mosquitto.org:443/mqtt");
+		const client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt");
+
 		client.on("connect", () => {
 			setMessage("Connected to broker");
 			client.subscribe("mqtt_test_data/a6c072abf6ef07cc");
+
+			client.on("offline", () => {
+				setMessage("Failed to connect to broker");
+				client.end();
+			});
 		});
 
 		client.on("message", (_, msg) => {
