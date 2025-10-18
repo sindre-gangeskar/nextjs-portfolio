@@ -30,7 +30,7 @@ export default function MQTTMessage({ id }: { id?: string }) {
 		});
 
 		return () => {
-			client.end(true);
+			client.end();
 		};
 	}, []);
 
