@@ -21,7 +21,7 @@ export default function ThemeToggler() {
 			size="sm"
 			color="neutral"
 			variant="soft"
-			sx={{ borderRadius: "50%", aspectRatio: 1, p: 1.5, width: 'fit-content', height: 'fit-content' }}
+			sx={{ borderRadius: "50%", aspectRatio: 1, width: 'fit-content' }}
 			onClick={() => {
 				if (mode === "dark") setMode("light");
 				else setMode("dark");

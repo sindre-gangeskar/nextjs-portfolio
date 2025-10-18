@@ -14,7 +14,7 @@ export default function Work({ style }: { [key: string]: {} }) {
 			</Typography>
 			<List>
 				<ListItem component={"li"} sx={{ width: "100%" }}>
-					<AccordionGroup variant="plain" transition={"250ms"} sx={{ width: "100%" }}>
+					<AccordionGroup variant="soft" transition={"300ms"}>
 						<CustomAccordion color="danger" headerTitle="Hugo." title="Tech AS" subtitle="Full-stack Application (Freelance, January 2025)">
 							<Stack {...style}>
 								<Chip variant="outlined" color="primary">

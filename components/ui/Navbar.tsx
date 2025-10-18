@@ -1,7 +1,7 @@
 "use client";
 import { Stack, Button } from "@mui/joy";
 import { usePathname } from "next/navigation";
-import { HouseRounded, Person2Rounded, Folder, ArticleRounded,  } from "@mui/icons-material";
+import { HouseRounded, Person2Rounded, Folder, ArticleRounded } from "@mui/icons-material";
 import NextLink from "next/link";
 import ThemeToggler from "../theme/ThemeToggler";
 import { AiFillExperiment } from "react-icons/ai";
@@ -12,7 +12,7 @@ import MobileNavbar from "./MobileNavbar";
 export default function Navbar() {
 	const locations: NavigationProps[] = [
 		{ href: "/", name: "Home", icon: <HouseRounded /> },
-		{ href: "/resume", name: "Resumé", icon: <ArticleRounded/>},
+		{ href: "/resume", name: "Resumé", icon: <ArticleRounded /> },
 		{ href: "/my-story", name: "My Story", icon: <Person2Rounded /> },
 		{ href: "/projects", name: "Projects", icon: <Folder /> },
 		{ href: "/experiments", name: "Experiments", icon: <AiFillExperiment /> },
@@ -24,49 +24,55 @@ export default function Navbar() {
 				component={"nav"}
 				direction={"row"}
 				sx={theme => ({
-					width: "90%",
+					width: "100%",
 					p: 0,
-					mx: "auto",
-					maxWidth: "lg",
+					maxWidth: "md",
 					position: "sticky",
-					top: 0,
+					top: 10,
+					overflow: "hidden",
+					mb: 2,
+					mx: "auto",
 					backdropFilter: "blur(6px)",
 					zIndex: 1500,
 					justifyContent: "space-between",
 					borderRadius: "1.5rem",
-					overflow: "hidden",
-					mt: 2,
 					display: { xs: "none", md: "flex" },
-					"&::after": {
+					"&::before": {
 						content: '""',
 						display: "block",
 						position: "absolute",
-						minWidth: "100%",
-						width: "100%",
-						borderRadius: "inherit",
 						inset: 0,
+						width: "100%",
+						zIndex: 1,
+						opacity: 0.6,
+						outline: `1px solid ${theme.palette.neutral[200]}`,
+						pointerEvents: "none",
+					},
+					"&::after": {
+						content: '""',
+						position: "absolute",
+						inset: 0,
+						opacity: 0.4, 
 						zIndex: -1,
 						backgroundColor: theme.palette.neutral.softBg,
-						opacity: 0.4,
 					},
 				})}>
-				<Stack direction={"row"}>
+				<Stack direction={"row"} gap={1}>
 					{locations.map(item => (
 						<Button
 							color={currentPath === item.href ? "primary" : "neutral"}
-							variant="plain"
+							variant={currentPath === item.href ? "solid" : "plain"}
 							key={item.name}
 							startDecorator={item.icon}
 							component={NextLink}
 							href={item.href}
-							sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+							sx={{ textOverflow: "ellipsis", overflow: "hidden", borderRadius: "1.5rem" }}>
 							{item.name}
 						</Button>
 					))}
 				</Stack>
 				<ThemeToggler />
 			</Stack>
-
 			<MobileNavbar locations={locations} currentPath={currentPath} />
 		</>
 	);

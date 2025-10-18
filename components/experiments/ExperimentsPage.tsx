@@ -16,7 +16,7 @@ export default function ExperimentsPage() {
 	<Stack mt={10}>
 		<Typography level="h1">
 			Browse{" "}
-			<ColoredTypography level="h1" color="warning">
+			<ColoredTypography level="h1" color="primary">
 				Experiments
 			</ColoredTypography>
 		</Typography>
@@ -24,7 +24,7 @@ export default function ExperimentsPage() {
 			<Typography level="title-sm">Explore smaller experiments that are not fully fledged projects</Typography>
 			<Stack mt={5}>
 				<GridContainer>
-					<ExperimentCard color="warning" href="/experiments/mqtt" title="MQTT" description="Connect utilizing MQTT client and display messages by subscribing to a topic and using a public testing broker" />
+					<ExperimentCard color="primary" href="/experiments/mqtt" title="MQTT" description="Connect utilizing MQTT client and display messages by subscribing to a topic and using a public testing broker" />
 				</GridContainer>
 			</Stack>
 		</Box>

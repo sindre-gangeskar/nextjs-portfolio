@@ -28,11 +28,10 @@ export default function FeaturedProjects() {
 					}}
 					sx={theme => ({
 						py: 5,
-						overflow: "hidden",
 						width: "100%",
 						my: "auto",
 						mx: "auto",
-						zIndex: 0,
+						overflow: 'hidden',
 						"&:hover": {
 							color: hovering && theme.palette.mode == "dark" ? "black" : "white",
 							background: "none",
@@ -43,13 +42,13 @@ export default function FeaturedProjects() {
 							position: "absolute",
 							inset: 0,
 							transition: "250ms ease",
-							transform: "translateX(-100%)",
+							width: '0%',
 							zIndex: -1,
 							WebkitMaskImage: "linear-gradient(to right, black, black)",
 							background: theme.palette.mode == "dark" ? "white" : "black",
 						},
 						"&:hover:after": {
-							transform: "translateX(0)",
+							width: '100%',
 						},
 					})}
 					endDecorator={<ArrowForwardRounded />}

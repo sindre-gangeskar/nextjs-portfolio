@@ -13,7 +13,7 @@ export default function Education({style}: {[key: string]: {}}) {
 					</Typography>
 					<List>
 						<ListItem component={"li"}>
-							<AccordionGroup variant="plain" transition={"250ms"}>
+							<AccordionGroup variant="soft" transition={"300ms"}>
 								<CustomAccordion
 									color="danger"
 									headerTitle="Noroff - "

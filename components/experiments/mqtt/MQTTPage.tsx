@@ -29,7 +29,7 @@ export default function MQTTPage() {
 		<Stack mt={10}>
 			<Typography level="h1">
 				Experiment{" "}
-				<ColoredTypography level="h1" color="warning">
+				<ColoredTypography level="h1" color="primary">
 					MQTT
 				</ColoredTypography>
 			</Typography>
