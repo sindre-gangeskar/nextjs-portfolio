@@ -12,7 +12,7 @@ interface AccordionProps {
 
 export default function CustomAccordion({ children, avatarSrc, headerTitle, title, subtitle, color, grade }: AccordionProps) {
 	return (
-		<Accordion variant="plain" sx={{ border: 0, width: "100%", position: "relative" }}>
+		<Accordion variant="soft" sx={{width: "100%", position: "relative", backdropFilter: 'blur(3px)', borderRadius: "0.50rem", p: 0, overflow: 'hidden' }}>
 			<AccordionSummary sx={{ display: "flex", margin: "auto", width: "100%", justifyContent: "space-between" }}>
 				<Stack direction={{ xs: "column", md: "row" }} sx={{ alignItems: "center", alignContent: "center", width: "100%", textAlign: { xs: "start", md: "initial" }, gap: { xs: 0, md: 2 } }}>
 					<Avatar src={avatarSrc} sx={{ background: "transparent", opacity: avatarSrc ? 1 : 0, display: { xs: "none", md: "block" } }}></Avatar>
@@ -28,8 +28,8 @@ export default function CustomAccordion({ children, avatarSrc, headerTitle, titl
 					</Typography>
 					<Stack>
 						{grade && (
-							<Chip variant="outlined" color="primary" sx={{my: {xs: 1.25}}}>
-								<Typography level="body-sm" sx={{ fontWeight: "bold", ml: "auto", color: 'inherit', py: { xs: 0 } }}>
+							<Chip variant="outlined" color="neutral" sx={{my: {xs: 2}}}>
+								<Typography level="title-sm" sx={{ ml: "auto", color: 'inherit' }}>
 									Grade: {grade}
 								</Typography>
 							</Chip>

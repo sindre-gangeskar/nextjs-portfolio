@@ -48,7 +48,7 @@ export default function RootLayout({
 				<ThemeProvider>
 					<Navbar />
 					<Container maxWidth={"lg"}>{children}</Container>
-					<GridBackground gridSize={20}></GridBackground>
+					<GridBackground gridSize={25}></GridBackground>
 				</ThemeProvider>
 			</CssVarsProvider>
 		</body>

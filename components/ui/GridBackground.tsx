@@ -6,10 +6,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	useGSAP(() => {
-		if (typeof window !== "undefined") gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-		gsap.set("#profile-grid", { opacity: 0, y: -300 });
-		gsap.to("#profile-grid", { duration: 1.5, delay: 0.2, ease: "power3.out", opacity: 0.4 });
-		gsap.to("#profile-grid", { y: 0, scrollTrigger: { trigger: "#profile-grid", start: "top bottom", end: "bottom top", scrub: true } });
+		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+		gsap.set("#profile-grid", { opacity: 0.3 });
+		gsap.to("#profile-grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 }});
 	}, []);
 
 	return (
@@ -24,7 +23,6 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 				transform: "translate(-50%, -50%)",
 				position: "fixed",
 				overflow: "hidden",
-				filter: "blur(0.8px)",
 				zIndex: -1,
 				background: `linear-gradient(to right, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px), linear-gradient(to top, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px)`,
 				backgroundSize: `${gridSize}px ${gridSize}px`,
