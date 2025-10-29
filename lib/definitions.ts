@@ -53,4 +53,6 @@ export type FormType = {
 	message: string;
 };
 
+export type PreviousState = unknown;
+
 export type StatusCodeType = 200 | 201 | 204 | 400 | 401 | 404 | 409 | 500

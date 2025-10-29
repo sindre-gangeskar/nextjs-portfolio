@@ -13,7 +13,6 @@ import { sendEmail } from "@/app/actions";
 export default function ContactForm() {
 	const [state, dispatch, isPending] = useActionState(sendEmail, null);
 	const [countdown, setCountdown] = useState(0);
-
 	useGSAP(() => {
 		if (state) {
 			gsap.set(".form-message", { opacity: 0, fontSize: "1.2rem" });

@@ -1,4 +1,5 @@
 "use server";
+import { PreviousState } from "@/lib/definitions";
 import EmailService from "@/lib/services/EmailService";
 import GithubService from "@/lib/services/GithubService";
 
@@ -19,6 +20,6 @@ export async function getUserProfile() {
 		return null;
 	}
 }
-export async function sendEmail(_: unknown, formdata: FormData) {
+export async function sendEmail(_: PreviousState, formdata: FormData) {
 	return await EmailService.send(formdata);
 }
