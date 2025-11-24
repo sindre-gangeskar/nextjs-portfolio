@@ -1,23 +1,49 @@
 "use client";
-import { Stack, Button } from "@mui/joy";
+import { Stack, Button, Box, useTheme } from "@mui/joy";
 import { usePathname } from "next/navigation";
 import { HouseRounded, Person2Rounded, Folder, ArticleRounded } from "@mui/icons-material";
-import NextLink from "next/link";
-import ThemeToggler from "../theme/ThemeToggler";
 import { AiFillExperiment } from "react-icons/ai";
-
+import { useMediaQuery } from "@mui/material";
 import { NavigationProps } from "@/lib/definitions";
+
+import ThemeToggler from "../theme/ThemeToggler";
+import NextLink from "next/link";
 import MobileNavbar from "./MobileNavbar";
+import React, { createRef, useMemo, useRef } from "react";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Navbar() {
-	const locations: NavigationProps[] = [
-		{ href: "/", name: "Home", icon: <HouseRounded /> },
-		{ href: "/resume", name: "Resumé", icon: <ArticleRounded /> },
-		{ href: "/my-story", name: "My Story", icon: <Person2Rounded /> },
-		{ href: "/projects", name: "Projects", icon: <Folder /> },
-		{ href: "/experiments", name: "Experiments", icon: <AiFillExperiment /> },
-	];
+	const theme = useTheme();
+	const locations: NavigationProps[] = useMemo(
+		() => [
+			{ href: "/", name: "Home", icon: <HouseRounded />, ref: createRef() },
+			{ href: "/resume", name: "Resumé", icon: <ArticleRounded />, ref: createRef() },
+			{ href: "/my-story", name: "My Story", icon: <Person2Rounded />, ref: createRef() },
+			{ href: "/projects", name: "Projects", icon: <Folder />, ref: createRef() },
+			{ href: "/experiments", name: "Experiments", icon: <AiFillExperiment />, ref: createRef() },
+		],
+		[]
+	);
+	const underlineRef = useRef(null);
+	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+	locations.forEach(element => {
+		element.ref = createRef();
+	});
 	const currentPath = usePathname();
+
+	useGSAP(() => {
+		if (!isDesktop) return;
+
+		const activeItem = locations.find(item => item.href === currentPath);
+		if (activeItem?.ref?.current) {
+			const refWidth = activeItem.ref.current.offsetWidth / 2 + "px";
+			const refLeft = activeItem.ref.current.offsetLeft + activeItem.ref.current.offsetWidth / 4 + "px";
+			gsap.to("#underline", { width: refWidth, ease: "power4.inOut", duration: 1.1, left: refLeft });
+		}
+	}, [currentPath, isDesktop]);
+
 	return (
 		<>
 			<Stack
@@ -28,41 +54,31 @@ export default function Navbar() {
 					p: 0,
 					maxWidth: "md",
 					position: "sticky",
+					borderRadius: "1.5rem",
 					top: 10,
-					overflow: "hidden",
 					mb: 2,
 					mx: "auto",
 					backdropFilter: "blur(6px)",
 					zIndex: 1500,
 					justifyContent: "space-between",
-					borderRadius: "1.5rem",
 					display: { xs: "none", md: "flex" },
-					"&::before": {
-						content: '""',
-						display: "block",
-						position: "absolute",
-						inset: 0,
-						width: "100%",
-						zIndex: 1,
-						opacity: 0.6,
-						outline: `1px solid ${theme.palette.neutral[200]}`,
-						pointerEvents: "none",
-					},
 					"&::after": {
 						content: '""',
 						position: "absolute",
 						inset: 0,
-						opacity: 0.4, 
+						opacity: 0.4,
 						zIndex: -1,
 						backgroundColor: theme.palette.neutral.softBg,
+						borderRadius: "inherit",
 					},
 				})}>
 				<Stack direction={"row"} gap={1}>
 					{locations.map(item => (
 						<Button
-							color={currentPath === item.href ? "primary" : "neutral"}
-							variant={currentPath === item.href ? "solid" : "plain"}
 							key={item.name}
+							ref={item.ref}
+							color="neutral"
+							variant="plain"
 							startDecorator={item.icon}
 							component={NextLink}
 							href={item.href}
@@ -72,6 +88,18 @@ export default function Navbar() {
 					))}
 				</Stack>
 				<ThemeToggler />
+				<Box
+					ref={underlineRef}
+					id="underline"
+					sx={theme => ({
+						position: "absolute",
+						height: "4px",
+						borderRadius: "1.5rem",
+						backgroundColor: theme.palette.primary.solidBg,
+						boxShadow: `0px 0px 8px ${theme.palette.primary.solidActiveBg}`,
+						outline: `2px solid ${theme.palette.primary.softHoverBg}`,
+						bottom: -6,
+					})}></Box>
 			</Stack>
 			<MobileNavbar locations={locations} currentPath={currentPath} />
 		</>

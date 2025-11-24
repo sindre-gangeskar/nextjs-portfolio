@@ -7,7 +7,7 @@ import { VariantProp, ColorPaletteProp } from "@mui/joy";
 import { FaGlobe } from "react-icons/fa6";
 export default function Project({ repo, id, className, sx, variant, color }: { repo: RepoType; id?: string; className?: string; sx: SxProps; variant?: VariantProp; color?: ColorPaletteProp }) {
 	return (
-		<Card id={id} className={className} variant={variant} color={color} sx={{ ...sx }}>
+		<Card id={id} className={className} variant={variant} color={color} invertedColors sx={{ ...sx }}>
 			<Stack sx={{ height: "100%", display: "flex", justifyContent: "space-between", flexDirection: "column" }}>
 				<Typography level="title-lg">{capitalizeString(repo.name)}</Typography>
 				<Stack sx={{ display: "flex", height: "100%", flexDirection: { xs: "column", md: "row" }, textAlign: "start", p: 0, m: 0, justifyContent: "space-between", alignItems: "center" }}>

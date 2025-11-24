@@ -1,8 +1,8 @@
-import { Stack, Typography, List, ListItem, AccordionGroup, Chip } from "@mui/joy";
+import { Stack, Typography, List, ListItem, AccordionGroup, Chip, ChipProps } from "@mui/joy";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import CustomAccordion from "@/components/ui/CustomAccordion";
 
-export default function Work({ style }: { [key: string]: {} }) {
+export default function Work({ style, chipVariants }: { [key: string]: {}, chipVariants: ChipProps }) {
 	return (
 		<Stack sx={{mt: 5}}>
 			<Typography level="h1">
@@ -17,25 +17,25 @@ export default function Work({ style }: { [key: string]: {} }) {
 					<AccordionGroup transition={"300ms"}>
 						<CustomAccordion color="danger" headerTitle="Hugo." title="Tech AS" subtitle="Full-stack Application (Freelance, January 2025)">
 							<Stack {...style}>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									JavaScript
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									Node.js
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									Express.js
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									MySQL
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									MongoDB
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									Bootstrap
 								</Chip>
-								<Chip variant="outlined" color="primary">
+								<Chip {...chipVariants}>
 									EJS
 								</Chip>
 							</Stack>

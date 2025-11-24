@@ -1,23 +1,15 @@
 import { Accordion, AccordionSummary, AccordionDetails, Avatar, ListDivider, Stack, Typography, Chip } from "@mui/joy";
 import ColoredTypography from "./ColoredTypography";
-interface AccordionProps {
-	children?: React.ReactNode;
-	headerTitle: string | "";
-	title: string | "";
-	subtitle: string | "";
-	avatarSrc?: string | "";
-	grade?: string;
-	color: "primary" | "danger" | "success" | "neutral";
-}
+import { AccordionProps } from "@/lib/definitions";
 
 export default function CustomAccordion({ children, avatarSrc, headerTitle, title, subtitle, color, grade }: AccordionProps) {
 	return (
-		<Accordion variant="soft" sx={{width: "100%", position: "relative", backdropFilter: 'blur(3px)', borderRadius: "0.50rem", p: 0, overflow: 'hidden' }}>
-			<AccordionSummary sx={{ display: "flex", margin: "auto", width: "100%", justifyContent: "space-between" }}>
+		<Accordion variant="soft" sx={theme => ({ width: "100%", position: "relative", borderRadius: "0.50rem", overflow: "hidden", p: 0, boxShadow: `0px 0px 7px ${theme.palette.neutral.softBg}` })}>
+			<AccordionSummary sx={{ display: "flex", mx: "auto", width: "100%", justifyContent: "space-between" }}>
 				<Stack direction={{ xs: "column", md: "row" }} sx={{ alignItems: "center", alignContent: "center", width: "100%", textAlign: { xs: "start", md: "initial" }, gap: { xs: 0, md: 2 } }}>
-					<Avatar src={avatarSrc} sx={{ background: "transparent", opacity: avatarSrc ? 1 : 0, display: { xs: "none", md: "block" } }}></Avatar>
-					<ListDivider orientation="vertical"></ListDivider>
-					<Typography level="body-md" sx={{ alignContent: "center", textAlign: "start", marginRight: "auto" }}>
+					<Avatar src={avatarSrc} sx={{ opacity: avatarSrc ? 1 : 0, display: { xs: "none", md: "block" } }}></Avatar>
+					<ListDivider orientation="vertical" />
+					<Typography level="title-md" sx={{ alignContent: "center", textAlign: "start", marginRight: "auto" }}>
 						{headerTitle}
 						<ColoredTypography color={color} level="body-md">
 							{title}
@@ -28,8 +20,8 @@ export default function CustomAccordion({ children, avatarSrc, headerTitle, titl
 					</Typography>
 					<Stack>
 						{grade && (
-							<Chip variant="outlined" color="neutral" sx={{my: {xs: 2}}}>
-								<Typography level="title-sm" sx={{ ml: "auto", color: 'inherit' }}>
+							<Chip variant="outlined" color="primary" sx={{ my: { xs: 1, md: 0 } }}>
+								<Typography level="title-sm" sx={{ mx: "auto", color: "inherit" }}>
 									Grade: {grade}
 								</Typography>
 							</Chip>
@@ -38,7 +30,7 @@ export default function CustomAccordion({ children, avatarSrc, headerTitle, titl
 				</Stack>
 			</AccordionSummary>
 			<AccordionDetails>
-				<Stack direction={"column"} textAlign={"start"} width={"100%"} mx={"0px"} margin={"start"} display={"grid"} gap={0}>
+				<Stack direction={"column"} width={"100%"} sx={{ p: 3 }}>
 					{children}
 				</Stack>
 			</AccordionDetails>
