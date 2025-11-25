@@ -44,7 +44,7 @@ export default function RootLayout({
 			<InitColorSchemeScript defaultMode="dark" />
 		</head>
 		<body className={`${roboto.className}`}>
-			<CssVarsProvider defaultMode="dark" colorSchemeStorageKey="joy-mode">
+			<CssVarsProvider defaultColorScheme="dark" colorSchemeStorageKey="joy-mode">
 				<ThemeProvider>
 					<Navbar />
 					<Container maxWidth={"lg"}>{children}</Container>

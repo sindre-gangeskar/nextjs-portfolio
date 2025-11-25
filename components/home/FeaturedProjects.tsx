@@ -1,5 +1,5 @@
 "use client";
-import { Button, Box } from "@mui/joy";
+import { Button, Box, Typography } from "@mui/joy";
 import ProjectCard from "@/components/home/ProjectCard";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
@@ -14,10 +14,10 @@ export default function FeaturedProjects() {
 		<Box id={"featured-projects"} sx={{ display: "grid", gap: 2, gridTemplateColumns: "repeat(auto-fit, minmax(350px, 0fr))", justifyContent: "center", width: "100%" }}>
 			{isLoading && <FeaturedProjectsSkeleton />}
 			{!isLoading &&
-				data?.map(x => {
-					return <ProjectCard homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></ProjectCard>;
-				})}
-
+				data &&
+				data?.map(x => (
+					<ProjectCard homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></ProjectCard>
+				))}
 			{!isLoading && (
 				<Button
 					onMouseEnter={() => {
@@ -31,7 +31,7 @@ export default function FeaturedProjects() {
 						width: "100%",
 						my: "auto",
 						mx: "auto",
-						overflow: 'hidden',
+						overflow: "hidden",
 						"&:hover": {
 							color: hovering && theme.palette.mode == "dark" ? "black" : "white",
 							background: "none",
@@ -42,13 +42,13 @@ export default function FeaturedProjects() {
 							position: "absolute",
 							inset: 0,
 							transition: "250ms ease",
-							width: '0%',
+							width: "0%",
 							zIndex: -1,
 							WebkitMaskImage: "linear-gradient(to right, black, black)",
 							background: theme.palette.mode == "dark" ? "white" : "black",
 						},
 						"&:hover:after": {
-							width: '100%',
+							width: "100%",
 						},
 					})}
 					endDecorator={<ArrowForwardRounded />}
@@ -59,6 +59,8 @@ export default function FeaturedProjects() {
 					Explore more projects
 				</Button>
 			)}
+			
+			{!isLoading && !data && <Typography>No data available.</Typography>}
 		</Box>
 	);
 }
