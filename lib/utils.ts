@@ -11,3 +11,7 @@ export function capitalizeString(string: string) {
 	const result = capitalizedWords.join(" ");
 	return result;
 }
+
+export async function delay(milliseconds: number): Promise<null> {
+	return await new Promise(res => setTimeout(res, milliseconds));
+}

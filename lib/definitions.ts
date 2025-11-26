@@ -18,6 +18,7 @@ export interface ProfileProps {
   id?: string;
   sx?: {};
   ref?: string;
+  avatar_url?: string;
 }
 export interface ResponseProps {
   statusCode: StatusCodeType;

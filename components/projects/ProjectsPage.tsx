@@ -4,7 +4,7 @@ import Project from "@/components/projects/Project";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useAllProjects } from "@/hooks/useAllProjects";
+import useAllProjects from "@/hooks/useAllProjects";
 import { SxProps } from "@mui/material";
 import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 

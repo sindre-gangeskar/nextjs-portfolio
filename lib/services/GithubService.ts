@@ -21,7 +21,6 @@ export default class GithubService {
 				accumulatedRepos.push(data);
 			}
 			const formattedRepos = formatRepos(accumulatedRepos);
-
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);

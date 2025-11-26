@@ -1,8 +1,10 @@
-import { getAllProjects } from "@/app/projects/actions";
+"use client";
 import { RepoType } from "@/lib/definitions";
 import useSWR from "swr";
 
-export function useAllProjects() {
-	const { data, error, isLoading } = useSWR<RepoType[] | null>("all-projects", getAllProjects);
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+export default function useAllProjects() {
+	const { data, error, isLoading } = useSWR<RepoType[] | null>("/api/github/projects", fetcher);
 	return { data, error, isLoading };
 }
