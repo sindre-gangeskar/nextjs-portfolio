@@ -13,14 +13,9 @@ export default class GithubService {
 				"exam-project",
 				"express-ts-generate",
 			];
-			const accumulatedRepos = [];
 
-			for (const repo of repoNames) {
-				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
-				if (!data) continue;
-				accumulatedRepos.push(data);
-			}
-			const formattedRepos = formatRepos(accumulatedRepos);
+			const repos = await Promise.all(repoNames.map(repo => octokit.request('GET /repos/{owner}/{repo}', { owner: 'sindre-gangeskar', repo }).then(repo => repo.data))).catch(() => []);
+			const formattedRepos = formatRepos(repos);
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);
@@ -32,15 +27,9 @@ export default class GithubService {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 			const repoNames: string[] = [ "ludonium", "express-ts-generate", "shadps4-alchemist", "docker-simple-app", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
-			const accumulatedRepos = [];
 
-			for (const repo of repoNames) {
-				const { data } = await octokit.request("GET /repos/{owner}/{repo}", { owner: "sindre-gangeskar", repo: repo });
-				if (!data) continue;
-				accumulatedRepos.push(data);
-			}
-
-			const formattedRepos = formatRepos(accumulatedRepos);
+			const repos = await Promise.all(repoNames.map(repo => octokit.request('GET /repos/{owner}/{repo}', { owner: 'sindre-gangeskar', repo }).then(repo => repo.data))).catch(() => []);
+			const formattedRepos = formatRepos(repos);
 			return formattedRepos;
 		} catch (error) {
 			console.error(error);
