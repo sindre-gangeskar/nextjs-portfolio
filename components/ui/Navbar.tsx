@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Button, Box, useTheme } from "@mui/joy";
+import { Stack, Button, Box, useTheme, Theme } from "@mui/joy";
 import { usePathname } from "next/navigation";
 import { HouseRounded, Person2Rounded, Folder, ArticleRounded } from "@mui/icons-material";
 import { AiFillExperiment } from "react-icons/ai";
@@ -10,7 +10,7 @@ import ThemeToggler from "../theme/ThemeToggler";
 import NextLink from "next/link";
 import MobileNavbar from "./MobileNavbar";
 import React, { createRef, useMemo, useRef } from "react";
-
+import { getColor } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -31,18 +31,17 @@ export default function Navbar() {
 	locations.forEach(element => {
 		element.ref = createRef();
 	});
-	const currentPath = usePathname();
-
+	const pathname = usePathname();
 	useGSAP(() => {
 		if (!isDesktop) return;
 
-		const activeItem = locations.find(item => item.href === currentPath);
+		const activeItem = locations.find(item => item.href === pathname);
 		if (activeItem?.ref?.current) {
 			const refWidth = activeItem.ref.current.offsetWidth / 2 + "px";
 			const refLeft = activeItem.ref.current.offsetLeft + activeItem.ref.current.offsetWidth / 4 + "px";
 			gsap.to("#underline", { width: refWidth, ease: "power4.inOut", duration: 1.1, left: refLeft });
 		}
-	}, [currentPath, isDesktop]);
+	}, [pathname, isDesktop]);
 
 	return (
 		<>
@@ -94,14 +93,15 @@ export default function Navbar() {
 					sx={theme => ({
 						position: "absolute",
 						height: "4px",
+						transition: 'background-color 250ms ease, outline 250ms ease',
 						borderRadius: "1.5rem",
-						backgroundColor: theme.palette.primary.solidBg,
-						boxShadow: `0px 0px 8px ${theme.palette.primary.solidActiveBg}`,
-						outline: `2px solid ${theme.palette.primary.softHoverBg}`,
+						backgroundColor: getColor(pathname, theme).solidBg,
+						boxShadow: `0px 0px 8px ${getColor(pathname, theme).solidActiveBg}`,
+						outline: `2px solid ${getColor(pathname, theme).softHoverBg}`,
 						bottom: -6,
 					})}></Box>
 			</Stack>
-			<MobileNavbar locations={locations} currentPath={currentPath} />
+			<MobileNavbar locations={locations} currentPath={pathname} />
 		</>
 	);
 }

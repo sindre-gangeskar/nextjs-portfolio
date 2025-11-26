@@ -4,19 +4,21 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { usePathname } from "next/navigation";
+import { getColor } from "@/lib/utils";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-		gsap.set("#profile-grid", { opacity: 0.3 });
 		gsap.to("#profile-grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 }});
 	}, []);
+	const pathname = usePathname();
 
 	return (
 		<Stack
 			id={"profile-grid"}
 			sx={theme => ({
-				width: `1500px`,
-				height: `1500px`,
+				width: `100vw`,
+				height: `100vh`,
 				m: 0,
 				left: "50%",
 				top: "50%",
@@ -27,8 +29,28 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 				background: `linear-gradient(to right, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px), linear-gradient(to top, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px)`,
 				backgroundSize: `${gridSize}px ${gridSize}px`,
 				backgroundRepeat: "repeat",
-				maskImage: `radial-gradient(${style}, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%)`,
-				WebkitMaskImage: `radial-gradient(${style}, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%)`,
+				maskImage: `radial-gradient(${style}, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%)`,
+				WebkitMaskImage: `radial-gradient(${style}, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%)`,
+				"&::before": {
+					content: '""',
+					display: "block",
+					inset: 0,
+					width: "100%",
+					height: "100%",
+					position: "absolute",
+					transition: '850ms ease',
+					zIndex: 1,
+					maskRepeat: "repeat",
+					maskSize: `${gridSize}px ${gridSize}px`,
+					maskImage: `
+						linear-gradient(to right, white, transparent ${thickness}px), 
+						linear-gradient(to top, white transparent ${thickness}px)`,
+					WebkitMaskImage: `
+						linear-gradient(to right, white, transparent ${thickness}px), 
+						linear-gradient(to top, white, transparent ${thickness}px)`,
+					background: getColor(pathname, theme).solidBg,
+					mixBlendMode: "saturate",
+				}
 			})}></Stack>
 	);
 }

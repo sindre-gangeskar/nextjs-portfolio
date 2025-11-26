@@ -1,3 +1,4 @@
+import { Theme } from "@mui/joy";
 export function capitalizeString(string: string) {
 	const words = string.split(" ");
 
@@ -14,4 +15,12 @@ export function capitalizeString(string: string) {
 
 export async function delay(milliseconds: number): Promise<null> {
 	return await new Promise(res => setTimeout(res, milliseconds));
+}
+
+export function getColor(pathname: string, theme: Theme) {
+	if (pathname.includes("resume")) return theme.palette.danger;
+	if (pathname.includes("my-story")) return theme.palette.success;
+	if (pathname.includes('experiments')) return theme.palette.neutral;
+	if (pathname.includes('projects')) return theme.palette.warning;
+	else return theme.palette.primary;
 }
