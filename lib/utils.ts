@@ -24,3 +24,9 @@ export function getColor(pathname: string, theme: Theme) {
 	if (pathname.includes('projects')) return theme.palette.warning;
 	else return theme.palette.primary;
 }
+
+export function getBackgroundColor(pathname: string, theme: Theme) {
+	if (pathname.includes('resume')) return theme.palette.danger;
+	if (pathname.includes('experiments')) return theme.palette.neutral;
+	else return theme.palette.primary;
+}

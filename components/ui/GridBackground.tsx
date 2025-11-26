@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { usePathname } from "next/navigation";
-import { getColor } from "@/lib/utils";
+import { getBackgroundColor, getColor } from "@/lib/utils";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
@@ -17,9 +17,8 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 		<Stack
 			id={"profile-grid"}
 			sx={theme => ({
-				width: `100vw`,
-				height: `100vh`,
-				m: 0,
+				width: `1500px`,
+				height: `100%`,
 				left: "50%",
 				top: "50%",
 				transform: "translate(-50%, -50%)",
@@ -29,8 +28,8 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 				background: `linear-gradient(to right, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px), linear-gradient(to top, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px)`,
 				backgroundSize: `${gridSize}px ${gridSize}px`,
 				backgroundRepeat: "repeat",
-				maskImage: `radial-gradient(${style}, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%)`,
-				WebkitMaskImage: `radial-gradient(${style}, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%)`,
+				maskImage: `radial-gradient(${style}, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%)`,
+				WebkitMaskImage: `radial-gradient(${style}, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%)`,
 				"&::before": {
 					content: '""',
 					display: "block",
@@ -48,7 +47,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 					WebkitMaskImage: `
 						linear-gradient(to right, white, transparent ${thickness}px), 
 						linear-gradient(to top, white, transparent ${thickness}px)`,
-					background: getColor(pathname, theme).solidBg,
+					background: getBackgroundColor(pathname, theme).solidBg,
 					mixBlendMode: "saturate",
 				}
 			})}></Stack>
