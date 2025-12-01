@@ -4,11 +4,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProfileAvatar from "@/components/home/ProfileAvatar";
 import ColoredTypography from "@/components/ui/ColoredTypography";
-import { EmailRounded, GitHub } from "@mui/icons-material";
 import TextPlugin from "gsap/dist/TextPlugin";
 import ProfileAvatarSkeleton from "./skeletons/ProfileAvatarSkeleton";
 import useUserProfile from "@/hooks/useUserProfile";
-import LinkedInButton from "../ui/LinkedInButton";
+import Links from "./Links";
 
 export default function Hero() {
 	const { data, isLoading } = useUserProfile();
@@ -59,26 +58,26 @@ export default function Hero() {
 		}
 	}, [isLoading]);
 
-	const scrollToContactForm = () => {
-		gsap.to(window, { scrollTo: "#contact-form", duration: 1.5, ease: "power1.inOut" });
-	};
-
 	return (
-		<Stack component={"section"} direction={"column"} sx={{ position: "relative", p: 5 }}>
-			<Stack direction={"row"} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
-				<Stack id="profile" sx={{ width: "100%", minWidth: "50%", flex: 1, justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
-					<Box id="avatar">{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={350} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
-					<Typography level="h1">
+		<Stack
+			component={"section"}
+			direction={"column"}
+			sx={{
+				position: "relative",
+				py: 2,
+			}}>
+			<Stack direction={"row"} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+				<Stack id="profile" sx={{ width: "100%", minWidth: "50%", justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
+					<Box id="avatar" sx={{display: 'flex', justifyContent: 'center'}}>{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={325} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
+					<Typography level="h1" textAlign={"center"}>
 						I am <ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
 					</Typography>
-					<Typography>A passionate back-end and full-stack developer from Norway</Typography>
+					<Typography textAlign={"center"}>A passionate back-end and full-stack developer from Norway</Typography>
 				</Stack>
-				<Stack sx={{ justifyContent: "center", display: "flex", flexDirection: "column", height: "100%" }}>
-					<Card
+				<Stack sx={{ justifyContent: "space-between" }}>
+					<Box
 						id="traits"
-						variant="plain"
-						color="neutral"
-						sx={{ background: "transparent", borderRadius: 0, display: "flex", flexWrap: "wrap", flexDirection: "row", width: "100%", flexShrink: 1, px: 5, justifyContent: "center", opacity: 0 }}>
+						sx={{ background: "transparent", borderRadius: 0, display: "flex", flexWrap: "wrap", flexDirection: "row", width: "100%", flexShrink: 1, p: 3, gap: 1, justifyContent: "center", opacity: 0 }}>
 						<Chip variant="soft" className="trait" color="primary" component={"span"} sx={{ height: "fit-content" }}>
 							Team Player
 						</Chip>
@@ -100,8 +99,8 @@ export default function Hero() {
 						<Chip variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
 							Passionate
 						</Chip>
-					</Card>
-					<Box id="description" component={"div"} sx={{overflow: 'hidden'}}>
+					</Box>
+					<Box id="description" component={"div"} sx={{ overflow: "hidden" }}>
 						<Stack id="description-stack" gap={2}>
 							<Typography level="title-sm">
 								I am a back-end developer with full-stack capabilities skilled in building robust and scalable RESTful applications with modern front-end frameworks. <br />
@@ -111,16 +110,8 @@ export default function Hero() {
 							</Typography>
 							<Typography level="title-sm">I am curious and eager to learn technologies for both front-end and back-end to apply in a professional setting.</Typography>
 						</Stack>
-						<Stack component={"div"} direction={"row"} gap={3} sx={{ alignItems: "center" }}>
-							<Button component={"a"} target="_blank" href="https://github.com/sindre-gangeskar" startDecorator={<GitHub />} variant="soft" color="neutral" sx={{ my: 2 }}>
-								Github
-							</Button>
-							<LinkedInButton />
-							<Button variant="soft" color="danger" onClick={scrollToContactForm}>
-								<EmailRounded />
-							</Button>
-						</Stack>
 					</Box>
+					<Links />
 				</Stack>
 			</Stack>
 		</Stack>

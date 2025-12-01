@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { unstable_cache } from 'next/cache';
 import { RepoType } from "../definitions";
+import path from "path";
 const revalidateAfter = Number(process.env.REVALIDATE_AFTER) || 60 * 60 * 3;
 export default class GithubService {
 	static getFeaturedRepos = unstable_cache(async () => {
@@ -50,8 +51,11 @@ export default class GithubService {
 }
 
 function formatRepos(arr: RepoType[]) {
+
 	if (Array.isArray(arr)) {
 		const formattedRepos = arr.map(x => ({
+			img: `/previews/${x.name}.jpg` || null,
+			...(x.name === "nextjs-portfolio" ? { img: '/images/og-default.jpg' } : null),
 			name: x.name.replace(/\-/g, " "),
 			description: x.description,
 			html_url: x.html_url,

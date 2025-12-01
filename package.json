@@ -1,6 +1,6 @@
 {
   "name": "nextjs-portfolio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -20,24 +20,25 @@
     "@mui/material": "^7.3.5",
     "gsap": "^3.13.0",
     "mqtt": "^5.14.1",
-    "next": "^16.0.4",
+    "next": "^16.0.6",
     "nextjs-portfolio": "file:",
-    "nodemailer": "^7.0.10",
+    "nodemailer": "^7.0.11",
     "octokit": "^5.0.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "swr": "^2.3.6"
+    "swr": "^2.3.7"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/eslintrc": "^3.3.3",
     "@types/node": "^24.10.1",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/validator": "^13.15.10",
+    "baseline-browser-mapping": "^2.8.32",
     "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.4",
+    "eslint-config-next": "16.0.6",
     "typescript": "^5.9.3",
     "validator": "^13.15.23"
   }

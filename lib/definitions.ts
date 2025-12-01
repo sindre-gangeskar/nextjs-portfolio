@@ -11,6 +11,7 @@ export interface RepoType {
   description?: string | null;
   owner?: { avatar_url?: string };
   homepage?: string | null;
+  img?: string | null;
 }
 export interface ProfileProps {
   src: string;
@@ -35,6 +36,7 @@ export interface ProjectCardProps {
   stars?: number;
   homepage?: string;
   color: ColorPaletteProp;
+  img?: string | null;
 }
 export interface NavigationProps {
   href: string;

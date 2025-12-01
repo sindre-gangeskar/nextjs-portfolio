@@ -6,6 +6,7 @@ import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { Container, CssVarsProvider } from "@mui/joy";
 import GridBackground from "@/components/ui/GridBackground";
+import BackToTopButton from "@/components/ui/BackToTopButton";
 const roboto = Roboto({
 	variable: "--font-roboto",
 	subsets: ["latin"],
@@ -37,21 +38,24 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-	<html lang="en" suppressHydrationWarning={true}>
-		<head>
-			<noscript>Javascript must be enabled in order to visit this site</noscript>
-			<meta name="viewport" content="initial-scale=1, width=device-width" />
-			<InitColorSchemeScript defaultMode="dark" />
-		</head>
-		<body className={`${roboto.className}`}>
-			<CssVarsProvider defaultColorScheme="dark" colorSchemeStorageKey="joy-mode">
-				<ThemeProvider>
-					<Navbar />
-					<Container maxWidth={"lg"}>{children}</Container>
-					<GridBackground gridSize={25}></GridBackground>
-				</ThemeProvider>
-			</CssVarsProvider>
-		</body>
-	</html>
-);
+		<html lang="en" suppressHydrationWarning={true}>
+			<head>
+				<noscript>Javascript must be enabled in order to visit this site</noscript>
+				<meta name="viewport" content="initial-scale=1, width=device-width" />
+				<InitColorSchemeScript defaultMode="dark" />
+			</head>
+			<body className={`${roboto.className}`}>
+				<CssVarsProvider defaultColorScheme="dark" colorSchemeStorageKey="joy-mode">
+					<ThemeProvider>
+						<Navbar />
+						<Container maxWidth={"lg"}>
+							{children}
+							<BackToTopButton />
+						</Container>
+						<GridBackground gridSize={25}></GridBackground>
+					</ThemeProvider>
+				</CssVarsProvider>
+			</body>
+		</html>
+	);
 }
