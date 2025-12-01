@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
 			}
 		],
 	},
-	serverExternalPackages: [ 'octokit' ]
+	serverExternalPackages: [ 'octokit', 'universal-github-app-jwt' ], 
 };
 
 export default nextConfig;
