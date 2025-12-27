@@ -3,13 +3,11 @@ import { Button, Box, Typography, Stack } from "@mui/joy";
 import ProjectCard from "@/components/home/ProjectCard";
 import Link from "next/link";
 import { ArrowForwardRounded } from "@mui/icons-material";
-import { useState } from "react";
 import useFeaturedProjects from "@/hooks/useFeaturedProjects";
 import FeaturedProjectsSkeleton from "./skeletons/FeaturedProjectsSkeleton";
 import ColoredTypography from "../ui/ColoredTypography";
 
 export default function FeaturedProjects() {
-	const [hovering, setHovering] = useState(false);
 	const { data, isLoading } = useFeaturedProjects();
 	return (
 		<Stack component={'section'} mt={15}>
@@ -29,20 +27,15 @@ export default function FeaturedProjects() {
 					))}
 				{!isLoading && (
 					<Button
-						onMouseEnter={() => {
-							setHovering(true);
-						}}
-						onMouseLeave={() => {
-							setHovering(false);
-						}}
 						sx={theme => ({
 							py: 5,
 							width: "100%",
 							my: "auto",
 							mx: "auto",
+							zIndex: 1,
 							overflow: "hidden",
 							"&:hover": {
-								color: hovering && theme.palette.mode == "dark" ? "black" : "white",
+								color: theme.palette.mode == "dark" ? "black" : "white",
 								background: "none",
 							},
 							"&:after": {
@@ -50,9 +43,9 @@ export default function FeaturedProjects() {
 								display: "block",
 								position: "absolute",
 								inset: 0,
+								zIndex: -1,
 								transition: "250ms ease",
 								width: "0%",
-								zIndex: -1,
 								WebkitMaskImage: "linear-gradient(to right, black, black)",
 								background: theme.palette.mode == "dark" ? "white" : "black",
 							},
