@@ -14,7 +14,7 @@ export default function ExperimentCard({ title, description, href, color = "neut
 		zIndex: 1,
 		"&:hover": {
 			transform: "translateY(-6px)",
-			backgroundColor: `${theme.palette[color].softBg}`,
+			backgroundColor: `${theme.vars.palette[color].softBg}`,
 		},
 		"&::after": {
 			content: '""',
@@ -24,7 +24,7 @@ export default function ExperimentCard({ title, description, href, color = "neut
 			border: 0,
 			zIndex: 2,
 			transition: "125ms linear",
-			borderColor: `${theme.palette[color].solidBg} !important`,
+			borderColor: `${theme.vars.palette[color].solidBg} !important`,
 		},
 		"&:hover::after": {
 			transform: "translateY(6px)",

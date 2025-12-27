@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Typography, Card, Chip, Box, Button } from "@mui/joy";
+import { Stack, Typography, Chip, Box } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProfileAvatar from "@/components/home/ProfileAvatar";
@@ -8,20 +8,28 @@ import TextPlugin from "gsap/dist/TextPlugin";
 import ProfileAvatarSkeleton from "./skeletons/ProfileAvatarSkeleton";
 import useUserProfile from "@/hooks/useUserProfile";
 import Links from "./Links";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
 	const { data, isLoading } = useUserProfile();
+	const [mounted, setIsMounted] = useState<boolean>(false);
+	const loading = !mounted || isLoading;
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	useGSAP(() => {
-		if (typeof window !== "undefined") gsap.registerPlugin(TextPlugin);
+		if (!mounted) return;
+		gsap.registerPlugin(TextPlugin);
 		const traitsTl = gsap.timeline();
 		const descriptionTl = gsap.timeline();
 		const profileTl = gsap.timeline();
 
-		profileTl.set("#profile > *", { opacity: 0, transform: "translateX(-200px)" });
-		profileTl.to("#profile > *", { opacity: 1, transform: "translateX(0)", duration: 1.2, stagger: 0.5, ease: "power3.out" });
+		profileTl.set("#profile > *", { opacity: 0, x: -150 });
+		profileTl.to("#profile > *", { opacity: 1, x: 0, duration: 1.2, stagger: 0.5, ease: "power3.out", delay: 0.5 });
 
-		descriptionTl.set("#description-stack > *", { y: 80, opacity: 0, filter: "blur(16px)" });
+		gsap.set("#description-stack > *", { y: 80, opacity: 0, filter: "blur(16px)" });
 		descriptionTl.to("#description-stack > *", {
 			y: 0,
 			delay: 0.2,
@@ -47,16 +55,16 @@ export default function Hero() {
 			opacity: 1,
 			zIndex: 1,
 		});
-	}, []);
+	}, [mounted]);
 
 	useGSAP(() => {
-		const profileImageTl = gsap.timeline();
+		if (isLoading || !mounted) return;
 
-		if (data && !isLoading) {
-			profileImageTl.set("#profile-image", { opacity: 0 });
-			profileImageTl.to("#profile-image", { opacity: 1, duration: 1.2, ease: "power1.out" });
+		if (data) {
+			gsap.set("#profile-image", { opacity: 0 });
+			gsap.to("#profile-image", { opacity: 1, duration: 1.2, ease: "power1.out" });
 		}
-	}, [isLoading]);
+	}, [isLoading, mounted]);
 
 	return (
 		<Stack
@@ -68,11 +76,15 @@ export default function Hero() {
 			}}>
 			<Stack direction={"row"} sx={{ flexDirection: { xs: "column", md: "row" } }}>
 				<Stack id="profile" sx={{ width: "100%", minWidth: "50%", justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
-					<Box id="avatar" sx={{display: 'flex', justifyContent: 'center'}}>{isLoading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={325} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}</Box>
-					<Typography level="h1" textAlign={"center"}>
+					<Box id="avatar" sx={{ display: "flex", justifyContent: "center" }}>
+						{loading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={325} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}
+					</Box>
+					<Typography level="h1" textAlign={"center"} sx={{ opacity: 0 }}>
 						I am <ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
 					</Typography>
-					<Typography textAlign={"center"}>A passionate back-end and full-stack developer from Norway</Typography>
+					<Typography textAlign={"center"} sx={{ opacity: 0 }}>
+						A passionate back-end and full-stack developer from Norway
+					</Typography>
 				</Stack>
 				<Stack sx={{ justifyContent: "space-between" }}>
 					<Box

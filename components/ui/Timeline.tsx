@@ -33,8 +33,8 @@ export default function Timeline({ children }: { children: React.ReactNode }) {
 				width: "6px",
 				mx: "auto",
 				borderRadius: "1.5rem",
-				backgroundColor: theme.palette.primary.softBg,
-				border: `2px solid ${theme.palette.primary.softHoverBg}`,
+				backgroundColor: theme.vars.palette.primary.softBg,
+				border: `2px solid ${theme.vars.palette.primary.softHoverBg}`,
 			},
 		})}>
 		{children}

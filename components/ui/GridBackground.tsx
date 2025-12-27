@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { usePathname } from "next/navigation";
-import { getBackgroundColor, getColor } from "@/lib/utils";
+import { getBackgroundColor } from "@/lib/utils";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);

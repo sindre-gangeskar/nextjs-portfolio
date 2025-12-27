@@ -4,7 +4,7 @@ import { Roboto } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
-import { Container, CssVarsProvider } from "@mui/joy";
+import { Container } from "@mui/joy";
 import GridBackground from "@/components/ui/GridBackground";
 import BackToTopButton from "@/components/ui/BackToTopButton";
 
@@ -32,7 +32,6 @@ export const metadata: Metadata = {
 		],
 	},
 };
-
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -43,19 +42,18 @@ export default function RootLayout({
 			<head>
 				<noscript>Javascript must be enabled in order to visit this site</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<InitColorSchemeScript defaultMode="dark" />
+				<meta name="emotion-insertion-point" content=""/>
+				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${roboto.className}`}>
-				<CssVarsProvider defaultMode="dark" colorSchemeStorageKey="joy-mode">
-					<ThemeProvider>
-						<Navbar />
-						<Container maxWidth={"lg"}>
-							{children}
-							<BackToTopButton />
-						</Container>
-						<GridBackground gridSize={25}></GridBackground>
-					</ThemeProvider>
-				</CssVarsProvider>
+				<ThemeProvider>
+					<Navbar />
+					<Container maxWidth={"lg"}>
+						{children}
+						<BackToTopButton />
+					</Container>
+					<GridBackground gridSize={25}></GridBackground>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

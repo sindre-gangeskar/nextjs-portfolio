@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Button, Box, useTheme, Theme } from "@mui/joy";
+import { Stack, Button, Box, useTheme } from "@mui/joy";
 import { usePathname } from "next/navigation";
 import { HouseRounded, Person2Rounded, Folder, ArticleRounded } from "@mui/icons-material";
 import { AiFillExperiment } from "react-icons/ai";
@@ -67,7 +67,7 @@ export default function Navbar() {
 						inset: 0,
 						opacity: 0.4,
 						zIndex: -1,
-						backgroundColor: theme.palette.neutral.softBg,
+						backgroundColor: theme.vars.palette.neutral.softBg,
 						borderRadius: "inherit",
 					},
 				})}>

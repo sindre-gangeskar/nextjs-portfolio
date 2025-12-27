@@ -1,8 +1,7 @@
 "use client";
 import { CssVarsProvider } from "@mui/joy";
 import { extendTheme } from "@mui/joy/styles";
-import { useEffect, useState } from "react";
-
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const theme = extendTheme({
 		components: {
@@ -12,16 +11,12 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 			JoyTypography: { styleOverrides: { root: { fontFamily: "var(--font-roboto)" } } },
 		},
 	});
-	const [hydrated, setHydrated] = useState(false);
 
-	useEffect(() => {
-		setHydrated(true);
-	}, []);
-
-	if (!hydrated) return null;
 	return (
-		<CssVarsProvider theme={theme} colorSchemeStorageKey="joy-mode">
-			{children}
-		</CssVarsProvider>
+		<AppRouterCacheProvider options={{key: 'mui'}}>
+			<CssVarsProvider defaultMode="dark" theme={theme} colorSchemeStorageKey="joy-mode">
+				{children}
+			</CssVarsProvider>
+		</AppRouterCacheProvider>
 	);
 }
