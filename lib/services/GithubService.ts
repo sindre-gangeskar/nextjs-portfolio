@@ -9,7 +9,7 @@ export default class GithubService {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 			const repoNames: string[] = [ "ludonium",
 				"nextjs-portfolio",
-				"nuxtjs-database",
+				"extractqr",
 				"shadps4-alchemist",
 				"exam-project",
 				"express-ts-generate",
