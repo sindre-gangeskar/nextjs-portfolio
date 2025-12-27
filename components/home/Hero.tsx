@@ -89,25 +89,25 @@ export default function Hero() {
 					<Box
 						id="traits"
 						sx={{ background: "transparent", borderRadius: 0, display: "flex", flexWrap: "wrap", flexDirection: "row", width: "100%", flexShrink: 1, p: 3, gap: 1, justifyContent: "center", opacity: 0 }}>
-						<Chip variant="soft" className="trait" color="primary" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-team-player'}}} variant="soft" className="trait" color="primary" component={"span"} sx={{ height: "fit-content" }}>
 							Team Player
 						</Chip>
-						<Chip variant="soft" className="trait" color="neutral" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-adaptable'}}} variant="soft" className="trait" color="neutral" component={"span"} sx={{ height: "fit-content" }}>
 							Adaptable
 						</Chip>
-						<Chip variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-critical-thinker'}}} variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
 							Critical Thinker
 						</Chip>
-						<Chip variant="soft" className="trait" color="warning" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-proactive'}}} variant="soft" className="trait" color="warning" component={"span"} sx={{ height: "fit-content" }}>
 							Proactive
 						</Chip>
-						<Chip variant="soft" className="trait" color="primary" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-detail-oriented'}}} variant="soft" className="trait" color="primary" component={"span"} sx={{ height: "fit-content" }}>
 							Detail-Oriented
 						</Chip>
-						<Chip variant="soft" className="trait" color="success" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-enthusiastic'}}} variant="soft" className="trait" color="success" component={"span"} sx={{ height: "fit-content" }}>
 							Enthusiastic
 						</Chip>
-						<Chip variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
+						<Chip slotProps={{label: {id: 'chip-passionate'}}} variant="soft" className="trait" color="danger" component={"span"} sx={{ height: "fit-content" }}>
 							Passionate
 						</Chip>
 					</Box>

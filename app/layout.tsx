@@ -42,7 +42,6 @@ export default function RootLayout({
 			<head>
 				<noscript>Javascript must be enabled in order to visit this site</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<meta name="emotion-insertion-point" content="" />
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${roboto.className}`}>
