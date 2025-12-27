@@ -29,9 +29,8 @@ export default function Hero() {
 		profileTl.set("#profile > *", { opacity: 0, x: -150 });
 		profileTl.to("#profile > *", { opacity: 1, x: 0, duration: 1.2, stagger: 0.5, ease: "power3.out", delay: 0.5 });
 
-		gsap.set("#description-stack > *", { y: 80, opacity: 0, filter: "blur(16px)" });
+		gsap.set("#description-stack > *", { opacity: 0, filter: "blur(12px)" });
 		descriptionTl.to("#description-stack > *", {
-			y: 0,
 			delay: 0.2,
 			duration: 0.8,
 			opacity: 1,
