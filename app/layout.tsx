@@ -42,17 +42,17 @@ export default function RootLayout({
 			<head>
 				<noscript>Javascript must be enabled in order to visit this site</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<meta name="emotion-insertion-point" content=""/>
+				<meta name="emotion-insertion-point" content="" />
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${roboto.className}`}>
 				<ThemeProvider>
 					<Navbar />
-					<Container maxWidth={"lg"}>
+					<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative" }}>
 						{children}
 						<BackToTopButton />
 					</Container>
-					<GridBackground gridSize={25}></GridBackground>
+					<GridBackground gridSize={25} />
 				</ThemeProvider>
 			</body>
 		</html>

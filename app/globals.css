@@ -1,20 +1,16 @@
-html[data-joy-color-scheme="dark"] {
-  background-color: var(--joy-palette-neutral-900)
-}
-
-html[data-joy-color-scheme="light"] {
-  background-color: var(--joy-palette-neutral-200);
-  visibility: visible;
+html, body {
+  background-color: var(--joy-palette-background-body);
+  transition: 200ms ease;
 }
 
 html {
   overflow-x: hidden;
-  transition: background-color 250ms ease;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
 }
 
 * {
