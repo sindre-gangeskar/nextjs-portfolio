@@ -4,7 +4,7 @@ import { AccordionProps } from "@/lib/definitions";
 
 export default function CustomAccordion({ children, avatarSrc, headerTitle, title, subtitle, color, grade }: AccordionProps) {
 	return (
-		<Accordion variant="soft" sx={theme => ({ width: "100%", position: "relative", borderRadius: "0.50rem", overflow: "hidden", p: 0, boxShadow: `0px 0px 7px ${theme.palette.neutral.softBg}` })}>
+		<Accordion variant="soft" sx={theme => ({ width: "100%", position: "relative", borderRadius: "0.50rem", overflow: "hidden", p: 0, boxShadow: `0px 0px 7px ${theme.vars.palette.neutral.softBg}` })}>
 			<AccordionSummary sx={{ display: "flex", mx: "auto", width: "100%", justifyContent: "space-between" }}>
 				<Stack direction={{ xs: "column", md: "row" }} sx={{ alignItems: "center", alignContent: "center", width: "100%", textAlign: { xs: "start", md: "initial" }, gap: { xs: 0, md: 2 } }}>
 					<Avatar src={avatarSrc} sx={{ opacity: avatarSrc ? 1 : 0, display: { xs: "none", md: "block" } }}></Avatar>

@@ -24,9 +24,9 @@ export default function TimelineItem({ title, timeline, imgUrl, description }: T
 				content: '""',
 				display: { xs: "none", lg: "block" },
 				position: "absolute",
-				border: `1px solid ${theme.palette.primary.solidBg}`,
+				border: `1px solid ${theme.vars.palette.primary.solidBg}`,
 				mx: "auto",
-				backgroundColor: theme.palette.primary.solidBg,
+				backgroundColor: theme.vars.palette.primary.solidBg,
 				width: "10px",
 				aspectRatio: 1,
 				left: "50%",
@@ -43,7 +43,7 @@ export default function TimelineItem({ title, timeline, imgUrl, description }: T
 			sx={theme => ({
 				position: "relative",
 				width: { xs: "100%", sm: "450px" },
-				boxShadow: `0px 0px 12px ${theme.palette.neutral.softHoverBg}`,
+				boxShadow: `0px 0px 12px ${theme.vars.palette.neutral.softHoverBg}`,
 			})}>
 			{imgUrl && (
 				<CardOverflow>

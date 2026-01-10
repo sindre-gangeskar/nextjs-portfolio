@@ -3,30 +3,22 @@ import { useColorScheme } from "@mui/joy";
 import { Button } from "@mui/joy";
 import { Brightness3, Brightness7 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-
 export default function ThemeToggler() {
 	const { mode, setMode } = useColorScheme();
-	const [icon, setIcon] = useState(<Brightness3></Brightness3>);
+	const [mounted, setMounted] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (mode === "dark") {
-			setIcon(<Brightness7 />);
-		} else {
-			setIcon(<Brightness3 />);
-		}
-	}, [mode]);
+		setMounted(true);
+	}, []);
+
+	/* effectiveMode uses a fallback until the component has mounted which prevents hydration errors */
+	const effectiveMode = mounted ? mode : 'dark';
+	const isDark = effectiveMode === "dark";
+	const Icon = isDark ? Brightness7 : Brightness3;
 
 	return (
-		<Button
-			size="sm"
-			color="neutral"
-			variant="soft"
-			sx={{ borderRadius: "50%", aspectRatio: 1, width: 'fit-content' }}
-			onClick={() => {
-				if (mode === "dark") setMode("light");
-				else setMode("dark");
-			}}>
-			{icon}
+		<Button type="button" size="sm" color="neutral" variant="soft" sx={{ borderRadius: "50%", aspectRatio: 1, width: "fit-content" }} onClick={() => setMode((mode ?? effectiveMode) === 'dark' ? "light" : "dark")}>
+			<Icon />
 		</Button>
 	);
 }

@@ -18,15 +18,15 @@ export async function delay(milliseconds: number): Promise<null> {
 }
 
 export function getColor(pathname: string, theme: Theme) {
-	if (pathname.includes("resume")) return theme.palette.danger;
-	if (pathname.includes("my-story")) return theme.palette.success;
-	if (pathname.includes('experiments')) return theme.palette.neutral;
-	if (pathname.includes('projects')) return theme.palette.warning;
-	else return theme.palette.primary;
+	if (pathname.includes("resume")) return theme.vars.palette.danger;
+	if (pathname.includes("my-story")) return theme.vars.palette.success;
+	if (pathname.includes('experiments')) return theme.vars.palette.neutral;
+	if (pathname.includes('projects')) return theme.vars.palette.warning;
+	else return theme.vars.palette.primary;
 }
 
 export function getBackgroundColor(pathname: string, theme: Theme) {
-	if (pathname.includes('resume')) return theme.palette.danger;
-	if (pathname.includes('experiments')) return theme.palette.neutral;
-	else return theme.palette.primary;
+	if (pathname.includes('resume')) return theme.vars.palette.danger;
+	if (pathname.includes('experiments')) return theme.vars.palette.neutral;
+	else return theme.vars.palette.primary;
 }

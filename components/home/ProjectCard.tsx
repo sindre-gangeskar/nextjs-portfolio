@@ -1,5 +1,5 @@
 "use client";
-import { Card, Typography, Button, Box, CardActions, CardContent, CardOverflow, Stack, CardCover, AspectRatio } from "@mui/joy";
+import { Card, Typography, Button, Box, CardActions, CardContent, CardOverflow, Stack, AspectRatio } from "@mui/joy";
 import { GitHub, StarRounded } from "@mui/icons-material";
 import { FaGlobe } from "react-icons/fa6";
 import { ProjectCardProps } from "@/lib/definitions";

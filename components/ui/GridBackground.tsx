@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { usePathname } from "next/navigation";
-import { getBackgroundColor, getColor } from "@/lib/utils";
+import { getBackgroundColor } from "@/lib/utils";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
@@ -23,8 +23,8 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 				top: "50%",
 				transform: "translate(-50%, -50%)",
 				position: "fixed",
+				zIndex: 0,
 				overflow: "hidden",
-				zIndex: -1,
 				background: `linear-gradient(to right, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px), linear-gradient(to top, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px)`,
 				backgroundSize: `${gridSize}px ${gridSize}px`,
 				backgroundRepeat: "repeat",
@@ -38,7 +38,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 					height: "100%",
 					position: "absolute",
 					transition: '850ms ease',
-					zIndex: 1,
+					zIndex: -1,
 					maskRepeat: "repeat",
 					maskSize: `${gridSize}px ${gridSize}px`,
 					maskImage: `

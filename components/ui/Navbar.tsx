@@ -1,6 +1,6 @@
 "use client";
-import { Stack, Button, Box, useTheme, Theme } from "@mui/joy";
-import { usePathname } from "next/navigation";
+import { Stack, Button, Box, useTheme } from "@mui/joy";
+import { usePathname, useRouter } from "next/navigation";
 import { HouseRounded, Person2Rounded, Folder, ArticleRounded } from "@mui/icons-material";
 import { AiFillExperiment } from "react-icons/ai";
 import { useMediaQuery } from "@mui/material";
@@ -9,13 +9,14 @@ import { NavigationProps } from "@/lib/definitions";
 import ThemeToggler from "../theme/ThemeToggler";
 import NextLink from "next/link";
 import MobileNavbar from "./MobileNavbar";
-import React, { createRef, useMemo, useRef } from "react";
+import { createRef, useEffect, useMemo, useRef } from "react";
 import { getColor } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 export default function Navbar() {
 	const theme = useTheme();
+	const router = useRouter();
 	const locations: NavigationProps[] = useMemo(
 		() => [
 			{ href: "/", name: "Home", icon: <HouseRounded />, ref: createRef() },
@@ -28,9 +29,11 @@ export default function Navbar() {
 	);
 	const underlineRef = useRef(null);
 	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-	locations.forEach(element => {
-		element.ref = createRef();
-	});
+	
+	useEffect(() => {
+		for (const { href } of locations) router.prefetch(href);
+	}, [locations, router]);
+
 	const pathname = usePathname();
 	useGSAP(() => {
 		if (!isDesktop) return;
@@ -67,7 +70,7 @@ export default function Navbar() {
 						inset: 0,
 						opacity: 0.4,
 						zIndex: -1,
-						backgroundColor: theme.palette.neutral.softBg,
+						backgroundColor: theme.vars.palette.neutral.softBg,
 						borderRadius: "inherit",
 					},
 				})}>
@@ -93,7 +96,7 @@ export default function Navbar() {
 					sx={theme => ({
 						position: "absolute",
 						height: "4px",
-						transition: 'background-color 250ms ease, outline 250ms ease',
+						transition: "background-color 250ms ease, outline 250ms ease",
 						borderRadius: "1.5rem",
 						backgroundColor: getColor(pathname, theme).solidBg,
 						boxShadow: `0px 0px 8px ${getColor(pathname, theme).solidActiveBg}`,

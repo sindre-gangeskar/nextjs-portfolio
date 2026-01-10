@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Input, Typography, Button, Textarea, Card, CardContent, Box } from "@mui/joy";
+import { Stack, Input, Typography, Button, Textarea, Card, CardContent, Box, useTheme } from "@mui/joy";
 
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -12,7 +12,8 @@ import { useActionState, useEffect, useState } from "react";
 import { sendEmail } from "@/app/actions";
 export default function ContactForm() {
 	const [state, dispatch, isPending] = useActionState(sendEmail, null);
-	const [countdown, setCountdown] = useState(0);
+	const [ countdown, setCountdown ] = useState(0);
+	const theme = useTheme();
 	useGSAP(() => {
 		if (state) {
 			gsap.set(".form-message", { opacity: 0, fontSize: "1.2rem" });
@@ -43,7 +44,7 @@ export default function ContactForm() {
 								email
 							</ColoredTypography>
 						</Typography>
-						<MailRounded sx={theme => ({ fontSize: "2rem", color: theme.palette.text["secondary"] })} />
+						<MailRounded sx={{ fontSize: "2rem", color: theme.vars.palette.text.secondary }} />
 					</Box>
 					<Stack id="contact-form" component={"form"} action={dispatch} gap={2} sx={{ display: "flex", flex: 1, flexDirection: "column", "input, textarea": { padding: 1.5 } }}>
 						<Input variant="soft" startDecorator={<Person2Rounded />} sx={{}} className="form-input" name="name" placeholder="Your name" required autoComplete="name"></Input>
