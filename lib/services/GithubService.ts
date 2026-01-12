@@ -27,7 +27,7 @@ export default class GithubService {
 	static getAllRepos = unstable_cache(async () => {
 		try {
 			const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-			const repoNames: string[] = [ "ludonium", "express-ts-generate", "shadps4-alchemist", "docker-simple-app", "extractqr", "python-flask-basic", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
+			const repoNames: string[] = [ "ludonium", "express-ts-generate", "shadps4-alchemist", "docker-simple-app", "extractqr", "flask-api", "python-flask-basic", "steam-backlogify", "nuxtjs-database", "nextjs-portfolio", "exam-project", "semester-ca", "candy-log" ];
 
 			const repos = await Promise.all(repoNames.map(repo => octokit.request('GET /repos/{owner}/{repo}', { owner: 'sindre-gangeskar', repo }).then(repo => repo.data))).catch(() => []);
 			const formattedRepos = formatRepos(repos);
