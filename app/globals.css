@@ -1,6 +1,7 @@
 html, body {
   background-color: var(--joy-palette-background-body);
   transition: 200ms ease;
+  overflow-x: hidden;
 }
 
 body {

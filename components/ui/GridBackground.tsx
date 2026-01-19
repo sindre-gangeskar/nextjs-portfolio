@@ -1,5 +1,5 @@
 "use client";
-import { Stack } from "@mui/joy";
+import { Box } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -7,21 +7,23 @@ import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { usePathname } from "next/navigation";
 import { getBackgroundColor } from "@/lib/utils";
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
+	const pathname = usePathname();
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-		gsap.to("#profile-grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 }});
+		requestAnimationFrame(() => {
+			gsap.to("#grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 } });
+		});
 	}, []);
-	const pathname = usePathname();
 
 	return (
-		<Stack
-			id={"profile-grid"}
+		<Box
+			id={"grid"}
 			sx={theme => ({
 				width: `1500px`,
-				height: `100%`,
+				height: `100vh`,
+				transform: "translate(-50%, -50%)",
 				left: "50%",
 				top: "50%",
-				transform: "translate(-50%, -50%)",
 				position: "fixed",
 				zIndex: 0,
 				overflow: "hidden",
@@ -34,10 +36,11 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 					content: '""',
 					display: "block",
 					inset: 0,
+					overflow: "hidden",
 					width: "100%",
 					height: "100%",
 					position: "absolute",
-					transition: '850ms ease',
+					transition: "850ms ease",
 					zIndex: -1,
 					maskRepeat: "repeat",
 					maskSize: `${gridSize}px ${gridSize}px`,
@@ -49,7 +52,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 						linear-gradient(to top, white, transparent ${thickness}px)`,
 					background: getBackgroundColor(pathname, theme).solidBg,
 					mixBlendMode: "saturate",
-				}
-			})}></Stack>
+				},
+			})}></Box>
 	);
 }

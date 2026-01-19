@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Typography } from "@mui/joy";
+import { Box, Stack, Typography } from "@mui/joy";
 import Project from "@/components/projects/Project";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import gsap from "gsap";
@@ -11,7 +11,7 @@ import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 export default function ProjectsPage() {
 	const { data, isLoading } = useAllProjects();
 	const baseSx: SxProps = {
-		height: { xs: "150px", md: "125px" },
+		height: { xs: "200px", md: "150px" },
 	};
 
 	useGSAP(() => {
@@ -23,12 +23,10 @@ export default function ProjectsPage() {
 	}, [data]);
 
 	return (
-		<>
-			<Stack mt={10}>
-				<Typography level="h1">
-					Explore <ColoredTypography level="h1">Projects</ColoredTypography>
-				</Typography>
-			</Stack>
+		<Box component={"section"}>
+			<Typography level="h1" mt={10}>
+				Explore <ColoredTypography level="h1">Projects</ColoredTypography>
+			</Typography>
 			<Stack gap={2} my={5}>
 				{isLoading && Array.from({ length: 4 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
 				{!isLoading &&
@@ -38,6 +36,6 @@ export default function ProjectsPage() {
 						return <Project className="project" key={repo.name} repo={repo} sx={baseSx} color="neutral" variant={"outlined"}></Project>;
 					})}
 			</Stack>
-		</>
+		</Box>
 	);
 }
