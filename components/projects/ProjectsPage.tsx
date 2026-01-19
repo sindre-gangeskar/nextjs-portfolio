@@ -17,8 +17,8 @@ export default function ProjectsPage() {
 	useGSAP(() => {
 		if (data && data.length > 0) {
 			const tl = gsap.timeline();
-			gsap.set(".project", { transform: "translateX(150px)", opacity: 0, filter: "blur(16px)" });
-			tl.to(".project", { transform: "translateX(0)", duration: 0.8, stagger: 0.08, opacity: 1, ease: "power3.out", filter: "blur(0px)" });
+			gsap.set(".project", { opacity: 0, filter: "blur(16px)" });
+			tl.to(".project", { duration: 0.8, stagger: 0.08, opacity: 1, ease: "power3.out", filter: "blur(0px)" });
 		}
 	}, [data]);
 
@@ -28,7 +28,7 @@ export default function ProjectsPage() {
 				Explore <ColoredTypography level="h1">Projects</ColoredTypography>
 			</Typography>
 			<Stack gap={2} my={5}>
-				{isLoading && Array.from({ length: 4 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
+				{isLoading && Array.from({ length: 6 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
 				{!isLoading &&
 					data &&
 					data.length > 0 &&
