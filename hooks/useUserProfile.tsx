@@ -2,6 +2,7 @@
 import { ProfileProps } from "@/lib/definitions";
 import useSWR from "swr";
 const fetcher = (url: string) => fetch(url).then(res => res.json());
+
 export default function useUserProfile() {
 	const { data, error, isLoading } = useSWR<{ userData: ProfileProps }>("/api/github/home", fetcher);
 	return { data: data?.userData, error, isLoading };
