@@ -40,7 +40,7 @@ export default function Work({ style, chipVariants }: { [key: string]: {}, chipV
 								</Chip>
 							</Stack>
 							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
-								<Typography level="body-sm">
+								<Typography level="body-sm" sx={{lineHeight: '1.5rem'}}>
 									Developed a full-stack application utilizing{" "}
 									<ColoredTypography color="primary" level="body-sm" bold={true}>
 										Express.js

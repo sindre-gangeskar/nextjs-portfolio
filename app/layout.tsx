@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Nunito_Sans } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
@@ -8,8 +8,8 @@ import { Container } from "@mui/joy";
 import GridBackground from "@/components/ui/GridBackground";
 import BackToTopButton from "@/components/ui/BackToTopButton";
 
-const roboto = Roboto({
-	variable: "--font-roboto",
+const nunito = Nunito_Sans({
+	variable: "--font-nunito",
 	subsets: ["latin"],
 });
 
@@ -44,7 +44,7 @@ export default function RootLayout({
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
-			<body className={`${roboto.className}`}>
+			<body className={`${nunito.className}`}>
 				<ThemeProvider>
 					<Navbar />
 					<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative" }}>

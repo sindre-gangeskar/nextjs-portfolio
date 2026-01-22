@@ -11,6 +11,7 @@ export default function Skill({
 	description = "Placeholder description",
 	url,
 	placement = "bottom",
+	className,
 }: {
 	color: ColorPaletteProp;
 	icon: IconType;
@@ -19,18 +20,20 @@ export default function Skill({
 	url?: string;
 	description?: string;
 	placement?: TooltipPlacementType;
+	className?: string;
 }) {
 	const [hovered, setIsHovered] = useState(false);
 
 	return (
 		<Tooltip
+			className={className}
 			title={
-				<Stack component={"div"} direction={"column"} p={1} gap={2} sx={{ maxWidth: "200px", textAlign: 'center' }}>
-					<Stack component={"span"} >
-						<Typography color={color} level="body-md" fontWeight={"bold"} sx={{ display: "flex", justifyContent: "center", flexDirection: "row", width: "100%", px: 1, alignItems: "center"}}>
+				<Stack component={"div"} direction={"column"} p={1} gap={2} sx={{ maxWidth: "200px", textAlign: "center" }}>
+					<Stack component={"span"}>
+						<Typography color={color} level="body-md" fontWeight={"bold"} sx={{ display: "flex", justifyContent: "center", flexDirection: "row", width: "100%", px: 1, alignItems: "center" }}>
 							{title}
 						</Typography>
-						<Box sx={{ width: "50%", height: "4rem", m: 'auto' }} component={icon}></Box>
+						<Box sx={{ width: "50%", height: "4rem", m: "auto" }} component={icon}></Box>
 					</Stack>
 					<Stack>{description}</Stack>
 				</Stack>

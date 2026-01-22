@@ -34,8 +34,8 @@ export default function ContactForm() {
 
 	return (
 		<Stack mb={10} gap={2}>
-			<Card variant="plain" color="primary" sx={{ mt: 5, width: "100%", mx: "auto", maxWidth: "500px", background: "none" }}>
-				<CardContent>
+			<Card variant="outlined" color="neutral" sx={{ mt: 5, width: "100%", mx: "auto", maxWidth: "500px", background: "none", backdropFilter: 'blur(8px)' }}>
+				<CardContent sx={{p: 2}}>
 					<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 						<Typography level="h1" sx={{ alignItems: "center", alignContent: "center" }}>
 							{"Send me an "}

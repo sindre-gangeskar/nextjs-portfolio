@@ -29,7 +29,7 @@ export default function Hero() {
 		profileTl.set("#profile > *", { opacity: 0, x: -150 });
 		profileTl.to("#profile > *", { opacity: 1, x: 0, duration: 1.2, stagger: 0.5, ease: "power3.out", delay: 0.5 });
 
-		gsap.set("#description-stack > *", { opacity: 0, filter: "blur(12px)" });
+		gsap.set("#description-stack > *", { opacity: 0, filter: "blur(6px)" });
 		descriptionTl.to("#description-stack > *", {
 			delay: 0.2,
 			duration: 0.8,
@@ -39,15 +39,14 @@ export default function Hero() {
 			ease: "power3.out",
 		});
 
-		traitsTl.set("#traits .trait", { opacity: 0, transform: "translateY(-30px)", zIndex: -1 });
-		traitsTl.set("#traits", { opacity: 0 });
+		traitsTl.set("#traits .trait", { opacity: 0, y: -10, zIndex: -1 });
 		traitsTl.to("#traits", {
 			delay: 0.5,
 			opacity: 1,
 			duration: 0.5,
 		});
-		traitsTl.to("#traits .trait", {
-			transform: "translateY(0)",
+		traitsTl.to(".trait", {
+			y: 0,
 			ease: "elastic.out",
 			duration: 1.2,
 			stagger: 0.2,
@@ -73,7 +72,7 @@ export default function Hero() {
 				position: "relative",
 				py: 2,
 			}}>
-			<Stack direction={"row"} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+			<Stack direction={"row"} sx={{ flexDirection: { xs: "column", md: "row" }, "& p": {lineHeight: '1.5rem', px: 2} }}>
 				<Stack id="profile" sx={{ width: "100%", minWidth: "50%", justifyContent: "space-evenly", textAlign: { xs: "center", md: "start" } }}>
 					<Box id="avatar" sx={{ display: "flex", justifyContent: "center" }}>
 						{loading ? <ProfileAvatarSkeleton /> : <ProfileAvatar id="profile-image" size={325} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" } }} />}

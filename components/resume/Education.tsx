@@ -3,7 +3,7 @@ import ColoredTypography from "@/components/ui/ColoredTypography";
 import CustomAccordion from "@/components/ui/CustomAccordion";
 import { ChipProps } from "@mui/joy";
 
-export default function Education({ style, chipVariants }: { [key: string]: {}, chipVariants: ChipProps }) {
+export default function Education({ style, chipVariants }: { [key: string]: {}; chipVariants: ChipProps }) {
 	return (
 		<Stack sx={{ mt: 5 }}>
 			<Typography level="h1">
@@ -22,7 +22,7 @@ export default function Education({ style, chipVariants }: { [key: string]: {}, 
 							subtitle="Back-end Development 1 [2023-2025]"
 							grade="A"
 							avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E">
-							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
+							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0} sx={{ "& > p": { lineHeight: "1.5rem" } }}>
 								<Stack {...style}>
 									<Chip {...chipVariants}>JavaScript</Chip>
 									<Chip {...chipVariants}>Node.js</Chip>

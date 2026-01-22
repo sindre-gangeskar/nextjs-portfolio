@@ -38,7 +38,7 @@ export default function Resume() {
 						<Typography level="title-md">Backend & Full-Stack Developer</Typography>
 					</Stack>
 					<CardContent>
-						<Typography level="body-sm">
+						<Typography level="body-sm" lineHeight={"1.5rem"}>
 							Passionate backend developer with <strong>full-stack</strong> capabilities, and expertise in building <strong>robust, scalable RESTful</strong> applications with modern front-end frameworks. I
 							specialize in developing <strong>efficient</strong> APIs, managing databases and implementing robust authentication methods. I prioritize clean, <strong>maintainable code</strong> and comprehensive{" "}
 							<strong>API documentation</strong>. Eager to apply my skills in challenging and dynamic environments.
