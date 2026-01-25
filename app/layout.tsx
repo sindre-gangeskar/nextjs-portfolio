@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto, Nunito_Sans } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
 import ThemeProvider from "@/components/theme/ThemeProvider";
