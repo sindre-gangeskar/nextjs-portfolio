@@ -20,7 +20,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
 	return (
 		<AppRouterCacheProvider options={{ key: "mui" }}>
-			<CssVarsProvider disableTransitionOnChange={false} defaultColorScheme={"dark"} theme={theme} colorSchemeStorageKey="joy-mode">
+			<CssVarsProvider disableNestedContext defaultMode="dark" theme={theme} colorSchemeStorageKey="joy-mode">
 				{children}
 			</CssVarsProvider>
 		</AppRouterCacheProvider>
