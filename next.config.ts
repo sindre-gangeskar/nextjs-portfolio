@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "avatars.githubusercontent.com",
-			}
+			},
 		],
 	},
 	allowedDevOrigins: [ 'local-origin.dev', '*.local-origin.dev' ],

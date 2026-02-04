@@ -9,10 +9,11 @@ import { NavigationProps } from "@/lib/definitions";
 import ThemeToggler from "../theme/ThemeToggler";
 import NextLink from "next/link";
 import MobileNavbar from "./MobileNavbar";
-import { createRef, useEffect, useMemo, useRef } from "react";
+import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import { getColor } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import ToggleAnalyticsModalButton from "./ToggleAnalyticsModalButton";
 
 export default function Navbar() {
 	const theme = useTheme();
@@ -25,11 +26,11 @@ export default function Navbar() {
 			{ href: "/projects", name: "Projects", icon: <Folder />, ref: createRef() },
 			{ href: "/experiments", name: "Experiments", icon: <AiFillExperiment />, ref: createRef() },
 		],
-		[]
+		[],
 	);
 	const underlineRef = useRef(null);
 	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-	
+
 	useEffect(() => {
 		for (const { href } of locations) router.prefetch(href);
 	}, [locations, router]);
@@ -89,7 +90,10 @@ export default function Navbar() {
 						</Button>
 					))}
 				</Stack>
-				<ThemeToggler />
+				<Stack direction={'row'} gap={0.5}>
+					<ToggleAnalyticsModalButton />
+					<ThemeToggler />
+				</Stack>
 				<Box
 					ref={underlineRef}
 					id="underline"

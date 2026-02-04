@@ -7,6 +7,11 @@ import ThemeProvider from "@/components/theme/ThemeProvider";
 import { Container } from "@mui/joy";
 import GridBackground from "@/components/ui/GridBackground";
 import BackToTopButton from "@/components/ui/BackToTopButton";
+import AnalyticsConsent from "@/components/ui/AnalyticsConsent";
+import { AnalyticsProvider } from "@/context/Analytics";
+import { AnalyticsModalProvider } from "@/context/AnalyticsModal";
+import AnalyticsModal from "@/components/ui/AnalyticsModal";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const nunito = Nunito_Sans({
 	variable: "--font-nunito",
@@ -45,14 +50,21 @@ export default function RootLayout({
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${nunito.className}`}>
-				<ThemeProvider>
-					<Navbar />
-					<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative" }}>
-						{children}
-						<BackToTopButton />
-					</Container>
-					<GridBackground gridSize={25} />
-				</ThemeProvider>
+				<AnalyticsProvider>
+					<AnalyticsModalProvider>
+						<ThemeProvider>
+							<AnalyticsModal />
+							<Navbar />
+							<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative", overflowX: "hidden" }}>
+								{children}
+								<BackToTopButton />
+								<AnalyticsConsent />
+							</Container>
+							<GridBackground gridSize={25} />
+						</ThemeProvider>
+					</AnalyticsModalProvider>
+					<GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+				</AnalyticsProvider>
 			</body>
 		</html>
 	);

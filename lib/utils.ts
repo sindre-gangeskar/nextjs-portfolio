@@ -30,3 +30,13 @@ export function getBackgroundColor(pathname: string, theme: Theme) {
 	if (pathname.includes('experiments')) return theme.vars.palette.neutral;
 	else return theme.vars.palette.primary;
 }
+
+export function getConsentCookie(): string | null {
+	const cookies = document.cookie.split('; ').map(cookie => cookie.trim());
+	let analyticsCookie = cookies.find(cookie => cookie.startsWith("analytics_consent="));
+	return analyticsCookie ?? null;
+}
+
+export function setAnalyticsCookie(value: "true" | "false"): void {
+	document.cookie = `analytics_consent=${value}; path=/; max-age=${process.env.NEXT_PUBLIC_ANALYTICS_CONSENT_COOKIE_AGE}`
+}
