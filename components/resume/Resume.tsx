@@ -2,10 +2,11 @@
 import { Stack, Container, Typography, StackProps, List, ListItem, Button, ChipProps, Card, CardContent, CardActions } from "@mui/joy";
 import Work from "./Work";
 import Education from "./Education";
-import { EmailRounded, DownloadRounded, LocationCityRounded } from "@mui/icons-material";
+import { EmailRounded, LocationCityRounded } from "@mui/icons-material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import LinkedInButton from "../ui/LinkedInButton";
+import { FaFilePdf } from "react-icons/fa6";
 export default function Resume() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
@@ -32,7 +33,7 @@ export default function Resume() {
 	return (
 		<Container component={"main"} sx={{ p: { xs: 2, sm: 5 } }}>
 			<Stack component={"section"} sx={{ mx: 0 }}>
-				<Card sx={{ mt: 1 }}  variant="soft" color="neutral">
+				<Card sx={{ mt: 1 }} variant="soft" color="neutral">
 					<Stack direction={"column"}>
 						<Typography level="h1">Sindre Gangeskar</Typography>
 						<Typography level="title-md">Backend & Full-Stack Developer</Typography>
@@ -59,8 +60,16 @@ export default function Resume() {
 										contact@sindregangeskar.dev
 									</Button>
 									<LinkedInButton />
-									<Button size="sm" variant="soft" color="danger" href="/assets/Sindre Gangeskar - Resumé.pdf" download={"Sindre Gangeskar - Resumé"} component={"a"} startDecorator={<DownloadRounded />}>
-										<Typography>Download Resumé</Typography>
+									<Button
+										size="sm"
+										variant="soft"
+										color="danger"
+										href={encodeURI("/assets/Sindre Gangeskar - Resumé.pdf")}
+										component={"a"}
+										target="_blank"
+										endDecorator={<FaFilePdf size={20} />}
+										rel="noopener noreferrer">
+										<Typography>View Resumé</Typography>
 									</Button>
 								</Stack>
 							</ListItem>
