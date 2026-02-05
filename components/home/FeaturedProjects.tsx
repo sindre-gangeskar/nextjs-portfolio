@@ -9,7 +9,7 @@ import ColoredTypography from "../ui/ColoredTypography";
 
 export default function FeaturedProjects() {
 	const { data, isLoading } = useFeaturedProjects();
-	return (
+	return ( 
 		<Stack component={'section'} mt={15}>
 			<Typography level="h1" mb={{ xs: 3, md: 3 }} mx={5} textAlign={{ xs: "center", md: "end" }}>
 				Featured

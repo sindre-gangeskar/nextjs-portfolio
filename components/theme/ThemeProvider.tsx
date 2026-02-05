@@ -1,7 +1,6 @@
 "use client";
 import { CssVarsProvider } from "@mui/joy";
 import { extendTheme } from "@mui/joy/styles";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const theme = extendTheme({
 		colorSchemes: {
@@ -19,10 +18,8 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 	});
 
 	return (
-		<AppRouterCacheProvider options={{ key: "mui" }}>
-			<CssVarsProvider disableNestedContext defaultMode="dark" theme={theme} colorSchemeStorageKey="joy-mode">
-				{children}
-			</CssVarsProvider>
-		</AppRouterCacheProvider>
+		<CssVarsProvider disableNestedContext defaultMode="dark" theme={theme} colorSchemeStorageKey="joy-mode">
+			{children}
+		</CssVarsProvider>
 	);
 }

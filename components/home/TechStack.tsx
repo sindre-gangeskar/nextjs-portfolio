@@ -45,11 +45,21 @@ export default function TechStack() {
 			</Typography>
 			<Stack>
 				<Stack direction={"row"} ml={{ md: "auto" }} gap={2} mt={2} p={0.5} sx={{ display: "flex", flexWrap: "wrap", justifyContent: { xs: "center", md: "end" } }}>
-					<Chip color="neutral">Programming Language</Chip>
-					<Chip color="warning">Tool / Application</Chip>
-					<Chip color="success">Back-end / Library</Chip>
-					<Chip color="primary">Front-end / Full-stack</Chip>
-					<Chip color="danger">Platform / Build Tool</Chip>
+					<Chip slotProps={{ label: { id: "programming-language" } }} color="neutral">
+						Programming Language
+					</Chip>
+					<Chip slotProps={{ label: { id: "tool-application" } }} color="warning">
+						Tool / Application
+					</Chip>
+					<Chip slotProps={{ label: { id: "backend-library" } }} color="success">
+						Back-end / Library
+					</Chip>
+					<Chip slotProps={{ label: { id: "frontend-fullstack" } }} color="primary">
+						Front-end / Full-stack
+					</Chip>
+					<Chip slotProps={{ label: { id: "platform-buildtool" } }} color="danger">
+						Platform / Build Tool
+					</Chip>
 				</Stack>
 			</Stack>
 			<Stack id="skill-stack" direction={"row"} mt={5} gap={2} sx={{ display: "flex", justifyContent: "center", justifyItems: "center", flexWrap: "wrap", maxWidth: "md", mx: "auto" }}>

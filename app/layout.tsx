@@ -1,12 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
-import Navbar from "@/components/ui/Navbar";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
-import ThemeProvider from "@/components/theme/ThemeProvider";
-import { Container } from "@mui/joy";
-import GridBackground from "@/components/ui/GridBackground";
-import BackToTopButton from "@/components/ui/BackToTopButton";
+import App from "./app";
 
 const nunito = Nunito_Sans({
 	variable: "--font-nunito",
@@ -45,14 +41,7 @@ export default function RootLayout({
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${nunito.className}`}>
-				<ThemeProvider>
-					<Navbar />
-					<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative" }}>
-						{children}
-						<BackToTopButton />
-					</Container>
-					<GridBackground gridSize={25} />
-				</ThemeProvider>
+					<App children={children} />
 			</body>
 		</html>
 	);

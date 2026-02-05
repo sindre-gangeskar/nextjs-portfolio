@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { Card, Tooltip, Box, Typography, Stack, ColorPaletteProp } from "@mui/joy";
 import { IconType } from "react-icons";

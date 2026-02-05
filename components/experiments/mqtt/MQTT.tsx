@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import GoBackButton from "@/components/ui/GoBackButton";
 
-export default function MQTTPage() {
+export default function MQTT() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
 		tl.set("#description, #message-container, #go-back-btn, #mqtt-message", {

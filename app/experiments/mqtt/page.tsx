@@ -1,4 +1,4 @@
-import MQTTPage from "@/components/experiments/mqtt/MQTTPage";
+import MQTT from "@/components/experiments/mqtt/MQTT";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 	description: 'Test a small MQTT expirment'
 }
 export default function Page() {
-	return <MQTTPage />;
+	return <MQTT />;
 }

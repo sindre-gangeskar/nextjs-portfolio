@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import Page from "@/components/resume/Page";
+import Resume from "@/components/resume/Resume";
 
 export const metadata: Metadata = {
 	title: "Resumé",
 };
 export default function resume() {
-	return <Page />;
+	return <Resume />;
 }

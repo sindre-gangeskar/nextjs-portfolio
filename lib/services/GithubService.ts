@@ -1,4 +1,4 @@
-import { Octokit } from "octokit";
+import { Octokit } from 'octokit';
 import { unstable_cache } from 'next/cache';
 import { RepoType } from "../definitions";
 
@@ -31,10 +31,7 @@ export default class GithubService {
 			"candy-log" ];
 
 		const combined = Array.from(new Set([ ...featuredRepos, ...allRepos ]))
-		const repos = await Promise.all(combined.map(repo => octokit.request('GET /repos/{owner}/{repo}', { owner: 'sindre-gangeskar', repo }).then(repo => repo.data))).catch((err) => {
-			console.error(err);
-			return []
-		});
+		const repos = await octokit.request('GET /users/{username}/repos', { per_page: 100, username: 'sindre-gangeskar', type: 'owner' }).then(data => data.data.filter(repo => combined.includes(repo.name)));
 
 		const featured = formatRepos(repos)?.filter(repo => featuredRepos.includes(repo.original_name));
 		const all = formatRepos(repos)?.filter(repo => allRepos.includes(repo.original_name));

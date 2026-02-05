@@ -5,7 +5,7 @@ import ExperimentCard from "./ExperimentCard";
 import GridContainer from "../ui/GridContainer";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-export default function ExperimentsPage() {
+export default function Experiments() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
 		tl.set("#experiments-container > *", { opacity: 0, x: 150, filter: 'blur(16px)' });

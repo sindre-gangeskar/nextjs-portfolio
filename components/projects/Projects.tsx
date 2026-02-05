@@ -8,7 +8,7 @@ import useAllProjects from "@/hooks/useAllProjects";
 import { SxProps } from "@mui/material";
 import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 
-export default function ProjectsPage() {
+export default function Projects() {
 	const { data, isLoading } = useAllProjects();
 	const baseSx: SxProps = {
 		height: { xs: "200px", md: "150px" },
