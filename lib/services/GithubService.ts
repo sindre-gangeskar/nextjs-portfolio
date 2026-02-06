@@ -35,7 +35,6 @@ export default class GithubService {
 		const { html_url, avatar_url } = repos[ 0 ].owner;
 		const featured = formatRepos(repos)?.filter(repo => featuredRepos.includes(repo.original_name));
 		const all = formatRepos(repos)?.filter(repo => allRepos.includes(repo.original_name));
-		console.log(repos[ 0 ].owner);
 		return { featured, all, owner: { html_url, avatar_url } };
 	}, [ "github-data" ], { revalidate: revalidateAfter, tags: [ "github-data" ] })
 }
