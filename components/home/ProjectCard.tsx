@@ -1,12 +1,12 @@
 "use client";
-import { Card, Typography, Button, Box, CardActions, CardContent, CardOverflow, Stack, AspectRatio } from "@mui/joy";
+import { Card, Typography, Button, Box, CardActions, CardContent, CardOverflow, Stack, AspectRatio, Chip } from "@mui/joy";
 import { GitHub, StarRounded } from "@mui/icons-material";
 import { FaGlobe } from "react-icons/fa6";
 import { ProjectCardProps } from "@/lib/definitions";
 import { useGSAP } from "@gsap/react";
 import { useState } from "react";
 import gsap from "gsap";
-export default function ProjectCard({ title = "Placeholder title", description = "Placeholder description", stars, url, color = "neutral", isRepo = false, homepage, img }: ProjectCardProps) {
+export default function ProjectCard({ title = "Placeholder title", description = "Placeholder description", stars, url, color = "neutral", isRepo = false, homepage, img, topics }: ProjectCardProps) {
 	const [thumbnailVisible, setThumbnailVisible] = useState(false);
 	const thumbnailId = title.replaceAll(" ", "-") + "-preview";
 	useGSAP(() => {
@@ -31,7 +31,7 @@ export default function ProjectCard({ title = "Placeholder title", description =
 					position: "relative",
 					textAlign: "start",
 					width: 350,
-					height: 350,
+					height: 425,
 					transition: "250ms ease",
 					zIndex: 1,
 					"&:hover": {
@@ -58,8 +58,8 @@ export default function ProjectCard({ title = "Placeholder title", description =
 				}}>
 				{img && (
 					<CardOverflow sx={{ top: 0, left: 0, p: 0, overflow: "hidden", pointerEvents: "none" }}>
-						<AspectRatio ratio={2}>
-							<Box id={`${thumbnailId}`} component={"img"} src={img} loading="lazy" alt="" width={"100%"} sx={{ p: 0, m: 0, filter: "blur(4px)" }}></Box>
+						<AspectRatio ratio={1.8}>
+							<Box id={`${thumbnailId}`} component={"img"} src={img} loading="lazy" alt="" sx={{ p: 0, m: 0, filter: "blur(4px)", height: '100%', objectFit: "scale-down" }}></Box>
 						</AspectRatio>
 					</CardOverflow>
 				)}
@@ -72,9 +72,17 @@ export default function ProjectCard({ title = "Placeholder title", description =
 							{stars}
 						</Typography>
 					</Box>
-					<Typography level="body-sm" sx={{ textOverflow: "ellipsis", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+					<Typography level="body-sm" sx={{ textOverflow: "ellipsis", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", p: 0 }}>
 						{description}
 					</Typography>
+					<Box sx={{ display: "flex", flexDirection: "row", gap: 0.3, flexFlow: "row", flexWrap: "wrap" }}>
+						{topics &&
+							topics.map(t => (
+								<Chip size="sm" key={t} slotProps={{ label: { id: t } }}>
+									{t}
+								</Chip>
+							))}
+					</Box>
 					<CardActions>
 						{homepage && (
 							<Button variant="solid" color="primary" component="a" href={homepage} target="_blank" endDecorator={<FaGlobe />}>

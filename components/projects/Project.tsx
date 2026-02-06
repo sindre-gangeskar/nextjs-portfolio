@@ -1,6 +1,6 @@
 import { capitalizeString } from "@/lib/utils";
 import { GitHub, StarRounded } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, Box, CardContent, useTheme } from "@mui/joy";
+import { Stack, Typography, Card, Button, Box, CardContent, useTheme, Chip } from "@mui/joy";
 import { RepoType } from "@/lib/definitions";
 import { SxProps } from "@mui/material";
 import { VariantProp, ColorPaletteProp } from "@mui/joy";
@@ -13,10 +13,20 @@ export default function Project({ repo, id, className, sx, variant, color }: { r
 	return (
 		<Card id={id} className={className} variant={variant} color={color} invertedColors sx={{ ...sx }}>
 			<Typography level="title-lg">{capitalizeString(repo.name)}</Typography>
+			{repo.topics && (
+				<Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 1, p: 0 }}>
+					{repo.topics &&
+						repo.topics.map(t => (
+							<Chip key={t} slotProps={{ label: { id: t } }}>
+								{t}
+							</Chip>
+						))}
+				</Box>
+			)}
 			<CardContent>
 				<Stack sx={{ height: "100%", display: "flex", justifyContent: "space-between", flexDirection: "column" }}>
 					<Typography level="body-sm">{repo.description}</Typography>
-					<Stack direction={"column"} sx={{ backgroundColor: "", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+					<Stack direction={"column"} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
 						{typeof repo.stargazers_count === "number" && (
 							<Typography color={repo.stargazers_count > 0 ? "warning" : "neutral"} startDecorator={<StarRounded />}>
 								{repo.stargazers_count}

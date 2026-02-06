@@ -2,7 +2,7 @@ import { AspectRatio, Card, CardContent, CardOverflow, Skeleton, Stack } from "@
 
 export default function TileSkeleton() {
 	return (
-		<Card sx={{ position: "relative", textAlign: "start", width: 350, height: 350, minHeight: { xs: "fit-content" }, borderRadius: "0.25rem", zIndex: 1 }}>
+		<Card sx={{ position: "relative", textAlign: "start", width: 350, height: 425, minHeight: { xs: "fit-content" }, borderRadius: "0.25rem", zIndex: 1 }}>
 			<CardOverflow>
 				<AspectRatio ratio={2}>
 					<Skeleton variant="rectangular" height={100}></Skeleton>

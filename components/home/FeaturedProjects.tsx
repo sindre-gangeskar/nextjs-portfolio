@@ -6,11 +6,15 @@ import { ArrowForwardRounded } from "@mui/icons-material";
 import useFeaturedProjects from "@/hooks/useFeaturedProjects";
 import FeaturedProjectsSkeleton from "./skeletons/FeaturedProjectsSkeleton";
 import ColoredTypography from "../ui/ColoredTypography";
+import { useEffect } from "react";
 
 export default function FeaturedProjects() {
 	const { data, isLoading } = useFeaturedProjects();
-	return ( 
-		<Stack component={'section'} mt={15}>
+	useEffect(() => {
+		if (data) console.log(data[1]);
+	}, [data]);
+	return (
+		<Stack component={"section"} mt={15}>
 			<Typography level="h1" mb={{ xs: 3, md: 3 }} mx={5} textAlign={{ xs: "center", md: "end" }}>
 				Featured
 				<ColoredTypography color="primary" level="h1">
@@ -23,7 +27,17 @@ export default function FeaturedProjects() {
 				{!isLoading &&
 					data &&
 					data?.map(x => (
-						<ProjectCard img={x.img ?? null} homepage={x.homepage ?? ""} color="primary" title={x.name} description={x.description ?? ""} isRepo={true} url={x.html_url} stars={x.stargazers_count} key={x.name}></ProjectCard>
+						<ProjectCard
+							img={x.img ?? null}
+							topics={x.topics}
+							homepage={x.homepage ?? ""}
+							color="primary"
+							title={x.name}
+							description={x.description ?? ""}
+							isRepo={true}
+							url={x.html_url}
+							stars={x.stargazers_count}
+							key={x.name}></ProjectCard>
 					))}
 				{!isLoading && (
 					<Button

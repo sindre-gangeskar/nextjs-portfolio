@@ -35,6 +35,7 @@ export default class GithubService {
 		const { html_url, avatar_url } = repos[ 0 ].owner;
 		const featured = formatRepos(repos)?.filter(repo => featuredRepos.includes(repo.original_name));
 		const all = formatRepos(repos)?.filter(repo => allRepos.includes(repo.original_name));
+		console.log(featured);
 		return { featured, all, owner: { html_url, avatar_url } };
 	}, [ "github-data" ], { revalidate: revalidateAfter, tags: [ "github-data" ] })
 }
@@ -54,6 +55,7 @@ function formatRepos(arr: RepoType[]) {
 			forks_count: x.forks_count,
 			ownerImgURL: x.owner?.avatar_url,
 			watchers_count: x.watchers_count,
+			topics: x.topics ?? [],
 			...(x?.homepage ? { homepage: x.homepage } : null)
 		}))
 

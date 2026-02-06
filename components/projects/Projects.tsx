@@ -11,7 +11,7 @@ import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 export default function Projects() {
 	const { data, isLoading } = useAllProjects();
 	const baseSx: SxProps = {
-		height: { xs: "200px", md: "150px" },
+		height: { xs: "200px", md: "200px" },
 	};
 
 	useGSAP(() => {
