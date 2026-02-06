@@ -6,7 +6,7 @@ const revalidateAfter = Number(process.env.REVALIDATE_AFTER) || 60 * 60 * 3;
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 export default class GithubService {
-	static getRepos = unstable_cache(async () => {
+	static getGitHubData = unstable_cache(async () => {
 		const featuredRepos: string[] = [
 			"ludonium",
 			"nextjs-portfolio",
@@ -31,22 +31,13 @@ export default class GithubService {
 			"candy-log" ];
 
 		const combined = Array.from(new Set([ ...featuredRepos, ...allRepos ]))
-		const repos = await octokit.request('GET /users/{username}/repos', { per_page: 100, username: 'sindre-gangeskar', type: 'owner' }).then(data => data.data.filter(repo => combined.includes(repo.name)));
-
+		const repos = await octokit.request('GET /users/{username}/repos', { per_page: 100, username: 'sindre-gangeskar', type: 'owner', direction: 'asc' }).then(data => data.data.filter(repo => combined.includes(repo.name))) ?? [];
+		const { html_url, avatar_url } = repos[ 0 ].owner;
 		const featured = formatRepos(repos)?.filter(repo => featuredRepos.includes(repo.original_name));
 		const all = formatRepos(repos)?.filter(repo => allRepos.includes(repo.original_name));
-		return { featured, all };
-	}, [ "repositories" ], { revalidate: revalidateAfter, tags: [ "github-repositories" ] })
-
-	static getUserProfile = unstable_cache(async () => {
-		try {
-			const { data } = await octokit.request("GET /users/{username}", { username: "sindre-gangeskar" });
-			return data;
-		} catch (error) {
-			console.error(error);
-			throw error;
-		}
-	}, [ 'user-profile' ], { revalidate: revalidateAfter, tags: [ 'user-profile' ] })
+		console.log(repos[ 0 ].owner);
+		return { featured, all, owner: { html_url, avatar_url } };
+	}, [ "github-data" ], { revalidate: revalidateAfter, tags: [ "github-data" ] })
 }
 
 function formatRepos(arr: RepoType[]) {

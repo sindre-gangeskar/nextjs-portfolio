@@ -11,7 +11,6 @@ import Links from "./Links";
 
 export default function Hero() {
 	const { data, isLoading } = useUserProfile();
-
 	useGSAP(() => {
 		gsap.registerPlugin(TextPlugin);
 		const traitsTl = gsap.timeline();
@@ -65,7 +64,7 @@ export default function Hero() {
 					<Box id="avatar" sx={{ display: "flex", justifyContent: "center" }}>
 						{isLoading ?
 							<ProfileAvatarSkeleton />
-						:	<ProfileAvatar id="profile-image" size={325} src={data?.avatar_url ?? ""} sx={{ display: { xs: "none", md: "block" }, opacity: 0 }} />}
+						:	<ProfileAvatar id="profile-image" size={325} avatar_url={data?.avatar_url} sx={{ display: { xs: "none", md: "block" }, opacity: 0 }} />}
 					</Box>
 					<Typography level="h1" textAlign={"center"} sx={{ opacity: 0 }}>
 						I am <ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>

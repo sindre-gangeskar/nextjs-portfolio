@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(_: NextRequest): Promise<NextResponse> {
   try {
-    const [ { featured }, userData ] = await Promise.all([ GithubService.getRepos(), GithubService.getUserProfile() ])
-    return NextResponse.json({ repositories: featured, userData: userData }, { status: 200, headers: { 'Cache-Control': 'public, s-maxage=10800, max-age=0, stale-while-revalidate=60' } });
+    const  { featured, owner }  = await GithubService.getGitHubData()
+    return NextResponse.json({ repositories: featured, owner: owner }, { status: 200, headers: { 'Cache-Control': 'public, s-maxage=10800, max-age=0, stale-while-revalidate=60' } });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ repositories: [], userData: null }, { status: 500 });
