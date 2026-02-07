@@ -11,7 +11,7 @@ import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 export default function Projects() {
 	const { data, isLoading } = useAllProjects();
 	const baseSx: SxProps = {
-		height: { xs: "200px", md: "200px" },
+		height: { xs: "225px", md: "200px" },
 	};
 
 	useGSAP(() => {
@@ -23,7 +23,7 @@ export default function Projects() {
 	}, [data]);
 
 	return (
-		<Box component={"section"}>
+		<Box component={"section"} sx={{mb: 10}}>
 			<Typography level="h1" mt={10}>
 				Explore <ColoredTypography level="h1">Projects</ColoredTypography>
 			</Typography>

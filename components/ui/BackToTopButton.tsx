@@ -36,10 +36,8 @@ export default function BackToTopButton() {
 	}, [visible]);
 
 	return (
-	<Container maxWidth={"lg"} sx={{ position: "fixed", bottom: 0, zIndex: 10, display: "flex", justifyContent: "end" }}>
-		<Button id={"scrollTopBtn"} onClick={handleScrollToTop} sx={{ m: 2, scale: 0, opacity: 0, pointerEvents: "none" }}>
+		<Button id={"scrollTopBtn"} onClick={handleScrollToTop} sx={{ m: 2, scale: 0, opacity: 0, pointerEvents: "none", position: 'fixed', bottom: 0, zIndex: 10, right: 0 }}>
 			<TiArrowUp size={25} />
 		</Button>
-	</Container>
 );
 }
