@@ -6,13 +6,10 @@ import { ArrowForwardRounded } from "@mui/icons-material";
 import useFeaturedProjects from "@/hooks/useFeaturedProjects";
 import FeaturedProjectsSkeleton from "./skeletons/FeaturedProjectsSkeleton";
 import ColoredTypography from "../ui/ColoredTypography";
-import { useEffect } from "react";
 
 export default function FeaturedProjects() {
 	const { data, isLoading } = useFeaturedProjects();
-	useEffect(() => {
-		if (data) console.log(data[1]);
-	}, [data]);
+
 	return (
 		<Stack component={"section"} mt={15}>
 			<Typography level="h1" mb={{ xs: 3, md: 3 }} mx={5} textAlign={{ xs: "center", md: "end" }}>
