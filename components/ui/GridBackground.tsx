@@ -2,17 +2,26 @@
 import { Box } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { usePathname } from "next/navigation";
 import { getBackgroundColor } from "@/lib/utils";
+
 export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
 	const pathname = usePathname();
 	useGSAP(() => {
-		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-		requestAnimationFrame(() => {
-			gsap.to("#grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 } });
-		});
+		let cancelled = false;
+		(async () => {
+			const [{ default: ScrollTrigger }, { default: ScrollToPlugin }] = await Promise.all([import("gsap/ScrollTrigger"), import("gsap/ScrollToPlugin")]);
+			if (cancelled) return;
+
+			gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+			requestAnimationFrame(() => {
+				gsap.to("#grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 } });
+			});
+		})();
+
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
 	return (
@@ -27,6 +36,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 				position: "fixed",
 				zIndex: 0,
 				overflow: "hidden",
+				pointerEvents: "none",
 				background: `linear-gradient(to right, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px), linear-gradient(to top, ${theme.vars.palette.neutral.outlinedColor}, transparent ${thickness}px)`,
 				backgroundSize: `${gridSize}px ${gridSize}px`,
 				backgroundRepeat: "repeat",
