@@ -1,4 +1,3 @@
-"use client"
 import TechStack from "./TechStack";
 import ContactForm from "./ContactForm";
 import Hero from "./Hero";
