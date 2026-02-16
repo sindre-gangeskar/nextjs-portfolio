@@ -1,4 +1,3 @@
-"use client"
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import Navbar from "@/components/ui/Navbar";
 import { Container } from "@mui/joy";

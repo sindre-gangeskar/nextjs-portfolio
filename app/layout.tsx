@@ -40,7 +40,7 @@ export default function RootLayout({
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
-			<body className={`${nunito.className}`}>
+			<body className={`${nunito.variable}`}>
 					<App children={children} />
 			</body>
 		</html>

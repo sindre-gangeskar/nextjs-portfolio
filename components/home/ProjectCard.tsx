@@ -5,6 +5,7 @@ import { FaGlobe } from "react-icons/fa6";
 import { ProjectCardProps } from "@/lib/definitions";
 import { useGSAP } from "@gsap/react";
 import { useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 export default function ProjectCard({ title = "Placeholder title", description = "Placeholder description", stars, url, color = "neutral", isRepo = false, homepage, img, topics }: ProjectCardProps) {
 	const [thumbnailVisible, setThumbnailVisible] = useState(false);
@@ -59,7 +60,7 @@ export default function ProjectCard({ title = "Placeholder title", description =
 				{img && (
 					<CardOverflow sx={{ top: 0, left: 0, p: 0, overflow: "hidden", pointerEvents: "none" }}>
 						<AspectRatio ratio={1.8}>
-							<Box id={`${thumbnailId}`} component={"img"} src={img} loading="lazy" alt="" sx={{ p: 0, m: 0, filter: "blur(4px)", height: '100%', objectFit: "scale-down" }}></Box>
+							<Image id={`${thumbnailId}`} loading="lazy" src={img} width={250} height={250} alt={title}></Image>
 						</AspectRatio>
 					</CardOverflow>
 				)}
