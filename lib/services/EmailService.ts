@@ -11,7 +11,7 @@ export default class EmailService {
       const subject = formdata.get('subject')?.toString();
       const message = formdata.get('message')?.toString();
 
-      if (from && !validator.isEmail(from) || !from)
+      if (from && !validator.isEmail(from) || !from || (from && validator.isEmail(from) && from.includes(process.env.DOMAIN!)))
         return { status: "fail", statusCode: 400, message: 'Email must be provided and follow a valid email format' } as ResponseProps;
 
       if (!subject)
