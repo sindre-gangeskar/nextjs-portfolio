@@ -41,7 +41,7 @@ export default function RootLayout({
 				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
 			</head>
 			<body className={`${nunito.variable}`}>
-					<App children={children} />
+				<App children={children} />
 			</body>
 		</html>
 	);

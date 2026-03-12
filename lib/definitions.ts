@@ -75,4 +75,4 @@ export type FormType = {
 
 export type PreviousState = unknown;
 
-export type StatusCodeType = 200 | 201 | 204 | 400 | 401 | 404 | 409 | 500;
+export type StatusCodeType = 200 | 201 | 204 | 400 | 401 | 403 | 404 | 409 | 429 | 500;

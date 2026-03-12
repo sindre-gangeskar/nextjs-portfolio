@@ -8,12 +8,14 @@ import ColoredTypography from "@/components/ui/ColoredTypography";
 import { EmailRounded, MailRounded, Person2Rounded, Send, SubjectRounded, TopicRounded } from "@mui/icons-material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { sendEmail } from "@/app/actions";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 export default function ContactForm() {
 	const [state, dispatch, isPending] = useActionState(sendEmail, null);
 	const [countdown, setCountdown] = useState(0);
 	const theme = useTheme();
+	const turnstileRef = useRef<TurnstileInstance | null>(null);
 	useGSAP(() => {
 		if (state) {
 			gsap.set(".form-message", { opacity: 0, fontSize: "1.2rem" });
@@ -27,10 +29,13 @@ export default function ContactForm() {
 			const countdownIntervalId = setInterval(() => {
 				setCountdown(prevValue => prevValue - 1);
 			}, 1000);
-
 			return () => clearInterval(countdownIntervalId);
 		}
 	}, [state, countdown]);
+
+	useEffect(() => {
+		if (state && turnstileRef.current) turnstileRef.current.reset();
+	}, [state]);
 
 	return (
 		<Stack mb={10} gap={2}>
@@ -49,9 +54,10 @@ export default function ContactForm() {
 					<Stack id="contact-form" component={"form"} action={dispatch} gap={2} sx={{ display: "flex", flex: 1, flexDirection: "column", "input, textarea": { padding: 1.5 } }}>
 						<Input variant="soft" startDecorator={<Person2Rounded />} sx={{}} className="form-input" name="name" placeholder="Your name" required autoComplete="name"></Input>
 						<Input variant="soft" startDecorator={<EmailRounded />} sx={{}} type="email" className="form-input" name="from" placeholder="Your email address" required autoComplete="email"></Input>
-						<Input variant="soft" startDecorator={<SubjectRounded/>} sx={{}} type="text" className="form-input" name="subject" placeholder="Enter subject" required></Input>
+						<Input variant="soft" startDecorator={<SubjectRounded />} sx={{}} type="text" className="form-input" name="subject" placeholder="Enter subject" required></Input>
+						<input type="hidden" name="website" />
 						<Textarea variant="soft" minRows={4} maxRows={4} sx={{ maxHeight: "96px" }} className="form-input" name="message" placeholder="Your message..." required></Textarea>
-
+						<Turnstile ref={turnstileRef} siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!} style={{ margin: "auto" }} />
 						<Stack direction={"column"} id="form-input" sx={{ position: "relative", width: "fit-content", mx: "auto", alignItems: "center" }}>
 							<Button variant="soft" loading={isPending} color={"primary"} type="submit" disabled={isPending || countdown > 0} sx={{ mx: "auto", padding: 1.5, px: 2 }}>
 								{isPending ? null : (
@@ -74,12 +80,6 @@ export default function ContactForm() {
 					color={state.status === "success" ? "success" : "danger"}
 					endDecorator={state && state?.status === "success" ? <CheckIcon color="success" /> : <ErrorIcon color="error" />}>
 					{state.message}
-				</Typography>
-			)}
-
-			{countdown > 0 && (
-				<Typography variant="soft" p={2} borderRadius={"0.5rem"} level="title-sm" color="warning" mt={2} mx={"auto"}>
-					Can send again in {countdown} {countdown > 1 ? "seconds" : "second"}
 				</Typography>
 			)}
 		</Stack>
