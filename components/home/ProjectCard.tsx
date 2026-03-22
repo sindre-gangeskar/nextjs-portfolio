@@ -60,7 +60,7 @@ export default function ProjectCard({ title = "Placeholder title", description =
 				{img && (
 					<CardOverflow sx={{ top: 0, left: 0, p: 0, overflow: "hidden", pointerEvents: "none" }}>
 						<AspectRatio ratio={1.8}>
-							<Image id={`${thumbnailId}`} loading="lazy" src={img} width={250} height={250} alt={title}></Image>
+							<Image id={`${thumbnailId}`} loading="eager" src={img} width={250} height={250} alt={title}></Image>
 						</AspectRatio>
 					</CardOverflow>
 				)}
