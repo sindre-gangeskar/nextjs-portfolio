@@ -73,7 +73,6 @@ export default function Hero() {
 				zIndex: -1,
 				borderRadius: "0.75rem",
 				backgroundColor: `color-mix(${theme.vars.palette.background.surface} 40%, transparent)`,
-
 				outline: `1px solid ${theme.vars.palette.primary.outlinedBorder}`,
 				outlineOffset: "-1px",
 				backdropFilter: "blur(2px)",
