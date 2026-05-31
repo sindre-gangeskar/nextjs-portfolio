@@ -16,7 +16,7 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 			<List>
 				<ListItem component={"li"} sx={{ width: "100%" }}>
 					<AccordionGroup transition={"300ms"}>
-						<CustomAccordion brightBg avatarSrc="https://images.squarespace-cdn.com/content/v1/6182341f7f6bcb4c55b3ddeb/b1b3b9fb-f883-42b9-8201-f14a1cbfa8f2/Logo_Lockup_vertical_Negative_RGB-22.png?format=1500w" color="danger" headerTitle="Kilter" subtitle="Jr. Fullstack Developer (Apr 2026 - Present)">
+						<CustomAccordion brightBg avatarSrc="https://images.squarespace-cdn.com/content/v1/6182341f7f6bcb4c55b3ddeb/b1b3b9fb-f883-42b9-8201-f14a1cbfa8f2/Logo_Lockup_vertical_Negative_RGB-22.png?format=1500w" color="danger" headerTitle="Kilter" subtitle="Jr. Fullstack Engineer (Apr 2026 - Present)">
 							<Stack {...style}>
 								<Chip {...chipVariants}>JavaScript</Chip>
 								<Chip {...chipVariants}>TypeScript</Chip>
