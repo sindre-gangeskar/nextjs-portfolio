@@ -28,7 +28,7 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 							</Stack>
 							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
 								<Typography level="body-sm" sx={{ lineHeight: "1.5rem" }}>
-									I contribute in the development of solutions in full-stack web applications and mobile apps utilzing TypeScript, Docker, SQL, Dart, Flutter and more.
+									Contribute in the development of full-stack web applications and mobile apps utilizing TypeScript, Docker, SQL, Dart, Flutter and more.
 									Read more about Kilter here: <Typography component={'a'} sx={{ fontWeight: '700', textDecoration: 'underline' }} href="https://www.kiltersystems.com/" target="_blank">https://www.kiltersystems.com/</Typography>
 								</Typography>
 							</Stack>
