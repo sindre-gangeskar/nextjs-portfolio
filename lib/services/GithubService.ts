@@ -14,7 +14,7 @@ export default class GithubService {
 			"shadps4-alchemist",
 			"exam-project",
 			"express-ts-generate",
-		];
+		]; 
 		const allRepos: string[] = [
 			"ludonium",
 			"express-ts-generate",

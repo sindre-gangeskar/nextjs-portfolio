@@ -16,6 +16,7 @@ export default function Education({ style, chipVariants }: { [key: string]: {}; 
 				<ListItem component={"li"}>
 					<AccordionGroup transition={"300ms"}>
 						<CustomAccordion
+							brightBg
 							color="danger"
 							headerTitle="Noroff - "
 							title="School of Technology & Digital Media"

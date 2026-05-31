@@ -60,10 +60,11 @@ export interface UserType {
 export interface AccordionProps {
   children?: React.ReactNode;
   headerTitle: string | "";
-  title: string | "";
+  title?: string | "";
   subtitle: string | "";
   avatarSrc?: string | "";
   grade?: string;
+  brightBg?: boolean;
   color: "primary" | "danger" | "success" | "neutral";
 }
 

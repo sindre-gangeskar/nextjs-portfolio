@@ -17,7 +17,7 @@ export default class EmailService {
       if (honey) return { status: 'fail', statusCode: 403, message: genericErrMessage } as ResponseProps
 
       if (!token) return { status: 'fail', statusCode: 403, message: genericErrMessage } as ResponseProps
-      
+
       const result = await validateTurnstile(token);
       if (!result.success) return { status: 'fail', statusCode: 403, message: genericErrMessage } as ResponseProps
 
