@@ -1,17 +1,17 @@
 "use client";
-import type React from "react";
-import { useState } from "react";
 import {
-	Card,
-	Tooltip,
 	Box,
-	Typography,
+	Card,
 	Stack,
+	Tooltip,
+	Typography,
 	type ColorPaletteProp,
 } from "@mui/joy";
+import type React from "react";
+import { useState } from "react";
 import type { IconType } from "react-icons";
 
-type TooltipPlacementType = React.ComponentProps<typeof Tooltip>["placement"];
+type TooltipPlacementType = React.ComponentProps<typeof Tooltip>[ "placement" ];
 export default function Skill({
 	color = "neutral",
 	icon,
@@ -31,8 +31,7 @@ export default function Skill({
 	placement?: TooltipPlacementType;
 	className?: string;
 }) {
-	const [hovered, setIsHovered] = useState(false);
-
+	const [ hovered, setIsHovered ] = useState(false);
 	return (
 		<Tooltip
 			className={className}
@@ -65,10 +64,15 @@ export default function Skill({
 							component={icon}
 						></Box>
 					</Stack>
-					<Stack>{description}</Stack>
+					<Stack sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+						<Typography color={color} level="body-xs">{description}</Typography>
+						<Typography color={color} level="body-xs" sx={{ fontWeight: 'bold' }}>{url}</Typography>
+					</Stack>
+
 				</Stack>
 			}
 			arrow={true}
+			disablePortal
 			placement={placement}
 			variant="outlined"
 			sx={{ pointerEvents: "none" }}
