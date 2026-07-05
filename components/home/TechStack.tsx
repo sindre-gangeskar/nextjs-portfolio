@@ -32,6 +32,9 @@ import {
 	SiBun,
 	SiPython,
 	SiFlask,
+	SiFlutter,
+	SiDart,
+	SiGitlab
 } from "react-icons/si";
 
 export default function TechStack() {
@@ -72,6 +75,7 @@ export default function TechStack() {
 					color="neutral"></Skill>
 				<Skill className="skill" title="Typescript" url="https://www.typescriptlang.org/" description="Statically typed superset that compiles into Javascript." icon={SiTypescript} color="neutral"></Skill>
 				<Skill className="skill" title="Python" url="https://www.python.org/" description="Multi-paradigm programming language with object-oriented capabilities." icon={SiPython} color="neutral"></Skill>
+				<Skill className="skill" title="Dart" url="https://www.dart.dev/" description="An approachable, portable, and productive language for high-quality apps on any platform" icon={SiDart} color="neutral"></Skill>
 				<Skill className="skill" title="Node.js" url="https://nodejs.org/en" description="Runtime environment Node.js" icon={SiNodedotjs} color="success"></Skill>
 				<Skill
 					className="skill"
@@ -120,6 +124,7 @@ export default function TechStack() {
 					color="success"></Skill>
 				<Skill className="skill" title="Swagger" url="https://swagger.io/" description="A documentation library for documenting API endpoints efficiently." icon={SiSwagger} color="success"></Skill>
 				<Skill className="skill" title="Jest" url="https://jestjs.io/" description="Javascript testing framework for efficient and automated testing." icon={SiJest} color="success"></Skill>
+				<Skill className="skill" title="Flutter" url="https://flutter.dev" description="Flutter is an open-source framework for building beautiful, natively compiled, multi-platform applications from a single codebase." icon={SiFlutter} color="primary"></Skill>
 				<Skill
 					className="skill"
 					title="Next.js"
@@ -152,10 +157,17 @@ export default function TechStack() {
 				<Skill className="skill" title="Postman" url="https://www.postman.com/" description="A widely used API platform for developing and testing APIs." icon={SiPostman} color="warning"></Skill>
 				<Skill
 					className="skill"
-					title="Github"
+					title="GitHub"
 					url="https://www.github.com"
 					description="A widely used platform for storing, managing and sharing projects using Git for version control."
 					icon={SiGithub}
+					color="warning"></Skill>
+				<Skill
+					className="skill"
+					title="GitLab"
+					url="https://www.gitlab.com"
+					description="A widely used platform for storing, managing and sharing projects using Git for version control."
+					icon={SiGitlab}
 					color="warning"></Skill>
 				<Skill
 					className="skill"
