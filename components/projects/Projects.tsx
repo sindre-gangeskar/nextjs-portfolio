@@ -5,7 +5,7 @@ import ColoredTypography from "@/components/ui/ColoredTypography";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import useAllProjects from "@/hooks/useAllProjects";
-import { SxProps } from "@mui/material";
+import type { SxProps } from "@mui/material";
 import ProjectSkeleton from "./skeletons/ProjectSkeleton";
 
 export default function Projects() {
@@ -18,22 +18,40 @@ export default function Projects() {
 		if (data && data.length > 0) {
 			const tl = gsap.timeline();
 			gsap.set(".project", { opacity: 0, filter: "blur(16px)" });
-			tl.to(".project", { duration: 0.8, stagger: 0.08, opacity: 1, ease: "power3.out", filter: "blur(0px)" });
+			tl.to(".project", {
+				duration: 0.8,
+				stagger: 0.08,
+				opacity: 1,
+				ease: "power3.out",
+				filter: "blur(0px)",
+			});
 		}
 	}, [data]);
 
 	return (
-		<Box component={"section"} sx={{mb: 10}}>
+		<Box component={"section"} sx={{ mb: 10 }}>
 			<Typography level="h1" mt={10}>
 				Explore <ColoredTypography level="h1">Projects</ColoredTypography>
 			</Typography>
 			<Stack gap={2} my={5}>
-				{isLoading && Array.from({ length: 6 }).map((_, index) => <ProjectSkeleton key={index} sx={baseSx} />)}
+				{isLoading &&
+					Array.from({ length: 6 }).map((_, index) => (
+						<ProjectSkeleton key={index} sx={baseSx} />
+					))}
 				{!isLoading &&
 					data &&
 					data.length > 0 &&
-					data.map(repo => {
-						return <Project className="project" key={repo.name} repo={repo} sx={baseSx} color="neutral" variant={"outlined"}></Project>;
+					data.map((repo) => {
+						return (
+							<Project
+								className="project"
+								key={repo.name}
+								repo={repo}
+								sx={baseSx}
+								color="neutral"
+								variant={"outlined"}
+							></Project>
+						);
 					})}
 			</Stack>
 		</Box>

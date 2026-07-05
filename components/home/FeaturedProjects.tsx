@@ -12,18 +12,32 @@ export default function FeaturedProjects() {
 
 	return (
 		<Stack component={"section"} mt={15}>
-			<Typography level="h1" mb={{ xs: 3, md: 3 }} mx={5} textAlign={{ xs: "center", md: "end" }}>
+			<Typography
+				level="h1"
+				mb={{ xs: 3, md: 3 }}
+				mx={5}
+				textAlign={{ xs: "center", md: "end" }}
+			>
 				Featured
 				<ColoredTypography color="primary" level="h1">
 					{" "}
 					Projects
 				</ColoredTypography>
 			</Typography>
-			<Box id={"featured-projects"} sx={{ display: "grid", gap: 1, gridTemplateColumns: "repeat(auto-fit, minmax(350px, 0fr))", justifyContent: "center", width: "100%" }}>
+			<Box
+				id={"featured-projects"}
+				sx={{
+					display: "grid",
+					gap: 1,
+					gridTemplateColumns: "repeat(auto-fit, minmax(350px, 0fr))",
+					justifyContent: "center",
+					width: "100%",
+				}}
+			>
 				{isLoading && <FeaturedProjectsSkeleton />}
 				{!isLoading &&
 					data &&
-					data?.map(x => (
+					data?.map((x) => (
 						<ProjectCard
 							img={x.img ?? null}
 							topics={x.topics}
@@ -34,7 +48,8 @@ export default function FeaturedProjects() {
 							isRepo={true}
 							url={x.html_url}
 							stars={x.stargazers_count}
-							key={x.name}></ProjectCard>
+							key={x.name}
+						></ProjectCard>
 					))}
 				{!isLoading && (
 					<Button
@@ -50,7 +65,8 @@ export default function FeaturedProjects() {
 						component={Link}
 						href="/projects"
 						variant={"solid"}
-						color={"primary"}>
+						color={"primary"}
+					>
 						Explore more projects
 					</Button>
 				)}

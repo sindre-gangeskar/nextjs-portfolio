@@ -1,9 +1,22 @@
-import { Stack, Typography, List, ListItem, AccordionGroup, Chip } from "@mui/joy";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import CustomAccordion from "@/components/ui/CustomAccordion";
-import { ChipProps } from "@mui/joy";
+import type { ChipProps } from "@mui/joy";
+import {
+	AccordionGroup,
+	Chip,
+	List,
+	ListItem,
+	Stack,
+	Typography,
+} from "@mui/joy";
 
-export default function Education({ style, chipVariants }: { [key: string]: {}; chipVariants: ChipProps }) {
+export default function Education({
+	style,
+	chipVariants,
+}: {
+	[ key: string ]: object;
+	chipVariants: ChipProps;
+}) {
 	return (
 		<Stack sx={{ mt: 5 }}>
 			<Typography level="h1">
@@ -22,8 +35,18 @@ export default function Education({ style, chipVariants }: { [key: string]: {}; 
 							title="School of Technology & Digital Media"
 							subtitle="Back-end Development 1 [2023-2025]"
 							grade="A"
-							avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E">
-							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0} sx={{ "& > p": { lineHeight: "1.5rem" } }}>
+							avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E"
+						>
+							<Stack
+								direction={"column"}
+								textAlign={"start"}
+								width={"80%"}
+								mx={"40px"}
+								margin={"start"}
+								display={"grid"}
+								gap={0}
+								sx={{ "& > p": { lineHeight: "1.5rem" } }}
+							>
 								<Stack {...style}>
 									<Chip {...chipVariants}>JavaScript</Chip>
 									<Chip {...chipVariants}>Node.js</Chip>
@@ -38,25 +61,46 @@ export default function Education({ style, chipVariants }: { [key: string]: {}; 
 									<Chip {...chipVariants}>Jira</Chip>
 								</Stack>
 								<Typography level="body-sm">
-									Solid understanding of object-oriented programming with hands-on experience in{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									Solid understanding of object-oriented programming with
+									hands-on experience in{" "}
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										JavaScript
 									</ColoredTypography>
 									.<br />
 									<br></br>Skilled in designing and implementing{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										MySQL
 									</ColoredTypography>{" "}
-									databases adhering to the <strong>third normalization form</strong> for optimal data structure, and the use of{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									databases adhering to the{" "}
+									<strong>third normalization form</strong> for optimal data
+									structure, and the use of{" "}
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										Sequelize
 									</ColoredTypography>{" "}
 									as the ORM.<br></br>
 									<br></br> Proficient in creating{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										REST APIs
 									</ColoredTypography>{" "}
-									and modern applications utilizing CRUD operations. Procifient in performing manual and automatic testing during development with{" "}
+									and modern applications utilizing CRUD operations. Procifient
+									in performing manual and automatic testing during development
+									with{" "}
 									<ColoredTypography level="body-sm" bold={true}>
 										Jest
 									</ColoredTypography>{" "}
@@ -69,27 +113,47 @@ export default function Education({ style, chipVariants }: { [key: string]: {}; 
 										Postman
 									</ColoredTypography>{" "}
 									or equivalent.
-									<br></br> <br></br>Familiar with programming methodologies, including the{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<br></br> <br></br>Familiar with programming methodologies,
+									including the{" "}
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										Agile
 									</ColoredTypography>{" "}
 									mindset and the{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										Scrum&nbsp;
 									</ColoredTypography>
 									framework. <br></br>
-									<br></br>Hands-on experience with implementing authentication via{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<br></br>Hands-on experience with implementing authentication
+									via{" "}
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										JSON Web Token
 									</ColoredTypography>{" "}
 									and{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										OAuth
 									</ColoredTypography>
-									, with the use of middleware to verify credentials and privileges.
+									, with the use of middleware to verify credentials and
+									privileges.
 									<br></br>
 									<br></br>
-									Competent in creating documentation for applications with hands-on experience in{" "}
+									Competent in creating documentation for applications with
+									hands-on experience in{" "}
 									<ColoredTypography bold={true} level="body-sm">
 										Swagger
 									</ColoredTypography>

@@ -1,7 +1,7 @@
 "use client";
 import { Typography } from "@mui/joy";
-import mqtt, { MqttClient } from "mqtt";
-import { useState, useEffect, useRef } from "react";
+import mqtt, { type MqttClient } from "mqtt";
+import { useEffect, useRef, useState } from "react";
 export default function MQTTMessage({ id }: { id?: string }) {
 	const [message, setMessage] = useState("Connecting to HiveMQ's broker...");
 	const attemptsRef = useRef(0);
@@ -19,7 +19,7 @@ export default function MQTTMessage({ id }: { id?: string }) {
 			attemptsRef.current++;
 			if (attemptsRef.current > 10) {
 				client.end(true);
-				setMessage('Failed to connect to broker.. Connection has ended.');
+				setMessage("Failed to connect to broker.. Connection has ended.");
 				return;
 			}
 			setMessage(`Reconnecting... ${attemptsRef.current} / 10`);
@@ -35,7 +35,14 @@ export default function MQTTMessage({ id }: { id?: string }) {
 	}, []);
 
 	return (
-		<Typography id={id} variant="solid" color="primary" sx={{ mt: 3, p: 2, borderRadius: "1.25rem" }} textAlign={"center"} level="title-sm">
+		<Typography
+			id={id}
+			variant="solid"
+			color="primary"
+			sx={{ mt: 3, p: 2, borderRadius: "1.25rem" }}
+			textAlign={"center"}
+			level="title-sm"
+		>
 			Message from broker: {message}
 		</Typography>
 	);

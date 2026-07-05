@@ -1,9 +1,22 @@
-import { Stack, Typography, List, ListItem, AccordionGroup, Chip, ChipProps } from "@mui/joy";
 import ColoredTypography from "@/components/ui/ColoredTypography";
 import CustomAccordion from "@/components/ui/CustomAccordion";
-import Link from "next/link";
+import {
+	AccordionGroup,
+	Chip,
+	List,
+	ListItem,
+	Stack,
+	Typography,
+	type ChipProps,
+} from "@mui/joy";
 
-export default function Work({ style, chipVariants }: { [ key: string ]: {}; chipVariants: ChipProps }) {
+export default function Work({
+	style,
+	chipVariants,
+}: {
+	[ key: string ]: object;
+	chipVariants: ChipProps;
+}) {
 	return (
 		<Stack sx={{ mt: 5 }}>
 			<Typography level="h1">
@@ -16,7 +29,13 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 			<List>
 				<ListItem component={"li"} sx={{ width: "100%" }}>
 					<AccordionGroup transition={"300ms"}>
-						<CustomAccordion brightBg avatarSrc="https://images.squarespace-cdn.com/content/v1/6182341f7f6bcb4c55b3ddeb/b1b3b9fb-f883-42b9-8201-f14a1cbfa8f2/Logo_Lockup_vertical_Negative_RGB-22.png?format=1500w" color="danger" headerTitle="Kilter" subtitle="Jr. Fullstack Engineer (Apr 2026 - Present)">
+						<CustomAccordion
+							brightBg
+							avatarSrc="https://images.squarespace-cdn.com/content/v1/6182341f7f6bcb4c55b3ddeb/b1b3b9fb-f883-42b9-8201-f14a1cbfa8f2/Logo_Lockup_vertical_Negative_RGB-22.png?format=1500w"
+							color="danger"
+							headerTitle="Kilter"
+							subtitle="Jr. Fullstack Engineer (Apr 2026 - Present)"
+						>
 							<Stack {...style}>
 								<Chip {...chipVariants}>JavaScript</Chip>
 								<Chip {...chipVariants}>TypeScript</Chip>
@@ -26,10 +45,27 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 								<Chip {...chipVariants}>Dart</Chip>
 								<Chip {...chipVariants}>React</Chip>
 							</Stack>
-							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
+							<Stack
+								direction={"column"}
+								textAlign={"start"}
+								width={"80%"}
+								mx={"40px"}
+								margin={"start"}
+								display={"grid"}
+								gap={0}
+							>
 								<Typography level="body-sm" sx={{ lineHeight: "1.5rem" }}>
-									Contribute in the development of full-stack web applications and mobile apps utilizing TypeScript, Docker, SQL, Dart, Flutter and more.
-									Read more about Kilter here: <Typography component={'a'} sx={{ fontWeight: '700', textDecoration: 'underline' }} href="https://www.kiltersystems.com/" target="_blank">kiltersystems.com</Typography>
+									Contribute in the development of full-stack web applications
+									and mobile apps utilizing TypeScript, Docker, SQL, Dart,
+									Flutter and more. Read more about Kilter here:{" "}
+									<Typography
+										component={"a"}
+										sx={{ fontWeight: "700", textDecoration: "underline" }}
+										href="https://www.kiltersystems.com/"
+										target="_blank"
+									>
+										kiltersystems.com
+									</Typography>
 								</Typography>
 							</Stack>
 						</CustomAccordion>
@@ -44,7 +80,8 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 							headerTitle="Noroff - "
 							title=" School of Technology & Digital Media"
 							subtitle="Vocational Instructor (Temporary, Feb - Mar 2026)"
-							avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E">
+							avatarSrc="https://support.noroff.no/hc/theming_assets/01HZPPTZGC4N8F8NSPBQHJT16E"
+						>
 							<Stack {...style}>
 								<Chip {...chipVariants}>JavaScript</Chip>
 								<Chip {...chipVariants}>Node.js</Chip>
@@ -53,7 +90,15 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 								<Chip {...chipVariants}>Bootstrap</Chip>
 								<Chip {...chipVariants}>EJS</Chip>
 							</Stack>
-							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
+							<Stack
+								direction={"column"}
+								textAlign={"start"}
+								width={"80%"}
+								mx={"40px"}
+								margin={"start"}
+								display={"grid"}
+								gap={0}
+							>
 								<Typography level="body-sm" sx={{ lineHeight: "1.5rem" }}>
 									Graded first-year course assignments for the{" "}
 									<ColoredTypography level="body-sm" bold>
@@ -66,7 +111,11 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 									to support the curriculum.
 								</Typography>
 								<br />
-								<Typography level="body-sm">Assignments involved the use of Node.js, JavaScript, front-end technologies, and MySQL, including database relationships and third normal form (3NF).</Typography>
+								<Typography level="body-sm">
+									Assignments involved the use of Node.js, JavaScript, front-end
+									technologies, and MySQL, including database relationships and
+									third normal form (3NF).
+								</Typography>
 							</Stack>
 						</CustomAccordion>
 					</AccordionGroup>
@@ -74,7 +123,12 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 
 				<ListItem component={"li"} sx={{ width: "100%" }}>
 					<AccordionGroup transition={"300ms"}>
-						<CustomAccordion color="danger" headerTitle="Hugo." title="Tech AS" subtitle="Full-stack Application (Freelance, January 2025)">
+						<CustomAccordion
+							color="danger"
+							headerTitle="Hugo."
+							title="Tech AS"
+							subtitle="Full-stack Application (Freelance, January 2025)"
+						>
 							<Stack {...style}>
 								<Chip {...chipVariants}>JavaScript</Chip>
 								<Chip {...chipVariants}>Node.js</Chip>
@@ -84,21 +138,43 @@ export default function Work({ style, chipVariants }: { [ key: string ]: {}; chi
 								<Chip {...chipVariants}>Bootstrap</Chip>
 								<Chip {...chipVariants}>EJS</Chip>
 							</Stack>
-							<Stack direction={"column"} textAlign={"start"} width={"80%"} mx={"40px"} margin={"start"} display={"grid"} gap={0}>
+							<Stack
+								direction={"column"}
+								textAlign={"start"}
+								width={"80%"}
+								mx={"40px"}
+								margin={"start"}
+								display={"grid"}
+								gap={0}
+							>
 								<Typography level="body-sm" sx={{ lineHeight: "1.5rem" }}>
 									Developed a full-stack application utilizing{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										Express.js
 									</ColoredTypography>
-									, integrating secure JWT-based authentication for user role permissions and leveraging databases including{" "}
-									<ColoredTypography color="primary" level="body-sm" bold={true}>
+									, integrating secure JWT-based authentication for user role
+									permissions and leveraging databases including{" "}
+									<ColoredTypography
+										color="primary"
+										level="body-sm"
+										bold={true}
+									>
 										MySQL
 									</ColoredTypography>{" "}
 									and{" "}
-									<ColoredTypography level="body-sm" color="primary" bold={true}>
+									<ColoredTypography
+										level="body-sm"
+										color="primary"
+										bold={true}
+									>
 										MongoDB
 									</ColoredTypography>
-									.<br></br>Built an efficient, elegant and mobile friendly front-end utilizing{" "}
+									.<br></br>Built an efficient, elegant and mobile friendly
+									front-end utilizing{" "}
 									<ColoredTypography level="body-sm" bold={true}>
 										Bootstrap
 									</ColoredTypography>

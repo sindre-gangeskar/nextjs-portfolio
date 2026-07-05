@@ -1,10 +1,18 @@
 "use client";
 import ColoredTypography from "@/components/ui/ColoredTypography";
-import { List, ListItem, ListItemContent, Stack, Typography, Card, CardContent } from "@mui/joy";
-import MQTTMessage from "./MQTTMessage";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import GoBackButton from "@/components/ui/GoBackButton";
+import { useGSAP } from "@gsap/react";
+import {
+	Card,
+	CardContent,
+	List,
+	ListItem,
+	ListItemContent,
+	Stack,
+	Typography,
+} from "@mui/joy";
+import gsap from "gsap";
+import MQTTMessage from "./MQTTMessage";
 
 export default function MQTT() {
 	useGSAP(() => {
@@ -34,14 +42,21 @@ export default function MQTT() {
 				</ColoredTypography>
 			</Typography>
 			<Typography id="description" level="title-sm">
-				Experiment with MQTT messages by utilizing a public broker to quickly access test data with a custom test topic.
+				Experiment with MQTT messages by utilizing a public broker to quickly
+				access test data with a custom test topic.
 			</Typography>
 			<GoBackButton id="go-back-btn" sx={{ mt: 2 }} />
 			<Card id={"message-container"} sx={{ mt: 5 }}>
 				<CardContent>
 					<Typography level="title-sm" mt={2}>
 						Test by utilizing{" "}
-						<Typography color="primary" sx={{ textDecoration: "underline" }} component={"a"} target="_blank" href="https://mqtt-explorer.com/">
+						<Typography
+							color="primary"
+							sx={{ textDecoration: "underline" }}
+							component={"a"}
+							target="_blank"
+							href="https://mqtt-explorer.com/"
+						>
 							MQTT Explorer
 						</Typography>{" "}
 						with the following settings
@@ -49,7 +64,9 @@ export default function MQTT() {
 					<List>
 						<ListItem>
 							<ListItemContent>
-								<Typography level="title-sm">Host: broker.hivemq.com</Typography>
+								<Typography level="title-sm">
+									Host: broker.hivemq.com
+								</Typography>
 							</ListItemContent>
 						</ListItem>
 						<ListItem>
@@ -60,7 +77,9 @@ export default function MQTT() {
 						</ListItem>
 						<ListItem>
 							<ListItemContent>
-								<Typography level="title-sm">Topic: mqtt_test_data/a6c072abf6ef07cc</Typography>
+								<Typography level="title-sm">
+									Topic: mqtt_test_data/a6c072abf6ef07cc
+								</Typography>
 							</ListItemContent>
 						</ListItem>
 					</List>

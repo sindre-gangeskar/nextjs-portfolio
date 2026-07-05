@@ -12,7 +12,8 @@ const nunito = Nunito_Sans({
 export const metadata: Metadata = {
 	metadataBase: new URL("https://sindregangeskar.dev"),
 	title: { default: "Sindre Gangeskar", template: "Sindre Gangeskar | %s" },
-	description: "I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!",
+	description:
+		"I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!",
 	openGraph: {
 		type: "website",
 		url: "/",
@@ -36,9 +37,14 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning={true}>
 			<head>
-				<noscript>Javascript must be enabled in order to visit this site</noscript>
+				<noscript>
+					Javascript must be enabled in order to visit this site
+				</noscript>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<InitColorSchemeScript defaultMode="dark" colorSchemeStorageKey="joy-mode" />
+				<InitColorSchemeScript
+					defaultMode="dark"
+					colorSchemeStorageKey="joy-mode"
+				/>
 			</head>
 			<body className={`${nunito.variable}`}>
 				<App children={children} />

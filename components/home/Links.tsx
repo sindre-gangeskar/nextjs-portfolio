@@ -10,8 +10,23 @@ export default function Links() {
 		window.scrollTo({ top: height, behavior: "smooth" });
 	};
 	return (
-		<Stack direction={"row"} gap={2} sx={{ alignItems: "flex-end", justifyContent: {xs: 'center', md: 'end'}, mt: {xs: 2, md: ''} }}>
-			<Button component={"a"} target="_blank" href={data?.html_url} startDecorator={<GitHub />} variant="soft" color="neutral">
+		<Stack
+			direction={"row"}
+			gap={2}
+			sx={{
+				alignItems: "flex-end",
+				justifyContent: { xs: "center", md: "end" },
+				mt: { xs: 2, md: "" },
+			}}
+		>
+			<Button
+				component={"a"}
+				target="_blank"
+				href={data?.html_url}
+				startDecorator={<GitHub />}
+				variant="soft"
+				color="neutral"
+			>
 				GitHub
 			</Button>
 			<LinkedInButton />

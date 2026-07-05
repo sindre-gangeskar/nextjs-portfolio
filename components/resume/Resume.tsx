@@ -1,5 +1,17 @@
 "use client";
-import { Stack, Container, Typography, StackProps, List, ListItem, Button, ChipProps, Card, CardContent, CardActions } from "@mui/joy";
+import {
+	Stack,
+	Container,
+	Typography,
+	type StackProps,
+	List,
+	ListItem,
+	Button,
+	type ChipProps,
+	Card,
+	CardContent,
+	CardActions,
+} from "@mui/joy";
 import Work from "./Work";
 import Education from "./Education";
 import { EmailRounded, LocationCityRounded } from "@mui/icons-material";
@@ -11,7 +23,13 @@ export default function Resume() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
 		tl.set("section > *", { opacity: 0, transform: "translateY(-15px)" });
-		tl.to("section > *", { opacity: 1, transform: "translateY(0)", duration: 1.3, stagger: 0.08, ease: "elastic.out" });
+		tl.to("section > *", {
+			opacity: 1,
+			transform: "translateY(0)",
+			duration: 1.3,
+			stagger: 0.08,
+			ease: "elastic.out",
+		});
 	}, []);
 	const chipVariants: ChipProps = { variant: "soft", color: "primary" };
 	const chipStackStyle: StackProps = {
@@ -36,17 +54,31 @@ export default function Resume() {
 				<Card sx={{ mt: 1 }} variant="soft" color="neutral">
 					<Stack direction={"column"}>
 						<Typography level="h1">Sindre Gangeskar</Typography>
-						<Typography level="title-md">Backend & Full-Stack Developer</Typography>
+						<Typography level="title-md">
+							Backend & Full-Stack Developer
+						</Typography>
 					</Stack>
 					<CardContent>
 						<Typography level="body-sm" lineHeight={"1.5rem"}>
-							Passionate backend developer with <strong>full-stack</strong> capabilities, and expertise in building <strong>robust, scalable RESTful</strong> applications with modern front-end frameworks. I
-							specialize in developing <strong>efficient</strong> APIs, managing databases and implementing robust authentication methods. I prioritize clean, <strong>maintainable code</strong> and comprehensive{" "}
-							<strong>API documentation</strong>. Eager to apply my skills in challenging and dynamic environments.
+							Passionate backend developer with <strong>full-stack</strong>{" "}
+							capabilities, and expertise in building{" "}
+							<strong>robust, scalable RESTful</strong> applications with modern
+							front-end frameworks. I specialize in developing{" "}
+							<strong>efficient</strong> APIs, managing databases and
+							implementing robust authentication methods. I prioritize clean,{" "}
+							<strong>maintainable code</strong> and comprehensive{" "}
+							<strong>API documentation</strong>. Eager to apply my skills in
+							challenging and dynamic environments.
 						</Typography>
 					</CardContent>
 					<CardActions>
-						<List sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between" }}>
+						<List
+							sx={{
+								display: "flex",
+								flexDirection: { xs: "column", md: "row" },
+								justifyContent: "space-between",
+							}}
+						>
 							<ListItem>
 								<Stack gap={1} direction={{ xs: "column", md: "row" }}>
 									<Button
@@ -56,7 +88,8 @@ export default function Resume() {
 										component={"a"}
 										target="_blank"
 										startDecorator={<EmailRounded />}
-										href="mailto:Sindre Gangeskar<contact@sindregangeskar.dev>">
+										href="mailto:Sindre Gangeskar<contact@sindregangeskar.dev>"
+									>
 										contact@sindregangeskar.dev
 									</Button>
 									<LinkedInButton />
@@ -68,13 +101,19 @@ export default function Resume() {
 										component={"a"}
 										target="_blank"
 										endDecorator={<FaFilePdf size={20} />}
-										rel="noopener noreferrer">
+										rel="noopener noreferrer"
+									>
 										<Typography>View Resumé</Typography>
 									</Button>
 								</Stack>
 							</ListItem>
 							<ListItem>
-								<Typography color="neutral" component={"p"} startDecorator={<LocationCityRounded />} level={"title-sm"}>
+								<Typography
+									color="neutral"
+									component={"p"}
+									startDecorator={<LocationCityRounded />}
+									level={"title-sm"}
+								>
 									Nannestad, Norway
 								</Typography>
 							</ListItem>

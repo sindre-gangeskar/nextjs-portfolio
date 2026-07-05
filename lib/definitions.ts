@@ -1,79 +1,89 @@
-import { ColorPaletteProp } from "@mui/joy";
-import { RefObject } from "react";
+import type { ColorPaletteProp } from "@mui/joy";
+import type { RefObject } from "react";
 
 export interface RepoType {
-  name: string;
-  full_name?: string;
-  stargazers_count?: number;
-  watchers_count?: number;
-  forks_count?: number;
-  html_url?: string;
-  description?: string | null;
-  owner?: { avatar_url?: string };
-  homepage?: string | null;
-  img?: string | null;
-  topics?: string[]
+	name: string;
+	full_name?: string;
+	stargazers_count?: number;
+	watchers_count?: number;
+	forks_count?: number;
+	html_url?: string;
+	description?: string | null;
+	owner?: { avatar_url?: string };
+	homepage?: string | null;
+	img?: string | null;
+	topics?: string[];
 }
 export interface ProfileProps {
-  html_url?: string;
-  avatar_url?: string;
-  size: number;
-  id?: string;
-  sx?: {};
-  ref?: string;
+	html_url?: string;
+	avatar_url?: string;
+	size: number;
+	id?: string;
+	sx?: object;
+	ref?: string;
 }
 export interface ResponseProps {
-  statusCode: StatusCodeType;
-  status: "success" | "fail";
-  message?: string;
-  data?: {};
+	statusCode: StatusCodeType;
+	status: "success" | "fail";
+	message?: string;
+	data?: object;
 }
 export interface ProjectCardProps {
-  title?: string;
-  description?: string;
-  footer?: string;
-  url?: string;
-  isRepo?: boolean;
-  stars?: number;
-  homepage?: string;
-  color: ColorPaletteProp;
-  img?: string | null;
-  topics?: string[]
+	title?: string;
+	description?: string;
+	footer?: string;
+	url?: string;
+	isRepo?: boolean;
+	stars?: number;
+	homepage?: string;
+	color: ColorPaletteProp;
+	img?: string | null;
+	topics?: string[];
 }
 export interface NavigationProps {
-  href: string;
-  ref?: RefObject<HTMLAnchorElement | null>
-  name: string;
-  icon?: React.ReactNode;
+	href: string;
+	ref?: RefObject<HTMLAnchorElement | null>;
+	name: string;
+	icon?: React.ReactNode;
 }
 export interface TimelineProps {
-  title?: string;
-  description?: string[];
-  imgUrl?: string;
-  timeline?: { from: string; to: string };
-  direction?: "right" | "left";
+	title?: string;
+	description?: string[];
+	imgUrl?: string;
+	timeline?: { from: string; to: string };
+	direction?: "right" | "left";
 }
 export interface UserType {
-  avatar_url: string;
+	avatar_url: string;
 }
 
 export interface AccordionProps {
-  children?: React.ReactNode;
-  headerTitle: string | "";
-  title?: string | "";
-  subtitle: string | "";
-  avatarSrc?: string | "";
-  grade?: string;
-  brightBg?: boolean;
-  color: "primary" | "danger" | "success" | "neutral";
+	children?: React.ReactNode;
+	headerTitle: string | "";
+	title?: string | "";
+	subtitle: string | "";
+	avatarSrc?: string | "";
+	grade?: string;
+	brightBg?: boolean;
+	color: "primary" | "danger" | "success" | "neutral";
 }
 
 export type FormType = {
-  from: string;
-  name: string;
-  message: string;
+	from: string;
+	name: string;
+	message: string;
 };
 
 export type PreviousState = unknown;
 
-export type StatusCodeType = 200 | 201 | 204 | 400 | 401 | 403 | 404 | 409 | 429 | 500;
+export type StatusCodeType =
+	| 200
+	| 201
+	| 204
+	| 400
+	| 401
+	| 403
+	| 404
+	| 409
+	| 429
+	| 500;

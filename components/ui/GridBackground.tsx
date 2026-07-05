@@ -5,17 +5,37 @@ import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
 import { getBackgroundColor } from "@/lib/utils";
 
-export default function GridBackground({ gridSize = 25, thickness = 1, style = "circle" }: { gridSize: number; thickness?: number; style?: "circle" | "ellipse" }) {
+export default function GridBackground({
+	gridSize = 25,
+	thickness = 1,
+	style = "circle",
+}: {
+	gridSize: number;
+	thickness?: number;
+	style?: "circle" | "ellipse";
+}) {
 	const pathname = usePathname();
 	useGSAP(() => {
 		let cancelled = false;
 		(async () => {
-			const [{ default: ScrollTrigger }, { default: ScrollToPlugin }] = await Promise.all([import("gsap/ScrollTrigger"), import("gsap/ScrollToPlugin")]);
+			const [{ default: ScrollTrigger }, { default: ScrollToPlugin }] =
+				await Promise.all([
+					import("gsap/ScrollTrigger"),
+					import("gsap/ScrollToPlugin"),
+				]);
 			if (cancelled) return;
 
 			gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 			requestAnimationFrame(() => {
-				gsap.to("#grid", { y: -600, scrollTrigger: { trigger: document.documentElement, start: "0 0", end: "+=2000%", scrub: 2 } });
+				gsap.to("#grid", {
+					y: -600,
+					scrollTrigger: {
+						trigger: document.documentElement,
+						start: "0 0",
+						end: "+=2000%",
+						scrub: 2,
+					},
+				});
 			});
 		})();
 
@@ -27,7 +47,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 	return (
 		<Box
 			id={"grid"}
-			sx={theme => ({
+			sx={(theme) => ({
 				width: `1500px`,
 				height: `100vh`,
 				transform: "translate(-50%, -50%)",
@@ -63,6 +83,7 @@ export default function GridBackground({ gridSize = 25, thickness = 1, style = "
 					background: getBackgroundColor(pathname, theme).solidBg,
 					mixBlendMode: "saturate",
 				},
-			})}></Box>
+			})}
+		></Box>
 	);
 }

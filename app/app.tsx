@@ -7,10 +7,13 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 
 export default function App({ children }: { children: React.ReactNode }) {
 	return (
-		<AppRouterCacheProvider options={{key: 'mui'}}>
+		<AppRouterCacheProvider options={{ key: "mui" }}>
 			<ThemeProvider>
 				<Navbar />
-				<Container maxWidth={"lg"} sx={{ zIndex: 1, position: "relative", overflowX: "hidden" }}>
+				<Container
+					maxWidth={"lg"}
+					sx={{ zIndex: 1, position: "relative", overflowX: "hidden" }}
+				>
 					{children}
 					<BackToTopButton />
 				</Container>

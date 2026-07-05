@@ -1,9 +1,15 @@
 "use client";
 import { Button } from "@mui/joy";
-import { SxProps } from "@mui/joy/styles/types";
+import type { SxProps } from "@mui/joy/styles/types";
 import { useRouter } from "next/navigation";
 import { BiLeftArrowCircle } from "react-icons/bi";
-export default function GoBackButton({ id, sx }: { id?: string; sx?: SxProps }) {
+export default function GoBackButton({
+	id,
+	sx,
+}: {
+	id?: string;
+	sx?: SxProps;
+}) {
 	const router = useRouter();
 	return (
 		<Button
@@ -14,7 +20,8 @@ export default function GoBackButton({ id, sx }: { id?: string; sx?: SxProps }) 
 			sx={{ width: "fit-content", ...sx }}
 			onClick={() => {
 				router.back();
-			}}>
+			}}
+		>
 			Go Back
 		</Button>
 	);
