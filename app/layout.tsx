@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import InitColorSchemeScript from "@mui/joy/InitColorSchemeScript";
+import { Analytics } from "@vercel/analytics/next";
 import App from "./app";
 
 const nunito = Nunito_Sans({
@@ -48,6 +49,7 @@ export default function RootLayout({
 			</head>
 			<body className={`${nunito.variable}`}>
 				<App children={children} />
+				<Analytics />
 			</body>
 		</html>
 	);
