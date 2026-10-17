@@ -4,7 +4,7 @@ import { Button, useColorScheme } from "@mui/joy";
 import { useEffect, useState } from "react";
 export default function ThemeToggler() {
 	const { mode, setMode } = useColorScheme();
-	const [mounted, setMounted] = useState<boolean>(false);
+	const [ mounted, setMounted ] = useState<boolean>(false);
 
 	useEffect(() => {
 		setMounted(true);

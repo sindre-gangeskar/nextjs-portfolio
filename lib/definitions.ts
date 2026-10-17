@@ -1,6 +1,6 @@
 import type { ColorPaletteProp } from "@mui/joy";
 import type { RefObject } from "react";
-
+import type { SxProps } from "@mui/joy/styles/types";
 export interface RepoType {
 	name: string;
 	full_name?: string;
@@ -19,8 +19,9 @@ export interface ProfileProps {
 	avatar_url?: string;
 	size: number;
 	id?: string;
-	sx?: object;
+	sx?: SxProps;
 	ref?: string;
+	onLoad?: () => void;
 }
 export interface ResponseProps {
 	statusCode: StatusCodeType;

@@ -1,5 +1,5 @@
 "use client";
-import { Stack, Typography, Chip, Box } from "@mui/joy";
+import { Stack, Typography, Chip, Box, Divider, Link, type ColorPaletteProp } from "@mui/joy";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProfileAvatar from "@/components/home/ProfileAvatar";
@@ -9,6 +9,17 @@ import ProfileAvatarSkeleton from "./skeletons/ProfileAvatarSkeleton";
 import useUserProfile from "@/hooks/useUserProfile";
 import Links from "./Links";
 
+// Grouped by color: working with others (blue), how I think (green), drive (amber)
+const traits: { label: string; color: ColorPaletteProp }[] = [
+	{ label: "Team Player", color: "primary" },
+	{ label: "Adaptable", color: "primary" },
+	{ label: "Critical Thinker", color: "success" },
+	{ label: "Detail-Oriented", color: "success" },
+	{ label: "Proactive", color: "warning" },
+	{ label: "Enthusiastic", color: "warning" },
+	{ label: "Passionate", color: "warning" },
+];
+
 export default function Hero() {
 	const { data, isLoading } = useUserProfile();
 	useGSAP(() => {
@@ -17,28 +28,21 @@ export default function Hero() {
 		const descriptionTl = gsap.timeline();
 		const profileTl = gsap.timeline();
 
-		profileTl.set(
-			"#profile > *:not(#profile-description), #profile-description > *",
-			{ opacity: 0, x: -150 },
-		);
+		profileTl.set("#profile-description > *", { opacity: 0, x: -150 });
 		descriptionTl.set("#description-stack > *", {
 			opacity: 0,
 			filter: "blur(6px)",
 		});
 		traitsTl.set("#traits .trait", { opacity: 0, y: -10, zIndex: -1 });
 
-		gsap.to("#profile", { opacity: 1 });
-		profileTl.to(
-			"#profile > *:not(#profile-description), #profile-description > *",
-			{
-				opacity: 1,
-				x: 0,
-				duration: 1.2,
-				stagger: 0.5,
-				ease: "power3.out",
-				delay: 0.5,
-			},
-		);
+		profileTl.to("#profile-description > *", {
+			opacity: 1,
+			x: 0,
+			duration: 1.2,
+			stagger: 0.5,
+			ease: "power3.out",
+			delay: 0.5,
+		});
 		descriptionTl.to("#description-stack > *", {
 			delay: 0.2,
 			duration: 0.8,
@@ -62,217 +66,147 @@ export default function Hero() {
 		});
 	}, []);
 
-	useGSAP(() => {
-		if (!data) return;
-		gsap.to("#profile-image", {
-			opacity: 1,
-			duration: 1.2,
-			ease: "power1.out",
-		});
-	}, [data]);
+	const { contextSafe } = useGSAP();
+	const revealAvatar = contextSafe(() => {
+		gsap.fromTo(
+			"#profile-image",
+			{ opacity: 0, scale: 0.92, y: 20 },
+			{ opacity: 1, scale: 1, y: 0, duration: 1, ease: "power3.out" },
+		);
+	});
 
 	return (
-		<Stack
-			component={"section"}
-			direction={"row"}
-			sx={(theme) => ({
-				position: "relative",
-				zIndex: 0,
-				overflow: "hidden",
-				p: 3,
-				mt: 3,
-				mx: 0,
-				borderRadius: "0.75rem",
-				boxShadow: `0px 0px 8px ${theme.vars.palette.neutral.softBg}`,
-				flexDirection: { xs: "column", md: "row" },
-				"& p": { lineHeight: "1.5rem" },
-				"&::before": {
-					content: '""',
-					display: "block",
-					width: "100%",
-					position: "absolute",
-					inset: 0,
-					zIndex: -1,
-					backdropFilter: "blur(80px)",
-				},
-				"&::after": {
-					content: '""',
-					display: "block",
-					position: "absolute",
-					inset: 0,
-					borderRadius: "inherit",
-					padding: "1px",
-					background: `radial-gradient(circle at top left, ${theme.vars.palette.neutral.softHoverBg} 50%, transparent)`,
-					mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-					maskComposite: "exclude",
-					WebkitMaskComposite: "xor",
-					pointerEvents: "none",
-				},
-			})}
-		>
+		<>
 			<Stack
-				id="profile"
-				sx={{
-					width: "100%",
-					minWidth: "50%",
-					justifyContent: "space-evenly",
-					textAlign: { xs: "center", md: "start" },
+				component={"section"}
+				direction={"row"}
+				sx={(theme) => ({
 					position: "relative",
-					opacity: 0,
-				}}
-			>
-				<Box id="avatar" sx={{ display: "flex", justifyContent: "center" }}>
-					{isLoading ? (
-						<ProfileAvatarSkeleton />
-					) : (
-						<ProfileAvatar
-							id="profile-image"
-							size={325}
-							avatar_url={data?.avatar_url}
-							sx={{ display: { xs: "none", md: "block" }, opacity: 0 }}
-						/>
-					)}
-				</Box>
-				<Stack id="profile-description" gap={0} p={0}>
-					<Typography level="h1" textAlign={"center"} sx={{ opacity: 0 }}>
-						I am{" "}
-						<ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
-					</Typography>
-					<Typography textAlign={"center"} sx={{ opacity: 0 }}>
-						A passionate back-end and full-stack developer from Norway
-					</Typography>
-				</Stack>
-			</Stack>
-			<Stack sx={{ justifyContent: "space-between" }}>
-				<Box
-					id="traits"
-					sx={{
-						background: "transparent",
-						borderRadius: 0,
-						display: "flex",
-						flexWrap: "wrap",
-						flexDirection: "row",
+					zIndex: 0,
+					overflow: "hidden",
+					p: 3,
+					mt: 3,
+					mx: 0,
+					borderRadius: "0.75rem",
+					flexDirection: { xs: "column", md: "row" },
+					"& p": { lineHeight: "1.75rem" },
+					"&::before": {
+						content: '""',
+						display: "block",
 						width: "100%",
-						flexShrink: 1,
-						p: 3,
-						gap: 1,
-						justifyContent: "center",
-						opacity: 0,
-					}}
-				>
-					<Chip
-						slotProps={{ label: { id: "chip-team-player" } }}
-						variant="soft"
-						className="trait"
-						color="primary"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Team Player
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-adaptable" } }}
-						variant="soft"
-						className="trait"
-						color="neutral"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Adaptable
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-critical-thinker" } }}
-						variant="soft"
-						className="trait"
-						color="danger"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Critical Thinker
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-proactive" } }}
-						variant="soft"
-						className="trait"
-						color="warning"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Proactive
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-detail-oriented" } }}
-						variant="soft"
-						className="trait"
-						color="primary"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Detail-Oriented
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-enthusiastic" } }}
-						variant="soft"
-						className="trait"
-						color="success"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Enthusiastic
-					</Chip>
-					<Chip
-						slotProps={{ label: { id: "chip-passionate" } }}
-						variant="soft"
-						className="trait"
-						color="danger"
-						component={"span"}
-						sx={{ height: "fit-content" }}
-					>
-						Passionate
-					</Chip>
-				</Box>
-				<Box id="description" component={"div"} sx={{ overflow: "hidden" }}>
-					<Stack id="description-stack" gap={3}>
-						<Typography level="title-sm">
-							I am a back-end developer with full-stack capabilities skilled in
-							building robust and scalable RESTful applications with modern
-							front-end frameworks. <br />
+						position: "absolute",
+						inset: 0,
+						zIndex: -1,
+						backdropFilter: "blur(120px)",
+					},
+					"&::after": {
+						content: '""',
+						display: "block",
+						position: "absolute",
+						inset: 0,
+						borderRadius: "inherit",
+						padding: "1px",
+						background: `radial-gradient(circle at top left, ${theme.vars.palette.neutral.softHoverBg} 50%, transparent)`,
+						mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+						maskComposite: "exclude",
+						WebkitMaskComposite: "xor",
+						pointerEvents: "none",
+					},
+				})}
+			>
+				<Stack sx={{ justifyContent: "space-between" }}>
+					<Stack id="profile-description" gap={0} p={0}>
+						<Typography level="h1" sx={{ opacity: 0 }}>
+							Hi! I am{" "}
+							<ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
 						</Typography>
-						<Typography level="title-sm">
-							I specialize in developing efficient APIs, managing databases and
-							implementing robust authentication methods. I prioritize clean and
-							maintainable code and thorough API documentation.
-						</Typography>
-						<Typography level="title-sm">
-							I am curious and eager to learn technologies for both front-end
-							and back-end to apply in a professional setting.
+						<Typography level="title-lg" sx={{ opacity: 0, mb: 2 }}>
+							Full-stack engineer at Kilter, based in Norway
 						</Typography>
 					</Stack>
-				</Box>
-				<Links />
+					<Divider sx={{ mb: 2 }} />
+					<Box id="description" component={"div"} sx={{ overflow: "hidden" }}>
+						<Stack id="description-stack" gap={1}>
+							<Typography level="title-sm">
+								I'm a full-stack engineer at{" "}
+								<Link href="https://www.kiltersystems.com/" target="_blank" rel="noopener noreferrer">
+									Kilter AS
+								</Link>
+								, where I build web and mobile apps with TypeScript, Node.js,
+								Flutter and SQL.
+							</Typography>
+							<Typography level="title-sm">
+								My roots are in back-end development: designing REST APIs, modeling
+								databases and building secure authentication. I care about clean,
+								maintainable code and documentation that's actually useful.
+							</Typography>
+							<Typography level="title-sm">
+								In my spare time I work on hobby projects to keep up with new tools
+								and practices, and to try them out hands-on.
+							</Typography>
+						</Stack>
+					</Box>
+					<Divider sx={{ my: 2 }}><Typography level="title-sm" letterSpacing={'0.1em'} textTransform='uppercase'>Traits</Typography></Divider>
+					<Box
+						id="traits"
+						sx={{
+							background: "transparent",
+							borderRadius: 0,
+							display: "flex",
+							flexWrap: "wrap",
+							flexDirection: "row",
+							width: "100%",
+							flexShrink: 1,
+							gap: 1,
+							justifyContent: "start",
+							opacity: 0,
+						}}
+					>
+						{traits.map(({ label, color }) => (
+							<Chip
+								key={label}
+								slotProps={{ label: { id: `chip-${label.toLowerCase().replace(/\s+/g, "-")}` } }}
+								variant="outlined"
+								className="trait"
+								color={color}
+								component={"span"}
+								sx={{ height: "fit-content" }}
+							>
+								{label}
+							</Chip>
+						))}
+					</Box>
+				</Stack>
+				<Stack
+					id="profile"
+					sx={{
+						height: '100%',
+						alignItems: 'center',
+						justifyContent: "center",
+						placeItems: 'center',
+						textAlign: { xs: "center", md: "start" },
+						alignSelf: 'center',
+						p: 3,
+						display: { xs: 'none', md: 'block' }
+					}}
+				>
+					<Box id="avatar" sx={theme => ({ display: "flex", justifyContent: "center", justifyItems: 'center', alignSelf: 'center' })}>
+						{isLoading ? (
+							<ProfileAvatarSkeleton size={300} />
+						) : (
+							<ProfileAvatar
+								id="profile-image"
+								size={300}
+								avatar_url={data?.avatar_url}
+								onLoad={revealAvatar}
+								sx={{ background: 'red', opacity: 0 }}
+							/>
+						)}
+					</Box>
+
+				</Stack>
 			</Stack>
-			<Box
-				sx={(theme) => ({
-					width: "100px",
-					aspectRatio: 1,
-					backgroundColor: theme.vars.palette.neutral.softBg,
-					position: "absolute",
-					zIndex: -2,
-					borderRadius: "50%",
-					bottom: 0,
-					right: 0,
-				})}
-			/>
-			<Box
-				sx={(theme) => ({
-					width: "150px",
-					aspectRatio: 1,
-					backgroundColor: theme.vars.palette.neutral.softBg,
-					position: "absolute",
-					zIndex: -2,
-					borderRadius: "50%",
-				})}
-			/>
-		</Stack>
+			<Links />
+		</>
 	);
 }

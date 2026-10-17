@@ -24,14 +24,13 @@ export default function CustomAccordion({
 	return (
 		<Accordion
 			variant="soft"
-			sx={(theme) => ({
+			sx={{
 				width: "100%",
 				position: "relative",
 				borderRadius: "0.50rem",
 				overflow: "hidden",
 				p: 0,
-				boxShadow: `0px 0px 7px ${theme.vars.palette.neutral.softBg}`,
-			})}
+			}}
 		>
 			<AccordionSummary
 				sx={{
@@ -55,7 +54,7 @@ export default function CustomAccordion({
 						src={avatarSrc}
 						sx={(theme) => ({
 							...(brightBg
-								? { backgroundColor: theme.vars.palette.neutral["100"] }
+								? { backgroundColor: theme.vars.palette.neutral[ "100" ] }
 								: null),
 							borderRadius: "0.25rem",
 							opacity: avatarSrc ? 1 : 0,
@@ -90,7 +89,7 @@ export default function CustomAccordion({
 						{grade && (
 							<Chip
 								variant="outlined"
-								color="primary"
+								color="neutral"
 								sx={{ my: { xs: 1, md: 0 } }}
 							>
 								<Typography

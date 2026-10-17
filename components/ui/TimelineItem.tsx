@@ -57,11 +57,10 @@ export default function TimelineItem({
 			<Card
 				className={"timeline-item"}
 				variant="outlined"
-				sx={(theme) => ({
+				sx={{
 					position: "relative",
 					width: { xs: "100%", sm: "450px" },
-					boxShadow: `0px 0px 12px ${theme.vars.palette.neutral.softHoverBg}`,
-				})}
+				}}
 			>
 				{imgUrl && (
 					<CardOverflow>

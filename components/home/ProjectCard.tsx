@@ -29,7 +29,7 @@ export default function ProjectCard({
 	img,
 	topics,
 }: ProjectCardProps) {
-	const [thumbnailVisible, setThumbnailVisible] = useState(false);
+	const [ thumbnailVisible, setThumbnailVisible ] = useState(false);
 	const thumbnailId = `${title.replaceAll(" ", "-")}-preview`;
 	useGSAP(() => {
 		if (!img) return;
@@ -48,7 +48,7 @@ export default function ProjectCard({
 				duration: 0.4,
 				filter: "",
 			});
-	}, [thumbnailVisible]);
+	}, [ thumbnailVisible ]);
 
 	const toggleThumbnailVisibility = () => {
 		setThumbnailVisible((prev) => !prev);
@@ -134,7 +134,7 @@ export default function ProjectCard({
 						>
 							{title}
 						</Typography>
-						<Typography
+						{stars != 0 && (<Typography
 							color={stars && stars > 0 ? "warning" : "neutral"}
 							level="title-sm"
 							py={1}
@@ -147,7 +147,7 @@ export default function ProjectCard({
 							startDecorator={<StarRounded />}
 						>
 							{stars}
-						</Typography>
+						</Typography>)}
 					</Box>
 					<Typography
 						level="body-sm"
@@ -172,35 +172,33 @@ export default function ProjectCard({
 						}}
 					>
 						{topics?.map((t) => (
-								<Chip size="sm" key={t} slotProps={{ label: { id: t } }}>
-									{t}
-								</Chip>
-							))}
+							<Chip size="sm" key={t} slotProps={{ label: { id: t } }}>
+								{t}
+							</Chip>
+						))}
 					</Box>
-					<CardActions>
-						{homepage && (
-							<Button
-								variant="solid"
-								color="primary"
-								component="a"
-								href={homepage}
-								target="_blank"
-								endDecorator={<FaGlobe />}
-							>
-								Visit Homepage
-							</Button>
-						)}
+					<CardActions sx={{ justifyContent: 'end' }}>
 						{isRepo && (
 							<Button
-								variant="soft"
+								variant="outlined"
 								color="neutral"
 								component={"a"}
 								href={url}
 								target={"_blank"}
-								sx={{ maxWidth: "max-content", ml: "auto" }}
-								endDecorator={<GitHub />}
+								sx={{ maxWidth: '3rem', width: '3rem', height: '3rem', aspectRatio: 1, p: 0 }}
 							>
-								Repository
+								<GitHub />
+							</Button>
+						)}
+						{homepage && (
+							<Button
+								variant="outlined"
+								component="a"
+								href={homepage}
+								target="_blank"
+								sx={{ maxWidth: '3rem', width: '3rem', height: '3rem', aspectRatio: 1, p: 0 }}
+							>
+								<FaGlobe />
 							</Button>
 						)}
 					</CardActions>

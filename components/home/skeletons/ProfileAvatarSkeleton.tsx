@@ -1,13 +1,13 @@
 import { Skeleton } from "@mui/joy";
 
-export default function ProfileAvatarSkeleton() {
+export default function ProfileAvatarSkeleton({ size = 300 }: { size?: number }) {
 	return (
 		<Skeleton
 			animation={"pulse"}
-			height={325}
-			width={325}
-			variant="circular"
-			sx={{ display: { xs: "none", md: "inherit" } }}
-		></Skeleton>
+			height={size}
+			width={size}
+			variant="rectangular"
+			sx={{ borderRadius: "1.25rem" }}
+		/>
 	);
 }

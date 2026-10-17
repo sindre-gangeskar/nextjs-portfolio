@@ -57,10 +57,10 @@ export default function Project({
 					}}
 				>
 					{repo.topics?.map((t) => (
-							<Chip key={t} slotProps={{ label: { id: t } }}>
-								{t}
-							</Chip>
-						))}
+						<Chip key={t} slotProps={{ label: { id: t } }}>
+							{t}
+						</Chip>
+					))}
 				</Box>
 			)}
 			<CardContent>
@@ -82,14 +82,7 @@ export default function Project({
 							alignItems: "center",
 						}}
 					>
-						{typeof repo.stargazers_count === "number" && (
-							<Typography
-								color={repo.stargazers_count > 0 ? "warning" : "neutral"}
-								startDecorator={<StarRounded />}
-							>
-								{repo.stargazers_count}
-							</Typography>
-						)}
+
 						<Box
 							component={"span"}
 							sx={{
@@ -104,7 +97,7 @@ export default function Project({
 							{repo.homepage && (
 								<Button
 									sx={btnSx}
-									variant="soft"
+									variant="outlined"
 									color="primary"
 									endDecorator={isSmall ? null : <FaGlobe />}
 									component={"a"}
@@ -117,7 +110,7 @@ export default function Project({
 							{repo.html_url && (
 								<Button
 									sx={btnSx}
-									variant="soft"
+									variant="outlined"
 									color="neutral"
 									endDecorator={isSmall ? null : <GitHub />}
 									component={"a"}
@@ -128,6 +121,14 @@ export default function Project({
 								</Button>
 							)}
 						</Box>
+						{typeof repo.stargazers_count === "number" && repo.stargazers_count > 0 && (
+							<Typography
+								color={repo.stargazers_count > 0 ? "warning" : "neutral"}
+								startDecorator={<StarRounded />}
+							>
+								{repo.stargazers_count}
+							</Typography>
+						)}
 					</Stack>
 				</Stack>
 			</CardContent>

@@ -17,8 +17,9 @@ import Education from "./Education";
 import { EmailRounded, LocationCityRounded } from "@mui/icons-material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import LinkedInButton from "../ui/LinkedInButton";
+
 import { FaFilePdf } from "react-icons/fa6";
+import { LinkedInButton, ResumeButton } from "../home/Links";
 export default function Resume() {
 	useGSAP(() => {
 		const tl = gsap.timeline();
@@ -93,18 +94,7 @@ export default function Resume() {
 										contact@sindregangeskar.dev
 									</Button>
 									<LinkedInButton />
-									<Button
-										size="sm"
-										variant="soft"
-										color="danger"
-										href={encodeURI("/assets/Sindre Gangeskar - Resumé.pdf")}
-										component={"a"}
-										target="_blank"
-										endDecorator={<FaFilePdf size={20} />}
-										rel="noopener noreferrer"
-									>
-										<Typography>View Resumé</Typography>
-									</Button>
+									<ResumeButton />
 								</Stack>
 							</ListItem>
 							<ListItem>
