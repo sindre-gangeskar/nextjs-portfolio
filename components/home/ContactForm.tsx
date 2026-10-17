@@ -34,6 +34,7 @@ export default function ContactForm() {
 	const [ countdown, setCountdown ] = useState(0);
 	const theme = useTheme();
 	const turnstileRef = useRef<TurnstileInstance | null>(null);
+	const [ turnstileToken, setTurnstileToken ] = useState<string | null>(null);
 	useGSAP(() => {
 		if (state) {
 			gsap.set(".form-message", { opacity: 0, fontSize: "1.2rem" });
@@ -57,7 +58,10 @@ export default function ContactForm() {
 	}, [ state ]);
 
 	useEffect(() => {
-		if (state && turnstileRef.current) turnstileRef.current.reset();
+		if (state && turnstileRef.current) {
+			turnstileRef.current.reset();
+			setTurnstileToken(null);
+		}
 	}, [ state ]);
 
 	return (
@@ -157,6 +161,9 @@ export default function ContactForm() {
 							ref={turnstileRef}
 							siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
 							style={{ margin: "auto" }}
+							onSuccess={setTurnstileToken}
+							onExpire={() => setTurnstileToken(null)}
+							onError={() => setTurnstileToken(null)}
 						/>
 						<Stack
 							direction={"column"}
@@ -173,7 +180,7 @@ export default function ContactForm() {
 								loading={isPending}
 								color={"primary"}
 								type="submit"
-								disabled={isPending || countdown > 0 || !turnstileRef.current}
+								disabled={isPending || countdown > 0 || !turnstileToken}
 								sx={{ mx: "auto", padding: 1.5, px: 2 }}
 							>
 								{isPending ? null : (
