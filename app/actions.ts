@@ -43,7 +43,7 @@ export async function sendEmail(_: PreviousState, formdata: FormData) {
 				message: "You have made too many attempts, please try again later",
 			} as ResponseProps;
 
-		const response = (await EmailService.send(formdata)) as ResponseProps;
+		const response = (await EmailService.send(formdata, ip)) as ResponseProps;
 		if (response.status === "success")
 			await redis.set(successKey, "1", { ex: 600 });
 		else await rateLimiter.limit(attemptKey);

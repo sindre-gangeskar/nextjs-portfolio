@@ -4,7 +4,7 @@ import type { ResponseProps } from "../definitions";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 export default class EmailService {
-	static async send(formdata: FormData) {
+	static async send(formdata: FormData, ip?: string) {
 		try {
 			const genericErrMessage = "Unable to send your message. Please try again";
 			const name = formdata.get("name")?.toString();
@@ -28,8 +28,8 @@ export default class EmailService {
 					message: genericErrMessage,
 				} as ResponseProps;
 
-			const result = await validateTurnstile(token);
-			if (!result.success)
+			const result = await validateTurnstile(token, ip);
+			if (!result.success || !isAllowedHostname(result.hostname))
 				return {
 					status: "fail",
 					statusCode: 403,
@@ -95,7 +95,7 @@ async function sendMail(
 			html: `
       <p style="font-size: 12px; color: darkorange;">${name} has tried to reach you through the contact form on your portfolio</p>
       <hr style="border: 5px solid darkorange; border-radius: 1.25rem;"/>
-      <p style="font-size: 12px; color: #1d1d1d;">${message}</p>
+      <p style="font-size: 12px; color: #1d1d1d;">${validator.escape(message)}</p>
       `,
 			text: message,
 		};
@@ -106,7 +106,14 @@ async function sendMail(
 	}
 }
 
-async function validateTurnstile(token: string) {
+// Only enforced in production, since local dev and test keys report other hostnames
+function isAllowedHostname(hostname?: string) {
+	if (process.env.NODE_ENV !== "production") return true;
+	const domain = process.env.DOMAIN;
+	return !!hostname && (hostname === domain || hostname === `www.${domain}`);
+}
+
+async function validateTurnstile(token: string, ip?: string) {
 	try {
 		const response = await fetch(
 			"https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -116,6 +123,7 @@ async function validateTurnstile(token: string) {
 				body: JSON.stringify({
 					secret: process.env.TURNSTILE_SECRET,
 					response: token,
+					remoteip: ip,
 				}),
 			},
 		);

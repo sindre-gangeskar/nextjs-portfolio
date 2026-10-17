@@ -5,6 +5,7 @@ import {
 	Card,
 	CardContent,
 	Input,
+	Link,
 	Stack,
 	Textarea,
 	Typography,
@@ -29,8 +30,8 @@ import {
 import gsap from "gsap";
 import { useActionState, useEffect, useRef, useState } from "react";
 export default function ContactForm() {
-	const [state, dispatch, isPending] = useActionState(sendEmail, null);
-	const [countdown, setCountdown] = useState(0);
+	const [ state, dispatch, isPending ] = useActionState(sendEmail, null);
+	const [ countdown, setCountdown ] = useState(0);
 	const theme = useTheme();
 	const turnstileRef = useRef<TurnstileInstance | null>(null);
 	useGSAP(() => {
@@ -44,7 +45,7 @@ export default function ContactForm() {
 			});
 			setCountdown(5);
 		}
-	}, [state]);
+	}, [ state ]);
 
 	useEffect(() => {
 		if (state) {
@@ -53,11 +54,11 @@ export default function ContactForm() {
 			}, 1000);
 			return () => clearInterval(countdownIntervalId);
 		}
-	}, [state]);
+	}, [ state ]);
 
 	useEffect(() => {
 		if (state && turnstileRef.current) turnstileRef.current.reset();
-	}, [state]);
+	}, [ state ]);
 
 	return (
 		<Stack mb={10} gap={2}>
@@ -172,7 +173,7 @@ export default function ContactForm() {
 								loading={isPending}
 								color={"primary"}
 								type="submit"
-								disabled={isPending || countdown > 0}
+								disabled={isPending || countdown > 0 || !turnstileRef.current}
 								sx={{ mx: "auto", padding: 1.5, px: 2 }}
 							>
 								{isPending ? null : (
@@ -187,6 +188,18 @@ export default function ContactForm() {
 								)}
 							</Button>
 						</Stack>
+						<Typography level="body-xs" textAlign={"center"} textColor={"text.tertiary"}>
+							This form is protected by Cloudflare Turnstile. The Cloudflare{" "}
+							<Link
+								href="https://www.cloudflare.com/turnstile-privacy-policy/"
+								target="_blank"
+								rel="noopener noreferrer"
+								level="body-xs"
+							>
+								Turnstile Privacy Addendum
+							</Link>{" "}
+							applies.
+						</Typography>
 					</Stack>
 				</CardContent>
 			</Card>
