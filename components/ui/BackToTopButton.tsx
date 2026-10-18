@@ -1,13 +1,13 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { Button } from "@mui/joy";
+import { Box, Button } from "@mui/joy";
 import gsap from "gsap";
 import { useEffect, useState } from "react";
 import { TiArrowUp } from "react-icons/ti";
 
 export default function BackToTopButton() {
-	const [visible, setVisible] = useState(false);
+	const [ visible, setVisible ] = useState(false);
 	const handleScrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
@@ -16,7 +16,7 @@ export default function BackToTopButton() {
 		const onScroll = async () => {
 			const scrollPercent = Math.min(
 				(window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
-					100,
+				100,
 				100,
 			);
 			if (scrollPercent > 30) {
@@ -51,24 +51,39 @@ export default function BackToTopButton() {
 				duration: 1.2,
 				pointerEvents: "none",
 			});
-	}, [visible]);
+	}, [ visible ]);
 
 	return (
-		<Button
-			id={"scrollTopBtn"}
-			onClick={handleScrollToTop}
+		<Box
 			sx={{
-				m: 2,
-				scale: 0,
-				opacity: 0,
-				pointerEvents: "none",
 				position: "fixed",
+				left: 0,
+				right: 0,
 				bottom: 0,
 				zIndex: 10,
-				right: 0,
+				pointerEvents: "none",
+				containerType: "inline-size",
 			}}
 		>
-			<TiArrowUp size={25} />
-		</Button>
+			<Box sx={{ position: "relative", maxWidth: "lg", mx: "auto" }}>
+				<Button
+					id={"scrollTopBtn"}
+					onClick={handleScrollToTop}
+					sx={{
+						m: 2,
+						scale: 0,
+						opacity: 0,
+						pointerEvents: "none",
+						position: "absolute",
+						bottom: 0,
+						right: { xs: 0, lg: "-2%" },
+						translate: (theme) =>
+							`max(0px, min(calc(100% + ${theme.spacing(2)}), calc((100cqw - ${theme.breakpoints.values.lg}px) / 2))) 0`,
+					}}
+				>
+					<TiArrowUp size={25} />
+				</Button>
+			</Box>
+		</Box>
 	);
 }
