@@ -125,6 +125,6 @@ export default function Skill({
 				</Card>
 			</Tooltip>
 			<Typography level="title-sm" color={color} sx={{ my: 2, textAlign: 'center', fontWeight: 'bold', textWrap: 'wrap', lineHeight: 1, wordBreak: 'break-word', textOverflow: 'ellipsis' }}>{title}</Typography>
-			|		</Stack>
+		</Stack>
 	);
 }

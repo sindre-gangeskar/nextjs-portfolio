@@ -118,7 +118,7 @@ export default function Hero() {
 					<Stack id="profile-description" gap={0} p={0}>
 						<Typography level="h1" sx={{ opacity: 0 }}>
 							Hi! I am{" "}
-							<ColoredTypography level="h1">Sindre Gangeskar</ColoredTypography>
+							<ColoredTypography level="h1" bold>Sindre Gangeskar</ColoredTypography>
 						</Typography>
 						<Typography level="title-lg" sx={{ opacity: 0, mb: 2 }}>
 							Full-stack engineer at Kilter, based in Norway
