@@ -2,9 +2,8 @@
 import { Stack, Button, Typography } from "@mui/joy";
 import { EmailRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import useUserProfile from "@/hooks/useUserProfile";
-import { SxProps } from "@mui/joy/styles/types";
-import React from "react";
-import { ProfileProps } from "@/lib/definitions";
+import type { SxProps } from "@mui/joy/styles/types";
+import type { ProfileProps } from "@/lib/definitions";
 import { FaFilePdf } from "react-icons/fa6";
 const sharedSx: SxProps = theme => ({
 	overflow: 'hidden',

@@ -278,7 +278,7 @@ const Languages = () => (
 	<>
 		<ColoredTypography color="neutral" bold level="h3" sx={{ textAlign: { xs: 'center', md: 'start' }, my: 2 }}>Languages</ColoredTypography>
 		<Stack direction={'row'} flexWrap={"wrap"} gap={2} sx={{ justifyContent: { xs: 'center', md: 'start' } }}>
-			{languageSkills.map(skill => (<Skill key={skill.title} title={skill.title} description={skill.description} icon={skill.icon} />))}
+			{languageSkills.map(skill => (<Skill key={skill.title} title={skill.title} description={skill.description} icon={skill.icon} url={skill.url} />))}
 		</Stack>
 	</>
 );
@@ -286,7 +286,7 @@ const Backend = () => (
 	<>
 		<ColoredTypography level="h3" bold color="success" sx={{ textAlign: { xs: 'center', md: 'start' }, my: 2 }}>Back-end & Data</ColoredTypography>
 		<Stack direction={'row'} flexWrap={"wrap"} gap={2} sx={{ justifyContent: { xs: 'center', md: 'start' } }}>
-			{backendSkills.map(skill => (<Skill key={skill.title} color="success" title={skill.title} description={skill.description} icon={skill.icon} />))}
+			{backendSkills.map(skill => (<Skill key={skill.title} color="success" title={skill.title} description={skill.description} icon={skill.icon} url={skill.url} />))}
 		</Stack>
 	</>
 )
@@ -294,7 +294,7 @@ const Frontend = () => (
 	<>
 		<ColoredTypography level="h3" bold color="primary" sx={{ textAlign: { xs: 'center', md: 'start' }, my: 2 }}>Front-end & Full-stack</ColoredTypography>
 		<Stack direction={'row'} flexWrap={"wrap"} gap={2} sx={{ justifyContent: { xs: 'center', md: 'start' } }}>
-			{frontendSkills.map(skill => (<Skill key={skill.title} color="primary" title={skill.title} description={skill.description} icon={skill.icon} />))}
+			{frontendSkills.map(skill => (<Skill key={skill.title} color="primary" title={skill.title} description={skill.description} icon={skill.icon} url={skill.url} />))}
 		</Stack>
 	</>
 )
@@ -302,7 +302,7 @@ const Tools = () => (
 	<>
 		<ColoredTypography level="h3" bold color="warning" sx={{ textAlign: { xs: 'center', md: 'start' }, my: 2 }}>Tools & Applications</ColoredTypography>
 		<Stack direction={'row'} flexWrap={"wrap"} gap={2} sx={{ justifyContent: { xs: 'center', md: 'start' } }}>
-			{toolSkills.map(skill => (<Skill key={skill.title} color="warning" title={skill.title} description={skill.description} icon={skill.icon} />))}
+			{toolSkills.map(skill => (<Skill key={skill.title} color="warning" title={skill.title} description={skill.description} icon={skill.icon} url={skill.url} />))}
 		</Stack>
 	</>
 )
@@ -310,7 +310,7 @@ const Platforms = () => (
 	<>
 		<ColoredTypography level="h3" bold color="danger" sx={{ textAlign: { xs: 'center', md: 'start' }, my: 2 }}>Platforms & Build Tools</ColoredTypography>
 		<Stack direction={'row'} flexWrap={"wrap"} gap={2} sx={{ justifyContent: { xs: 'center', md: 'start' } }}>
-			{platformSkills.map(skill => (<Skill key={skill.title} color="danger" title={skill.title} description={skill.description} icon={skill.icon} />))}
+			{platformSkills.map(skill => (<Skill key={skill.title} color="danger" title={skill.title} description={skill.description} icon={skill.icon} url={skill.url} />))}
 		</Stack>
 	</>
 )
