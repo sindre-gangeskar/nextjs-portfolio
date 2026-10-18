@@ -66,11 +66,38 @@ export default function ContactForm() {
 
 	return (
 		<Stack mb={10} gap={2}>
+			<Box
+				sx={{
+					mt: 6,
+					width: "100%",
+					mx: "auto",
+					maxWidth: "sm",
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+				}}
+			>
+				<Typography
+					level="h1"
+					sx={{ alignItems: "center", alignContent: "center" }}
+				>
+					{"Send me an "}
+					<ColoredTypography color="danger" level="h1" bold={true}>
+						{" "}
+						email
+					</ColoredTypography>
+				</Typography>
+				<MailRounded
+					sx={{
+						fontSize: "2rem",
+						color: theme.vars.palette.text.secondary,
+					}}
+				/>
+			</Box>
 			<Card
 				variant="outlined"
 				color="neutral"
 				sx={{
-					mt: 5,
 					width: "100%",
 					mx: "auto",
 					maxWidth: "sm",
@@ -79,30 +106,6 @@ export default function ContactForm() {
 				}}
 			>
 				<CardContent sx={{ p: 2 }}>
-					<Box
-						sx={{
-							display: "flex",
-							justifyContent: "space-between",
-							alignItems: "center",
-						}}
-					>
-						<Typography
-							level="h1"
-							sx={{ alignItems: "center", alignContent: "center" }}
-						>
-							{"Send me an "}
-							<ColoredTypography color="danger" level="h1" bold={true}>
-								{" "}
-								email
-							</ColoredTypography>
-						</Typography>
-						<MailRounded
-							sx={{
-								fontSize: "2rem",
-								color: theme.vars.palette.text.secondary,
-							}}
-						/>
-					</Box>
 					<Stack
 						id="contact-form"
 						component={"form"}
@@ -170,23 +173,22 @@ export default function ContactForm() {
 							id="form-input"
 							sx={{
 								position: "relative",
-								width: "fit-content",
+								width: "100%",
 								mx: "auto",
 								alignItems: "center",
 							}}
 						>
 							<Button
-								variant="soft"
+								variant="outlined"
 								loading={isPending}
-								color={"primary"}
+								color={"neutral"}
 								type="submit"
 								disabled={isPending || countdown > 0 || !turnstileToken}
-								sx={{ mx: "auto", padding: 1.5, px: 2 }}
+								sx={{ mx: "auto", padding: 1.5, px: 2, width: '75%' }}
 							>
 								{isPending ? null : (
 									<Typography
-										color="primary"
-										level="body-sm"
+										color="neutral"
 										sx={{ opacity: isPending ? 0 : 1 }}
 										endDecorator={<Send />}
 									>
@@ -195,22 +197,22 @@ export default function ContactForm() {
 								)}
 							</Button>
 						</Stack>
-						<Typography level="body-xs" textAlign={"center"} textColor={"text.tertiary"}>
-							This form is protected by Cloudflare Turnstile. The Cloudflare{" "}
-							<Link
-								href="https://www.cloudflare.com/turnstile-privacy-policy/"
-								target="_blank"
-								rel="noopener noreferrer"
-								level="body-xs"
-							>
-								Turnstile Privacy Addendum
-							</Link>{" "}
-							applies.
-						</Typography>
+
 					</Stack>
 				</CardContent>
 			</Card>
-
+			<Typography level="body-xs" textAlign={"center"} textColor={"text.tertiary"}>
+				This form is protected by Cloudflare Turnstile. The Cloudflare{" "}
+				<Link
+					href="https://www.cloudflare.com/turnstile-privacy-policy/"
+					target="_blank"
+					rel="noopener noreferrer"
+					level="body-xs"
+				>
+					Turnstile Privacy Addendum
+				</Link>{" "}
+				applies.
+			</Typography>
 			{state?.message && (
 				<Typography
 					level="title-sm"

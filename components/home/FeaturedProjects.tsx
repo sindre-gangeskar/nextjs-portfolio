@@ -11,12 +11,12 @@ export default function FeaturedProjects() {
 	const { data, isLoading } = useFeaturedProjects();
 
 	return (
-		<Stack component={"section"} mt={15}>
+		<Stack component={"section"} mt={6}>
 			<Typography
 				level="h1"
 				mb={{ xs: 3, md: 3 }}
 				mx={5}
-				textAlign={{ xs: "center", md: "end" }}
+				textAlign={{ xs: "center", md: "start" }}
 			>
 				Featured
 				<ColoredTypography color="primary" level="h1">

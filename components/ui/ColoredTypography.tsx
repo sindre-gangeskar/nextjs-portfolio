@@ -1,5 +1,6 @@
 import type { ColorPaletteProp } from "@mui/joy";
 import { Link, Typography } from "@mui/joy";
+import type { SxProps } from "@mui/joy/styles/types";
 
 export default function ColoredTypography({
 	children,
@@ -18,7 +19,7 @@ export default function ColoredTypography({
 	href?: string;
 	bold?: boolean;
 	isLink?: boolean;
-	sx?: object;
+	sx?: SxProps;
 	id?: string;
 	endDecorator?: React.ReactNode;
 }) {
