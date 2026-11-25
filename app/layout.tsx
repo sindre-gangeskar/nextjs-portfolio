@@ -6,19 +6,19 @@ import App from "./app";
 
 const nunito = Nunito_Sans({
 	variable: "--font-nunito",
-	subsets: ["latin"],
+	subsets: [ "latin" ],
 });
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://sindregangeskar.dev"),
 	title: { default: "Sindre Gangeskar", template: "Sindre Gangeskar | %s" },
 	description:
-		"I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!",
+		"I am Sindre Gangeskar, A passionate full-stack developer from Norway building fast and reliable web apps. Visit my portfolio and learn more about me!",
 	openGraph: {
 		type: "website",
 		url: "/",
 		title: "Sindre Gangeskar",
-		description: `I am Sindre Gangeskar, A passionate backend developer from Norway with fullstack capabilities, building fast and reliable web apps. Visit my portfolio and learn more about me!`,
+		description: `I am Sindre Gangeskar, A passionate full-stack developer from Norway building fast and reliable web apps. Visit my portfolio and learn more about me!`,
 		images: [
 			{
 				url: "/images/og-default.jpg",
