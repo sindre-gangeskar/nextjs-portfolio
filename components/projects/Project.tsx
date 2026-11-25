@@ -15,6 +15,7 @@ import type { SxProps } from "@mui/material";
 import type { VariantProp, ColorPaletteProp } from "@mui/joy";
 import { FaGlobe } from "react-icons/fa6";
 import { useMediaQuery } from "@mui/material";
+import { Theme } from "@emotion/react";
 export default function Project({
 	repo,
 	id,
@@ -42,8 +43,20 @@ export default function Project({
 			className={className}
 			variant={variant}
 			color={color}
-			invertedColors
-			sx={{ ...sx }}
+			sx={[ (theme) => ({
+				overflow: 'hidden',
+				"&::before": {
+					display: "block",
+					content: '""',
+					position: "absolute",
+					background: theme.vars.palette.primary.softBg,
+					left: 0,
+					top: 0,
+					right: 0,
+					bottom: 0,
+					width: "4px",
+				}
+			}), ...(Array.isArray(sx) ? sx : [ sx ]) ]}
 		>
 			<Typography level="title-lg">{capitalizeString(repo.name)}</Typography>
 			{repo.topics && (
@@ -82,7 +95,6 @@ export default function Project({
 							alignItems: "center",
 						}}
 					>
-
 						<Box
 							component={"span"}
 							sx={{
@@ -121,14 +133,15 @@ export default function Project({
 								</Button>
 							)}
 						</Box>
-						{typeof repo.stargazers_count === "number" && repo.stargazers_count > 0 && (
-							<Typography
-								color={repo.stargazers_count > 0 ? "warning" : "neutral"}
-								startDecorator={<StarRounded />}
-							>
-								{repo.stargazers_count}
-							</Typography>
-						)}
+						{typeof repo.stargazers_count === "number" &&
+							repo.stargazers_count > 0 && (
+								<Typography
+									color={repo.stargazers_count > 0 ? "warning" : "neutral"}
+									startDecorator={<StarRounded />}
+								>
+									{repo.stargazers_count}
+								</Typography>
+							)}
 					</Stack>
 				</Stack>
 			</CardContent>
